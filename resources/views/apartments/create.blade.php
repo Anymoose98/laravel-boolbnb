@@ -29,9 +29,9 @@
             </div>
             {{-- Immagini appartamento --}}
             <div class="form-group">
-                <label class="mt-3" for="cover_image">Immagine di copertina dell'appartamento</label>
-                <input type="file" name="cover_image" id="cover_image" accept="image/*" class="form-control">
-                @error('cover_image')
+                <label class="mt-3" for="image">Immagine di copertina dell'appartamento</label>
+                <input type="file" name="image" id="image" accept="image/*" class="form-control">
+                @error('image')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -78,10 +78,10 @@
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità</label>
-                <input type="radio" name="apartments_visibility" value="Si">
-                <label for="" class="apartments_visibility_yes" > Si</label>
-                <input type="radio" name="apartments_visibility"   value="No">
-                <label for="" class="apartments_visibility_no" > No</label>
+                <input type="radio" name="visibility" value="Si">
+                <label for=""  > Si</label>
+                <input type="radio" name="visibility"   value="No">
+                <label for="" > No</label>
                 @error('visibility')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror

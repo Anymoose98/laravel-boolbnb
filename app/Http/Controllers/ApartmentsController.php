@@ -40,16 +40,16 @@ class ApartmentsController extends Controller
         $form_data = $request->all();
 
         $apartment = new Apartments();
-        if($request->hasFile("cover_image")){
-            $path = Storage::disk("public")->put("apartment_image", $form_data["cover_image"]);
-            $form_data["cover_image"] = $path;
+        if($request->hasFile("image")){
+            $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
+            $form_data["image"] = $path;
         }
         
         $apartment->fill($form_data);
        
         $apartment->save();
         
-        return redirect()->route("apartment.index");
+        return redirect()->route("apartments.index");
     }
 
     /**
