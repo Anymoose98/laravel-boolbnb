@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Apartments;
 use App\Http\Requests\StoreApartmentsRequest;
 use App\Http\Requests\UpdateApartmentsRequest;
@@ -25,7 +26,7 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-        //
+        return view("apartments.create");
     }
 
     /**
@@ -36,7 +37,19 @@ class ApartmentsController extends Controller
      */
     public function store(StoreApartmentsRequest $request)
     {
-        //
+        $form_data = $request->all();
+
+        $apartment = new Apartments();
+        if($request->hasFile("cover_image")){
+            $path = Storage::disk("public")->put("apartment_image", $form_data["cover_image"]);
+            $form_data["cover_image"] = $path;
+        }
+        
+        $apartment->fill($form_data);
+       
+        $apartment->save();
+        
+        return redirect()->route("apartment.index");
     }
 
     /**

@@ -12,6 +12,7 @@ class Apartments extends Model
         'description',
         'rooms',
         'beds',
+        'image',
         'bathrooms',
         'square_meters',
         'location',

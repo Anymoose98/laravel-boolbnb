@@ -29,7 +29,7 @@
             </div>
             {{-- Immagini appartamento --}}
             <div class="form-group">
-                <label class="mt-3" for="cover_image">Immagine di copertina dell'auto</label>
+                <label class="mt-3" for="cover_image">Immagine di copertina dell'appartamento</label>
                 <input type="file" name="cover_image" id="cover_image" accept="image/*" class="form-control">
                 @error('cover_image')
                     <div class ="text-danger">{{ $message }}</div>
@@ -38,7 +38,7 @@
             {{-- Numero stanze --}}
             <div class="form-group">
                 <label class="mt-3" for="rooms">Numero Stanze</label>
-                <textarea type="text" name="rooms" id="rooms" class="form-control" placeholder="rooms " > {{ old("rooms")  }}</textarea>
+                <input type="text" name="rooms" id="rooms" class="form-control" placeholder="rooms " > {{ old("rooms")  }}
                 @error('rooms')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -46,7 +46,7 @@
             {{-- Numero letti --}}
             <div class="form-group">
                 <label class="mt-3" for="beds">Letti disponibili</label>
-                <textarea type="text" name="beds" id="beds" class="form-control" placeholder="beds " > {{ old("beds")  }}</textarea>
+                <input type="text" name="beds" id="beds" class="form-control" placeholder="beds " > {{ old("beds")  }}
                 @error('beds')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -54,7 +54,7 @@
             {{-- Numero bagni --}}
             <div class="form-group">
                 <label class="mt-3" for="bathrooms">Bagni</label>
-                <textarea type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="bathrooms " > {{ old("bathrooms")  }}</textarea>
+                <input type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="bathrooms " > {{ old("bathrooms")  }}
                 @error('bathrooms')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -62,7 +62,7 @@
             {{-- Metratura appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="square_meters">Metri quadrati</label>
-                <textarea type="text" name="square_meters" id="square_meters" class="form-control" placeholder="square_meters " > {{ old("square_meters")  }}mq</textarea>
+                <input type="text" name="square_meters" id="square_meters" class="form-control" placeholder="square_meters " > {{ old("square_meters")  }}
                 @error('square_meters')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -70,7 +70,7 @@
             {{-- Zona --}}
             <div class="form-group">
                 <label class="mt-3" for="location">Zona</label>
-                <textarea type="text" name="location" id="location" class="form-control" placeholder="location " > {{ old("location")  }}</textarea>
+                <input type="text" name="location" id="location" class="form-control" placeholder="location " > {{ old("location")  }}
                 @error('location')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -78,8 +78,10 @@
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità</label>
-                <input type="radio" name="apartments_visibility"  class="form-check-input mx-2" value="Si">
-                <input type="radio" name="apartments_visibility"  class="form-check-input mx-2" value="No">
+                <input type="radio" name="apartments_visibility" value="Si">
+                <label for="" class="apartments_visibility_yes" > Si</label>
+                <input type="radio" name="apartments_visibility"   value="No">
+                <label for="" class="apartments_visibility_no" > No</label>
                 @error('visibility')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
