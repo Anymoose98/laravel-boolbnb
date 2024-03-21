@@ -15,7 +15,7 @@ class ApartmentsController extends Controller
      */
     public function index()
     {
-        //
+        return view("apartments.index");
     }
 
     /**
