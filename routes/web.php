@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ApartmentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
