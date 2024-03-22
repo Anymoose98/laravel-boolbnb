@@ -47,11 +47,11 @@ class ApartmentsController extends Controller
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
-        
+
         $apartment->fill($form_data);
-       
+
         $apartment->save();
-        
+
         return redirect()->route("apartments.index");
     }
 
@@ -63,10 +63,10 @@ class ApartmentsController extends Controller
      */
     public function show(Apartments $apartments)
     {
-        
+
         $apartment =  Apartments::all();
 
-        return view("apartments.index", compact("apartment"));
+        return view("apartments.show", compact("apartment"));
     }
 
     /**

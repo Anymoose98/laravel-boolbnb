@@ -1,32 +1,24 @@
-@extends("layouts.app")
+@extends('layouts.app')
 
-@section("content")
-{{-- 
+@section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-12 mt-3">
-            <h4>Descrizione: </h4>{{ $apartments->marca}}
-            <h4>Modello: </h4>{{ $apartments->modello}}<hr>
-            <h4  class="my-3">Immagine rappresentativa dell'auto:</h4>
-            <div class="img-auto">
-                    <img src="{{ asset("/storage/" . $apartments->cover_image) }}" alt="{{ $apartments->name}}" >
-                <h4>Alimentazione: </h4>{{ $apartments->alimentazione}}<hr>
-                <h4>Optional</h4>
-                @forelse($apartments->optionals as $optional)
-                    -{{ $optional->name }}
-                    @empty
-                        Nessun optional selezionato per quest'auto
-                    @endforelse
+            <h4>Descrizione: </h4>{{ $apartment->description }}
+            <h4>Stanze: </h4>{{ $apartment->rooms }}
+            <h4>Letti: </h4>{{ $apartment->beds }}
+            <h4>Bagni: </h4>{{ $apartment->bathrooms }}
+            <h4>Metri quadri: </h4>{{ $apartment->square_meters }}<hr>
+            <h4>Ubicazione: </h4>{{ $apartment->location }}
+            <h4>Visibilità: </h4>{{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}<hr>
+            <h4>Coordinate:</h4>Latitudine {{ $apartment->latitudine }}, Longitudine {{ $apartment->longitudine }}
+            <div class="mt-3">
+                <h4 class="my-3">Immagine rappresentativa dell'appartamento:</h4>
+                <img src="{{ asset('storage/' . $apartment->image) }}" alt="Immagine appartamento">
             </div>
-            <h4>Prezzo: </h4>{{ $apartments->prezzo}}€
-            <h4>Numero porte: </h4>{{ $apartments->num_porte}}
-            <h4>Km. : </h4>{{ $apartments->chilometri}}
-            <h4>Colore: </h4>{{ $apartments->colore}}<hr>
-            <h4>Anno:</h4>{{ $apartments->anno}}<hr>
         </div>
-                  
     </div>
-</div> --}}
-
+</div>
 
 @endsection
