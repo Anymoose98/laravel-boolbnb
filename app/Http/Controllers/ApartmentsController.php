@@ -63,13 +63,7 @@ class ApartmentsController extends Controller
      */
     public function show(Apartments $apartments)
     {
-<<<<<<< HEAD
 
-        $apartment =  Apartments::all();
-
-        return view("apartments.show", compact("apartment"));
-=======
-        
 
         return view("apartments.show", compact("apartments"));
 >>>>>>> cb206e81c7949874dfa0a7c730cb500e9be8c31a
