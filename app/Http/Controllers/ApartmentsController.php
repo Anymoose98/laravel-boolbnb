@@ -114,7 +114,7 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Apartments $apartments)
+    public function destroy(Apartments $apartments, $id)
     {
         Apartments::destroy($apartments->id);
         $apartments->delete();
