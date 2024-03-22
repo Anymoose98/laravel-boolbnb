@@ -1,11 +1,11 @@
 @extends("layouts.app")
 
 @section("content")
-
+{{-- 
 <div class="container">
     <div class="row">
         <div class="col-12 mt-3">
-            <h4>Descrizione: </h4>{{ $apartments->description}}
+            <h4>Descrizione: </h4>{{ $apartments->marca}}
             <h4>Modello: </h4>{{ $apartments->modello}}<hr>
             <h4  class="my-3">Immagine rappresentativa dell'auto:</h4>
             <div class="img-auto">
@@ -26,7 +26,7 @@
         </div>
                   
     </div>
-</div>
+</div> --}}
 
 
 @endsection
