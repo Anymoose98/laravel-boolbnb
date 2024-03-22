@@ -107,13 +107,12 @@
                                 </a>
                             </li> --}}
                         </ul>
-                    </main>
                 </div>
             </nav>
             
-                <main class="col-md-9 col-lg-10">
-                                
-                 @yield('content')
+                <main class="col-md-9 col-lg-10">          
+                    @yield('content')
+                 </main>
             </div>
         </div>
     </div>
