@@ -67,7 +67,7 @@ class ApartmentsController extends Controller
 
 
         return view("apartments.show", compact("apartments"));
->>>>>>> cb206e81c7949874dfa0a7c730cb500e9be8c31a
+
     }
 
     /**
@@ -90,9 +90,10 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApartmentsRequest $request, Apartments $apartments)
+    public function update(UpdateApartmentsRequest $request, Apartments $apartments, $id)
     {
-        $form = $request->all();
+        $form_data = $request->all();
+        $apartments = Apartments::find($id);
         if($request->hasFile("image") ){
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;

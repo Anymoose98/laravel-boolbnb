@@ -17,9 +17,9 @@
             <h2 class="text-center">Modifica dati appartamento</h2>
         </div>
         <div class="col-12">
-            <form action="{{ route("apartments.store", $apartments->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route("apartments.update", $apartments->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-            @method("PUT")
+                @method("PUT")
             {{-- Descrizione appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="marca">Descrizione</label>
