@@ -61,10 +61,10 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartments $apartments)
-    {
+    public function show(Apartments $apartments, $id)
+    {   
+        $apartments = Apartments::find($id);
         
-
         return view("apartments.show", compact("apartments"));
     }
 
