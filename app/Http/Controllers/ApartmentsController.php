@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Apartments;
 use App\Http\Requests\StoreApartmentsRequest;
 use App\Http\Requests\UpdateApartmentsRequest;
+use Illuminate\Http\Request;
 
 class ApartmentsController extends Controller
 {
@@ -74,9 +75,11 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Apartments $apartments)
+    public function edit(Apartments $apartments, $id)
     {
-        //
+        $apartments = Apartments::find($id);
+        
+        return view("apartments.edit", compact("apartments"));
     }
 
     /**
@@ -88,7 +91,19 @@ class ApartmentsController extends Controller
      */
     public function update(UpdateApartmentsRequest $request, Apartments $apartments)
     {
-        //
+        $form = $request->all();
+        if($request->hasFile("image") ){
+            $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
+            $form_data["image"] = $path;
+        }
+        
+         else {
+            // Mantieni il percorso dell'immagine esistente
+            $form_data['image'] = $apartments->image;
+        }
+    
+        $apartments->update($form_data);
+        return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
     }
 
     /**

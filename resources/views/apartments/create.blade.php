@@ -85,7 +85,7 @@
                 @error('visibility')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> 
 
             <a href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3 ">Salva</button></a>
             
