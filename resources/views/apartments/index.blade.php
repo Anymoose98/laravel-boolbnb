@@ -48,7 +48,7 @@
                                 
                                     @include("admin.cars.modal_delete")
  --}}
-                                </td> -
+                                </td> 
                         
                             </tr>
                             @endforeach  
