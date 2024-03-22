@@ -62,10 +62,10 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartments $apartments)
+    public function show(Apartments $apartments, $id)
     {
 
-
+        $apartments = Apartments::find($id);
         return view("apartments.show", compact("apartments"));
 
     }
@@ -116,6 +116,8 @@ class ApartmentsController extends Controller
      */
     public function destroy(Apartments $apartments)
     {
-        //
+        Apartments::destroy($apartments->id);
+        $apartments->delete();
+        return redirect()->route("apartments.index", ["apartments" => $apartments]);
     }
 }
