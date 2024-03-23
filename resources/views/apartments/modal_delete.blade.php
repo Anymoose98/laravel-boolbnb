@@ -1,6 +1,4 @@
-
-  
-  <!-- Modal -->
+<!-- Modal -->
   <div class="modal fade" id="modal_project_delete-{{ $apartments->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

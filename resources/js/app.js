@@ -10,9 +10,9 @@ const deleteButtons = document.querySelectorAll(".btn-danger");
 deleteButtons.forEach((button) => {
     button.addEventListener("click", function(){
         let id = button.getAttribute("data-id");
-        console.log(id)
-        let url = `${window.location.origin}/apartments/${id}`;
-       console.log(url)
+        let type = button.getAttribute("data-type")
+        let url = `${window.location.origin}/${type}/${id}`;
+      
         let form_delete = document.getElementById("form_delete");
         
         form_delete.setAttribute("action", url)
