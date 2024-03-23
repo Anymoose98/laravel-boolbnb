@@ -42,22 +42,43 @@ class ApartmentsController extends Controller
     public function store(StoreApartmentsRequest $request)
     {
         $form_data = $request->all();
-
+        $address = urlencode($form_data['address']); // Access address from form data
+        $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+        $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
+    
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+    
+        if ($data && isset($data['results']) && count($data['results']) > 0) {
+            $latitude = $data['results'][0]['position']['lat'];
+            $longitude = $data['results'][0]['position']['lon'];
+            // Assign latitude and longitude to form data
+            $form_data['latitude'] = $latitude;
+            
+            $form_data['longitude'] = $longitude;
+        } else {
+            // Handle the case where coordinates are not found
+            // You might want to return an error message or handle it in some way
+            // For now, let's set latitude and longitude to null
+            $form_data['latitude'] = null;
+            $form_data['longitude'] = null;
+        }
+    
+        // Create a new Apartments instance and fill it with form data
         $apartment = new Apartments();
         if($request->hasFile("image")){
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
-
         $apartment->fill($form_data);
         
-      /*   $apartment->latitude = $request->latitude;
-        $apartment->longitude = $request->longitude; */
-
+        
+        // Save the apartment to the database
         $apartment->save();
-
+    
         return redirect()->route("apartments.index");
     }
+    
 
     /**
      * Display the specified resource.

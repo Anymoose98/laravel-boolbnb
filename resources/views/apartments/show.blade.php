@@ -20,9 +20,5 @@
          <div id="lon"></div>
         </div>
     </div>
-  <!-- Include Axios library -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- Your JavaScript code -->
-  <script src="app.js"></script>
 
 @endsection

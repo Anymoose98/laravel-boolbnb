@@ -22,24 +22,6 @@
 </a>
 
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geocoding Example</title>
-</head>
-<body>
-    <h1>Geocoding Example</h1>
-    
-    <div id="coordinates">
-        <p>Latitude: <span id="latitude"></span></p>
-        <p>Longitude: <span id="longitude"></span></p>
-    </div>
-
-    <button id="geocodeBtn">Geocode Address</button>
-
-    <script src="location.js"></script>
-
-</body>
 
 
 @endsection
