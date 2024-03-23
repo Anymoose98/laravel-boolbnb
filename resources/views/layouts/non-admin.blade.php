@@ -59,7 +59,7 @@
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <button class="btn btn-sm text-dark"><a class="nav-link"
-                                        href="{{ url('/') }}">{{ __('Home') }}</a></button>
+                                        href="{{ url('/dashboard') }}">{{ __('Home') }}</a></button>
                             </li>
                         </ul>
 

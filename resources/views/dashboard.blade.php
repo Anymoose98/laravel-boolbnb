@@ -1,7 +1,8 @@
 @extends('layouts.non-admin')
 
 @section('content')
-<div class="fs-1">Mostrare le card delle case qui</div>
+<div class="fs-1">Mostrare le card delle case qui [LOGGATO]</div>
+<div>File: dashboard.blade.php</div>
 <a href="{{ route("apartments.index") }}">
     <button class="seller-button">
         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

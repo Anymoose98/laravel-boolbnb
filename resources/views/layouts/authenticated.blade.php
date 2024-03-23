@@ -27,7 +27,6 @@
                 <div class="container">
                     <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                         <div >
-                            
                             Bool-BnB
                         </div>
                         {{-- config('app.name', 'Laravel') --}}
@@ -41,7 +40,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <button class="btn btn-sm btn-primary"><a class="nav-link text-white " href="{{ url('/') }}">{{ __('Home') }}</a></button>
+                                <button class="btn btn-sm btn-primary"><a class="nav-link text-white " href="{{ url('/dashboard') }}">{{ __('Home') }}</a></button>
                             </li>
                         </ul>
     

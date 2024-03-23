@@ -63,17 +63,17 @@
                         </ul>
 
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto d-flex align-items-center">
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
-                                    <button class="btn btn-sm"><a class="nav-link text-black fs-6 "
+                                    <button class="btn btn-sm"><a class="nav-link text-black fs-6 fw-bolder"
                                             href="{{ route('login') }}">{{ __('Login') }}</a></button>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <button class="btn btn-sm mx-3"><a class="nav-link text-black fs-6 "
-                                                href="{{ route('register') }}">{{ __('Register') }}</a></button>
+                                        <button class="mx-3 button-style text-white"><a class="nav-link fs-6 text-white fw-bolder"
+                                                href="{{ route('register') }}">{{ __('Registrati') }}</a></button>
                                     </li>
                                 @endif
                             @else
