@@ -66,7 +66,6 @@ class ApartmentsController extends Controller
 
 
         return view("apartments.show", compact("apartments"));
->>>>>>> cb206e81c7949874dfa0a7c730cb500e9be8c31a
     }
 
     /**
