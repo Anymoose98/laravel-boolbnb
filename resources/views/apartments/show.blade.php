@@ -16,9 +16,13 @@
             </div>
             <h4>Metri quadrati: </h4>{{ $apartments->square_meters}}mq
             <h4>Zona</h4>{{ $apartments->location}}
-         <div id="result"></div>
+         <div id="lat"></div>
+         <div id="lon"></div>
         </div>
     </div>
-
+  <!-- Include Axios library -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Your JavaScript code -->
+  <script src="app.js"></script>
 
 @endsection

@@ -21,19 +21,33 @@ deleteButtons.forEach((button) => {
 
 });
 
-
-
-const myButton = document.getElementById('myButton')
-// myButton.myButton.addEventListener('click' 'chiamataApi');{
-    axios.get('https://api.tomtom.com/search/2/geocode/Via%20delle%20Baleniere%2070.json?key=GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo')
-
-    .then(response => {
-        const data = response.data;
-        const lat = data.results[0].position.lat;
-        const lon = data.results[0].position.lon;
-        console.log("Latitudine:", lat);
-        console.log("Longitudine:", lon);
-
-
+document.addEventListener('DOMContentLoaded', function() {
+    const Api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+    const addressInput = document.getElementById("address");
+    const myButton = document.getElementById('myButton');
+    const latitudine = document.getElementById('lat');
+    const longitudine = document.getElementById('long');
+    myButton.addEventListener('click', function(){
+        const address = encodeURIComponent(addressInput.value);
+        axios.get(`https://api.tomtom.com/search/2/geocode/${address}.json?key=${Api_key}`)
+        .then(response => {
+            const data = response.data;
+            if (data && data.results && data.results.length > 0) {
+                const lat = data.results[0].position.lat;
+                const lon = data.results[0].position.lon;
+                console.log(lat);
+                console.log(lon)
+                // Display coordinates in the coordinatesDiv
+                latitudine.innerHTML = `Latitude: ${lat}`;
+                longitudine.innerHTML = `Longitude: ${lon}`;
+            } else {
+                latitudine.innerHTML = "No results found for the given address.";
+            }
+        })
+        .catch(error => {
+            console.error("Error occurred while fetching data:", error);
+            coordinatesDiv.innerHTML = "An error occurred. Please try again.";
+        });
     });
+});
 

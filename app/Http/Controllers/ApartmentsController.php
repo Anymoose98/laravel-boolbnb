@@ -50,6 +50,9 @@ class ApartmentsController extends Controller
         }
 
         $apartment->fill($form_data);
+        
+      /*   $apartment->latitude = $request->latitude;
+        $apartment->longitude = $request->longitude; */
 
         $apartment->save();
 

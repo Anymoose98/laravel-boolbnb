@@ -77,7 +77,7 @@
             </div>
             <div class="form-group">
                 <label class="mt-3" for="address">Indirizzo</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="address " > {{ old("address")  }}
+                <input type="text" name="address" id="address" class="form-control" placeholder="address" > {{ old("address")  }}
                 @error('address')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -96,7 +96,7 @@
             </div>
 
 
-            <a id="myButton" href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3 ">Salva</button></a>
+            <a  href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
 
 
             </form>
