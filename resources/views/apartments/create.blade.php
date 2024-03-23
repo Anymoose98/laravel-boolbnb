@@ -82,20 +82,7 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group ">
-               
-                <input type="hidden" name="latitude" id="latitude" class="form-control" placeholder="latitude" > {{ old("latitude")  }}
-                @error('latitude')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group ">
-               
-                <input type="hidden" name="longitude" id="longitude" class="form-control" placeholder="longitude" > {{ old("longitude")  }}
-                @error('longitude')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+            
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità</label>

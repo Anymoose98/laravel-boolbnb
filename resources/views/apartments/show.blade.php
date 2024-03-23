@@ -16,9 +16,8 @@
             </div>
             <h4>Metri quadrati: </h4>{{ $apartments->square_meters}}mq
             <h4>Zona</h4>{{ $apartments->location}}
-         <div id="lat"></div>
-         <div id="lon"></div>
-        </div>
+            
+            </div>
     </div>
 
 @endsection

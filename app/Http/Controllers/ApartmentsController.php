@@ -49,6 +49,7 @@ class ApartmentsController extends Controller
      */
     public function store(StoreApartmentsRequest $request)
     {
+        $apartment = new Apartments();
         $form_data = $request->all();
         $address = urlencode($form_data['address']); // Access address from form data
         $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
@@ -60,32 +61,30 @@ class ApartmentsController extends Controller
         if ($data && isset($data['results']) && count($data['results']) > 0) {
             $latitude = $data['results'][0]['position']['lat'];
             $longitude = $data['results'][0]['position']['lon'];
-            // Assign latitude and longitude to form data
-            $form_data['latitude'] = $latitude;
-            
-            $form_data['longitude'] = $longitude;
+            // Assign latitude and longitude directly to the apartment object
+            $apartment->latitude = $latitude;
+            $apartment->longitude = $longitude;
         } else {
             // Handle the case where coordinates are not found
             // You might want to return an error message or handle it in some way
             // For now, let's set latitude and longitude to null
-            $form_data['latitude'] = null;
-            $form_data['longitude'] = null;
+            $apartment->latitude = null;
+            $apartment->longitude = null;
         }
     
-        // Create a new Apartments instance and fill it with form data
-        $apartment = new Apartments();
-        if($request->hasFile("image")){
+        // Fill the apartment object with other form data
+        if ($request->hasFile("image")) {
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
         $apartment->fill($form_data);
-        
-        
+    
         // Save the apartment to the database
         $apartment->save();
     
         return redirect()->route("apartments.index");
     }
+    
     
 
     /**
