@@ -71,12 +71,22 @@ class ApartmentsController extends Controller
             $apartment->latitude = null;
             $apartment->longitude = null;
         }
-    
+        
+        $images = [];
+        if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $path = $image->store('images'); // Store the image in the 'images' directory
+            $images[] = $path; // Store the file path in an array
+            }
+        }
+        
         // Fill the apartment object with other form data
-        if ($request->hasFile("image")) {
-            $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
+        if ($request->has("image")) {
+            $images = $form_data["image_gallery"];
+            $path = Storage::disk("public")->put("apartment_image", $images);
             $form_data["image"] = $path;
         }
+    
         $apartment->fill($form_data);
     
         // Save the apartment to the database

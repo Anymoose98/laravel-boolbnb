@@ -5,7 +5,7 @@
     <img src="{{ asset('img/carousel-1.jpg') }}" alt="ciao">
 
     <div class="search-bar">
-
+        <h6 class="text-center d-flex justify-content-center "><i class="fas fa-magnifying-glass"></i></h6>
     </div>
 </div>
     

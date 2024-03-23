@@ -35,6 +35,14 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="form-group">
+                <label class="mt-3" for="image">Seleziona le immagini dell'appartamento</label>
+                <input type="file" name="image_gallery[]" id="image_gallery" accept="image/*" class="form-control" multiple>
+                @error('image')
+                    <div class ="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+          
             {{-- Numero stanze --}}
             <div class="form-group">
                 <label class="mt-3" for="rooms">Numero Stanze</label>
