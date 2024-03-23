@@ -2,6 +2,7 @@ import './bootstrap';
 import axios from 'axios';
 import '~resources/scss/app.scss';
 import * as bootstrap from 'bootstrap';
+import { result } from 'lodash';
 import.meta.glob([
     '../img/**'
 ])
@@ -23,10 +24,11 @@ deleteButtons.forEach((button) => {
 
 
 const myButton = document.getElementById('myButton');
-const key = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo'; // Assicurati di avere la chiave API correttamente definita
+const key = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
+const indirizzoInput = document.getElementById('indirizzo');
 
 myButton.addEventListener('click', function() {
-    axios.get(`https://api.tomtom.com/search/2/geocode/Via%20delle%20Baleniere%2070.json?key=${key}`)
+    axios.get(`https://api.tomtom.com/search/2/geocode/${indirizzoInput.value}.json?key=${key}`)
         .then(response => {
             console.log("prova");
             const data = response.data;
@@ -39,7 +41,9 @@ myButton.addEventListener('click', function() {
         .catch(error => {
             console.error("Si è verificato un errore durante la richiesta:", error);
         });
+        
 });
+
 
 
 
