@@ -30,7 +30,6 @@ const myButton = document.getElementById('myButton')
         const data = response.data;
         const lat = data.results[0].position.lat;
         const lon = data.results[0].position.lon;
-        console.log("prova")
         console.log("Latitudine:", lat);
         console.log("Longitudine:", lon);
 
