@@ -15,6 +15,7 @@
                </div>
             </div>
             <div class="col-12">
+                {{-- Tabella con le informazione relative all'appartamento --}}
                 <table class=" table mt-3 table-striped">
                     <thead>
                         <tr>
@@ -25,6 +26,7 @@
                             <th>Bagni</th>
                             <th>Metri quadrati</th>
                             <th>Zona</th>
+                            <th>Tools</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,13 +41,15 @@
                                 <td>{{ $apartments->location}}</td>
                                 
                                <td>
+                                    {{-- Bottone che rimanda alla show --}}
                                     <a href="{{ route("apartments.show", ["apartment" => $apartments->id ])}}"><button class="btn btn-sm btn-square btn-primary"><i class="fas fa-eye"></i></button></a>
+                                    {{-- Bottone che rimanda all'edit --}}
                                     <a href="{{ route("apartments.edit", ["apartment" => $apartments->id ])}}"><button class="btn btn-sm btn-square btn-warning"><i class="fas fa-edit"></i></button></a>
-                                     <button class="btn btn-sm btn-square btn-danger" data-bs-toggle="modal" 
-                                        data-bs-target="#modal_project_delete-{{ $apartments->id }}" 
-                                        data-id= "{{ $apartments->id }}" data-name="{{ $apartments->description }}" data-type="apartments">Elimina
-                                    </button>
-                                
+                                    {{-- Bottone che richiama la modale --}}
+                                    <button class="btn btn-sm btn-square btn-danger" data-bs-toggle="modal" 
+                                            data-bs-target="#modal_project_delete-{{ $apartments->id }}" 
+                                            data-id= "{{ $apartments->id }}" data-name="{{ $apartments->description }}" data-type="apartments">Elimina
+                                        </button>
                                     @include("apartments.modal_delete")
                                  </td> 
                         
