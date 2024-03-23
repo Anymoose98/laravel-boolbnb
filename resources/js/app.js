@@ -23,18 +23,19 @@ deleteButtons.forEach((button) => {
 
 
 const myButton = document.getElementById('myButton')
-// myButton.myButton.addEventListener('click' 'chiamataApi');{
+
+myButton.addEventListener('click', function() {
     axios.get('https://api.tomtom.com/search/2/geocode/Via%20delle%20Baleniere%2070.json?key=GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo')
-    console.log("prova")
-    .then(response => {
-        const data = response.data;
-        const lat = data.results[0].position.lat;
-        const lon = data.results[0].position.lon;
-    
-        console.log("Latitudine:", lat);
-        console.log("Longitudine:", lon);
-    
-       
-    });
+        .then(response => {
+            console.log("prova");
+            const data = response.data;
+            const lat = data.results[0].position.lat;
+            const lon = data.results[0].position.lon;
+
+            console.log("Latitudine:", lat);
+            console.log("Longitudine:", lon);
+        })
+
+});
 
     
