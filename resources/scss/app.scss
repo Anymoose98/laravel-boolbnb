@@ -36,4 +36,86 @@ a{
     padding: 0 20px;
 }
 
+.image-carousel-container {
+    width: 100vw;
+    height: 550px;
+    border-radius: 0 0 40px 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .search-bar {
+        width: 900px;
+        height: 100px;
+        background-color: rgb(255, 255, 255);
+        z-index: 999;
+        position: absolute;
+        bottom: -50px; 
+        border-radius: 15px;
+        box-shadow: 0px 6px 10px 5px rgba(42, 42, 42, 0.069);
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        border-radius: 0 0 40px 40px;
+    }
+}
+
+.cards-container{
+    padding: 120px 100px;
+}
+
+.personal-content{
+    margin: 30px 0;
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 20px;
+
+    .image-card-container{
+        width: 100%;
+        height: calc(100% - 110px);
+        border-radius: 20px 20px 0 0;
+        background-color: blue;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border-radius: 20px 20px 0 0;
+        }
+
+    }
+
+    .apartment-details{
+        width: 100%;
+        height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 30px;
+        line-height: 0.6;
+    }
+
+}
+
+
+@media screen and (max-width: 576px) {
+    .cards-container {
+        display: flex;
+        justify-content: center;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
 
