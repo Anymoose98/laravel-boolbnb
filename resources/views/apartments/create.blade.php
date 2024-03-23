@@ -82,7 +82,7 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-           
+
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità</label>
@@ -93,10 +93,12 @@
                 @error('visibility')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
-            </div> 
+            </div>
 
-            <a href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="submitBtn">Salva</button></a>
-            
+
+            <a id="myButton" href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3 ">Salva</button></a>
+
+
             </form>
         </div>
     </div>
