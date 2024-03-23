@@ -75,6 +75,7 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            {{-- Indirizzo --}}
             <div class="form-group">
                 <label class="mt-3" for="address">Indirizzo</label>
                 <input type="text" name="address" id="address" class="form-control" placeholder="address" value="{{ old("address")  }}"> 
