@@ -67,7 +67,6 @@ class ApartmentsController extends Controller
        
         $apartments = Apartments::find($id);
         return view("apartments.show", compact("apartments"));
-
     }
 
     /**
@@ -79,7 +78,7 @@ class ApartmentsController extends Controller
     public function edit(Apartments $apartments, $id)
     {
         $apartments = Apartments::find($id);
-        
+
         return view("apartments.edit", compact("apartments"));
     }
 
@@ -98,12 +97,12 @@ class ApartmentsController extends Controller
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
-        
+
          else {
             // Mantieni il percorso dell'immagine esistente
             $form_data['image'] = $apartments->image;
         }
-    
+
         $apartments->update($form_data);
         return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
     }
@@ -117,7 +116,7 @@ class ApartmentsController extends Controller
     public function destroy(Apartments $apartments, $id)
     {
         $apartments = Apartments::find($id);
-        
+
         if($apartments->image != null){
             Storage::disk("public")->delete($apartments->image);
         }
