@@ -75,6 +75,27 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="form-group">
+                <label class="mt-3" for="address">Indirizzo</label>
+                <input type="text" name="address" id="address" class="form-control" placeholder="address" > {{ old("address")  }}
+                @error('address')
+                    <div class ="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group ">
+               
+                <input type="hidden" name="latitude" id="latitude" class="form-control" placeholder="latitude" > {{ old("latitude")  }}
+                @error('latitude')
+                    <div class ="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group ">
+               
+                <input type="hidden" name="longitude" id="longitude" class="form-control" placeholder="longitude" > {{ old("longitude")  }}
+                @error('longitude')
+                    <div class ="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità</label>
@@ -85,13 +106,17 @@
                 @error('visibility')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
-            </div> 
+            </div>
 
-            <a href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3 ">Salva</button></a>
-            
+
+            <a  href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
+
+
             </form>
         </div>
     </div>
 </div>
+
+
 </body>
 @endsection

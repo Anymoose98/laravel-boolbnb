@@ -22,10 +22,10 @@ return new class extends Migration
            $table->smallInteger('square_meters');
            $table->string('location');
            $table->string('image');
-           $table->boolean('visibility');
-           $table->decimal('longitudine');
-           $table->decimal('latitudine');
-            $table->timestamps();
+           $table->string('visibility', 2)->default('Si');
+           $table->decimal('longitudine')->nullable();
+           $table->decimal('latitudine')->nullable();
+           $table->timestamps();
         });
     }
 

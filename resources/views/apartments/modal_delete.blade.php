@@ -1,6 +1,4 @@
-
-  
-  <!-- Modal -->
+<!-- Modal -->
   <div class="modal fade" id="modal_project_delete-{{ $apartments->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -18,7 +16,7 @@
               <form id="form_delete" action="{{ route("apartments.destroy", ["apartment" => $apartments->id] )}}" method="post"> 
                   @csrf
                   @method("DELETE")
-              <button type="submit" class="btn bg-red btn-sm btn-square" >  Elimina</button>
+              <button type="submit" class="btn btn-warning btn-sm btn-square" >  Elimina</button>
   
               </form>
           </div>
