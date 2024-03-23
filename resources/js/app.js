@@ -22,11 +22,11 @@ deleteButtons.forEach((button) => {
 });
 
 
-const myButton = document.getElementById('myButton')
+const myButton = document.getElementById('myButton');
+const key = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo'; // Assicurati di avere la chiave API correttamente definita
 
 myButton.addEventListener('click', function() {
-    axios.get('https://api.tomtom.com/search/2/geocode/Via%20delle%20Baleniere%2070.json?key=GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo')
-
+    axios.get(`https://api.tomtom.com/search/2/geocode/Via%20delle%20Baleniere%2070.json?key=${key}`)
         .then(response => {
             console.log("prova");
             const data = response.data;
@@ -36,7 +36,9 @@ myButton.addEventListener('click', function() {
             console.log("Latitudine:", lat);
             console.log("Longitudine:", lon);
         })
-
+        .catch(error => {
+            console.error("Si è verificato un errore durante la richiesta:", error);
+        });
 });
 
 
