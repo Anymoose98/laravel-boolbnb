@@ -70,7 +70,7 @@
             {{-- Zona --}}
             <div class="form-group">
                 <label class="mt-3" for="location">Zona</label>
-                <input type="text" name="location" id="location" class="form-control" placeholder="location " > {{ old("location")  }}
+                <input id="indirizzo" type="text" name="location" id="location" class="form-control" placeholder="location " > {{ old("location")  }}
                 @error('location')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
