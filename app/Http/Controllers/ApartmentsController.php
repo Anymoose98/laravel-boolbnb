@@ -7,6 +7,7 @@ use App\Models\Apartments;
 use App\Http\Requests\StoreApartmentsRequest;
 use App\Http\Requests\UpdateApartmentsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class ApartmentsController extends Controller
 {
@@ -15,12 +16,19 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+/*     public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            // Condividi la variabile $apartment con tutte le views
+            View::share('apartment', Apartments::all());
+            return $next($request);
+        });
+    } */
+
     public function index()
     {
-
         $apartment =  Apartments::all();
-
-        return view("apartments.index", compact("apartment"));
+        return view("apartments.index", compact('apartment'));
     }
 
     /**

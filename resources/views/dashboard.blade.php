@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="fs-1">Mostrare le card delle case qui [LOGGATO]</div>
+{{-- @foreach($apartment as $apartments)
+
+        @endforeach  --}} 
 <div>File: dashboard.blade.php</div>
 <a href="{{ route("apartments.index") }}">
     <button class="seller-button">
