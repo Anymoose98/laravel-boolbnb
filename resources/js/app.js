@@ -6,20 +6,16 @@ import.meta.glob([
 ])
 const deleteButtons = document.querySelectorAll(".btn-danger");
 
-
+/* event listener legato al bottone rosso "Elimina", non al bottone interno della modale */
 deleteButtons.forEach((button) => {
     button.addEventListener("click", function(){
         let id = button.getAttribute("data-id");
-        
+        console.log(id)
         let url = `${window.location.origin}/apartments/${id}`;
-       
-
+       console.log(url)
         let form_delete = document.getElementById("form_delete");
-        console.log(form_delete)
-        form_delete.setAttribute("action", url)
         
-
-
+        form_delete.setAttribute("action", url)
     });
 
 });

@@ -116,8 +116,10 @@ class ApartmentsController extends Controller
      */
     public function destroy(Apartments $apartments, $id)
     {
+        
+        Apartments::find($apartments->id);
         Apartments::destroy($apartments->id);
         $apartments->delete();
-        return redirect()->route("apartments.index", ["apartment" => $apartments]);
+        return redirect()->route("apartments.index", ["apartments" => $apartments]);
     }
 }
