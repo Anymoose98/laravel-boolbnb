@@ -1,11 +1,37 @@
 @extends('layouts.non-admin')
 
 @section('content')
-<div class="fs-1">Mostrare le card delle case qui [LOGGATO]</div>
-{{-- @foreach($apartment as $apartments)
+<div class="image-carousel-container">
+    <img src="{{ asset('img/carousel-1.jpg') }}" alt="ciao">
 
-        @endforeach  --}} 
-<div>File: dashboard.blade.php</div>
+    <div class="search-bar">
+
+    </div>
+</div>
+    
+
+
+
+<div class="cards-container">
+    <div class="row justify-content-start align-items-start">
+
+        @foreach($apartments as $apartment)
+            <div class="col-12 col-lg-6 col-xxl-3">
+                <div class="personal-content">
+                    <div class="image-card-container">
+                         <img src="{{ asset("/storage/" . $apartment->image) }}" alt="{{ $apartment->name}}">
+                    </div>
+                    <div class="apartment-details">
+                        <h2 class="fw-bolder">{{ $apartment->location }}</h2>
+                        <p>{{ $apartment->description }}</p>
+                    </div>
+                </div>
+            </div> 
+        @endforeach
+
+    </div>
+</div>
+
 <a href="{{ route("apartments.index") }}">
     <button class="seller-button">
         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
