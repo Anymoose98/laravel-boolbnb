@@ -64,7 +64,7 @@ class ApartmentsController extends Controller
      */
     public function show(Apartments $apartments, $id)
     {
-
+       
         $apartments = Apartments::find($id);
         return view("apartments.show", compact("apartments"));
 
