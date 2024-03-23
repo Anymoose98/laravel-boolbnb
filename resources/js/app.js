@@ -13,13 +13,14 @@ deleteButtons.forEach((button) => {
         let id = button.getAttribute("data-id");
         let type = button.getAttribute("data-type")
         let url = `${window.location.origin}/${type}/${id}`;
-      
+
         let form_delete = document.getElementById("form_delete");
 
         form_delete.setAttribute("action", url)
     });
 
 });
+
 
 
 const myButton = document.getElementById('myButton')
@@ -35,5 +36,4 @@ const myButton = document.getElementById('myButton')
 
 
     });
-
 
