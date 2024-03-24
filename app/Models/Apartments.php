@@ -20,7 +20,7 @@ class Apartments extends Model
         'visibility',
         'longitudine',
         'latitudine',
-        'image_gallery',
+       
         
     ];
 }

@@ -81,12 +81,7 @@ class ApartmentsController extends Controller
         }
         
         // Fill the apartment object with other form data
-        if ($request->has("image")) {
-            $images = $form_data["image_gallery"];
-            $path = Storage::disk("public")->put("apartment_image", $images);
-            $form_data["image"] = $path;
-        }
-    
+       
         $apartment->fill($form_data);
     
         // Save the apartment to the database
