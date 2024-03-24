@@ -72,14 +72,11 @@ class ApartmentsController extends Controller
             $apartment->longitude = null;
         }
         
-        $images = [];
-        if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
-            $path = $image->store('images'); // Store the image in the 'images' directory
-            $images[] = $path; // Store the file path in an array
-            }
-        }
         
+        if($request->hasFile("image")){
+            $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
+            $form_data["image"] = $path;
+        }
         // Fill the apartment object with other form data
        
         $apartment->fill($form_data);
@@ -130,6 +127,9 @@ class ApartmentsController extends Controller
         $form_data = $request->all();
         $apartments = Apartments::find($id);
         if($request->hasFile("image") ){
+            if($apartments->image != null){
+                Storage::disk("public")->delete($apartments->image);
+            }
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
