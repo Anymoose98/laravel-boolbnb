@@ -36,7 +36,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label class="mt-3" for="image">Seleziona le immagini dell'appartamento</label>
+                <label class="mt-3" for="image_gallery">Seleziona le immagini dell'appartamento</label>
                 <input type="file" name="image_gallery[]" id="image_gallery" accept="image/*" class="form-control" multiple>
                 @error('image')
                     <div class ="text-danger">{{ $message }}</div>

@@ -16,12 +16,14 @@ class Apartments extends Model
         'bathrooms',
         'square_meters',
         'location',
-        // Capire perché due volte
-        'image',
         'visibility',
         'longitudine',
         'latitudine',
        
         
     ];
+
+    public function image_gallery(){
+        return $this->hasMany(ImageGallery::class);
+    }
 }

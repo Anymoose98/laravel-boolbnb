@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\Apartments;
+use App\Models\ImageGallery;
 use App\Http\Requests\StoreApartmentsRequest;
 use App\Http\Requests\UpdateApartmentsRequest;
 use Illuminate\Http\Request;
@@ -83,7 +84,28 @@ class ApartmentsController extends Controller
     
         // Save the apartment to the database
         $apartment->save();
-    
+        
+        /* Dopo aver salvato il posto controllo se sono presenti immagini di galleria */
+        if($request->has("image_gallery")){
+            /* Recupero immagini in una variabile */
+            $images = $form_data["image_gallery"];
+            /* Ciclo le immagini */
+            foreach($images as $image){
+                /* Upload immagini */
+                $path = Storage::disk("public")->put("image_gallery", $image);
+                
+                /* Inserimento con fillable */
+                $data_image["apartments_id"] = $apartment->id;
+                $data_image["image_gallery"] = $path;
+
+                /* Creazione nuovo record nella tabella */
+                $imageGallery = new ImageGallery;
+                $imageGallery->fill($data_image);
+                /* salvataggio nuovo record */
+                $imageGallery->save();
+                
+            }
+        }
         return redirect()->route("apartments.index");
     }
     
@@ -139,6 +161,7 @@ class ApartmentsController extends Controller
             $form_data['image'] = $apartments->image;
         }
 
+        
         $apartments->update($form_data);
         return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
     }
@@ -156,7 +179,8 @@ class ApartmentsController extends Controller
         if($apartments->image != null){
             Storage::disk("public")->delete($apartments->image);
         }
-
+     
+        $apartments->image_gallery()->delete();
         $apartments->delete();
         return redirect()->route("apartments.index", ["apartment" => $apartments]);
     }
