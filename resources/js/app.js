@@ -28,21 +28,20 @@ const myButton = document.getElementById('myButton');
 const key = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
 const indirizzoInput = document.getElementById('indirizzo');
 
-myButton.addEventListener('click', function() {
-    axios.get(`https://api.tomtom.com/search/2/geocode/${indirizzoInput.value}.json?key=${key}`)
-        .then(response => {
-            console.log("prova");
-            const data = response.data;
-            const lat = data.results[0].position.lat;
-            const lon = data.results[0].position.lon;
 
-            console.log("Latitudine:", lat);
-            console.log("Longitudine:", lon);
-        })
-        .catch(error => {
-            console.error("Si è verificato un errore durante la richiesta:", error);
-        });
-        
+
+// Controllo JS della password di conferma 
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("registrationForm");
+    form.addEventListener("submit", function(event) {
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("password-confirm").value;
+
+        if (password !== confirmPassword) {
+            alert("LE PASSWORD NON COINCIDONO");
+            event.preventDefault(); 
+        }
+    });
 });
 
 
