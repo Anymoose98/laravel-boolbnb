@@ -43,8 +43,8 @@
                             <label for="birth_date" class="col-md-4 col-form-label text-md-right">Data di nascita*</label>
 
                             <div class="col-md-6">
-                                <input id="birth_date" type="text" class="form-control @error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
-                                <h6>La data deve essere in formato YYYY/MM/DD</h6>
+                                <input id="birth_date" type="date" class="form-control @error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
+                                
 
                                 @error('birth_date')
                                 <span class="invalid-feedback" role="alert">
@@ -94,7 +94,7 @@
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    Registrati
                                 </button>
                             </div>
                         </div>
