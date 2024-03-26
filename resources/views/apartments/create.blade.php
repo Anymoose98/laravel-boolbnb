@@ -22,7 +22,7 @@
             {{-- Descrizione appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="marca">Descrizione</label>
-                <input type="text" name="description" id="description" class="form-control" placeholder="description" required  value="{{ old("description")  }}">
+                <input type="text" name="description" id="description" class="form-control" placeholder="Inserisci una breve descrizione" required  value="{{ old("description")  }}">
                 @error('description')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -46,7 +46,7 @@
             {{-- Numero stanze --}}
             <div class="form-group">
                 <label class="mt-3" for="rooms">Numero Stanze</label>
-                <input type="text" name="rooms" id="rooms" class="form-control" placeholder="rooms " value="{{ old("rooms")  }}" > 
+                <input type="text" name="rooms" id="rooms" class="form-control" placeholder="Inserisci il numero delle stanze " value="{{ old("rooms")  }}" > 
                 @error('rooms')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -54,15 +54,15 @@
             {{-- Numero letti --}}
             <div class="form-group">
                 <label class="mt-3" for="beds">Letti disponibili</label>
-                <input type="text" name="beds" id="beds" class="form-control" placeholder="beds " value="{{ old("beds")  }}"> 
+                <input type="text" name="beds" id="beds" class="form-control" placeholder="Inserisci il numero di letti " value="{{ old("beds")  }}"> 
                 @error('beds')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             {{-- Numero bagni --}}
             <div class="form-group">
-                <label class="mt-3" for="bathrooms">Bagni</label>
-                <input type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="bathrooms " value="{{ old("bathrooms")  }}" > 
+                <label class="mt-3" for="bathrooms">Numero Bagni</label>
+                <input type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="Inserisci il numero di bagni " value="{{ old("bathrooms")  }}" > 
                 @error('bathrooms')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -70,15 +70,15 @@
             {{-- Metratura appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="square_meters">Metri quadrati</label>
-                <input type="text" name="square_meters" id="square_meters" class="form-control" placeholder="square_meters " value="{{ old("square_meters")  }}"> 
+                <input type="text" name="square_meters" id="square_meters" class="form-control" placeholder="Inserisci i metri quadrati " value="{{ old("square_meters")  }}"> 
                 @error('square_meters')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             {{-- Zona --}}
             <div class="form-group">
-                <label class="mt-3" for="location">Zona</label>
-                <input type="text" name="location" id="location" class="form-control" placeholder="location " value="{{ old("location")  }}"> 
+                <label class="mt-3" for="location">Città</label>
+                <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location")  }}"> 
                 @error('location')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -86,7 +86,7 @@
             {{-- Indirizzo --}}
             <div class="form-group">
                 <label class="mt-3" for="address">Indirizzo</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="address" value="{{ old("address")  }}"> 
+                <input type="text" name="address" id="address" class="form-control" placeholder="Inserisci la via" value="{{ old("address")  }}"> 
                 @error('address')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
