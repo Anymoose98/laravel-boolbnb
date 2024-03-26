@@ -19,11 +19,14 @@ class Apartments extends Model
         'visibility',
         'longitudine',
         'latitudine',
-       
-        
+        'user_id'
     ];
 
     public function image_gallery(){
         return $this->hasMany(ImageGallery::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
