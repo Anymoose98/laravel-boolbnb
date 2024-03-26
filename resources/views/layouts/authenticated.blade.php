@@ -83,7 +83,7 @@
         </header>
  
         <div class="container-fluid vh-100">
-            <div class="row h-100">
+            <div class="row">
                 <nav class="col-md-3 col-lg-2 sidebar collapse d-md-block bg-grey navbar-light" id="sidebarMenu">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">

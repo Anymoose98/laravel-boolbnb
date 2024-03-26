@@ -107,8 +107,8 @@
         </header>
 
         <div class="container-fluid vh-100">
-            <div class="row h-100">
-                <main class="col-md-9 col-lg-12 p-0 m-0">
+            <div class="row">
+                <main class="p-0 m-0">
                     @yield('content')
                 </main>
             </div>
