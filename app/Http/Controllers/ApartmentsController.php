@@ -9,6 +9,7 @@ use App\Http\Requests\StoreApartmentsRequest;
 use App\Http\Requests\UpdateApartmentsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Models\User;
 
 class ApartmentsController extends Controller
 {
@@ -28,8 +29,14 @@ class ApartmentsController extends Controller
 
     public function index()
     {
-        $apartment =  Apartments::all();
-        return view("apartments.index", compact('apartment'));
+            // Ottieni l'utente autenticato
+    $user = auth()->user();
+
+    // Accedi alla relazione apartments() dell'utente per ottenere tutti gli appartamenti associati
+    $apartment = $user->apartments;
+
+    // Passa gli appartamenti alla vista
+    return view("apartments.index", compact('apartment'));
     }
 
     /**
@@ -51,6 +58,9 @@ class ApartmentsController extends Controller
     public function store(StoreApartmentsRequest $request)
     {
         $apartment = new Apartments();
+
+        $apartment->user_id = auth()->user()->id;
+
         $form_data = $request->all();
         $address = urlencode($form_data['address']); // Access address from form data
         $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
@@ -59,6 +69,7 @@ class ApartmentsController extends Controller
         $response = file_get_contents($url);
         $data = json_decode($response, true);
     
+        
         if ($data && isset($data['results']) && count($data['results']) > 0) {
             $latitude = $data['results'][0]['position']['lat'];
             $longitude = $data['results'][0]['position']['lon'];
