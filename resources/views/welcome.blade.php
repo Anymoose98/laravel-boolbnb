@@ -6,7 +6,10 @@
             <img src="{{ asset('img/carousel-1.jpg') }}" alt="ciao">
     
             <div class="search-bar">
-    
+                <div class="city-search">
+                    <label for="city-input">Dove</label>
+                    <input type="text" placeholder="Cerca la destinazione">
+                </div>
             </div>
         </div>
 
