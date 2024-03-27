@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentsController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AutocompleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(["auth", "verified"])->group(function(){
     Route::resource('/apartments', ApartmentsController::class);
 });
+
+Route::get('/autocomplete', [AutocompleteController::class, 'autocomplete']);
 
 require __DIR__.'/auth.php';
