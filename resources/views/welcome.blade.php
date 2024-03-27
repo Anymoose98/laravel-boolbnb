@@ -6,17 +6,17 @@
             <img src="{{ asset('img/carousel-1.jpg') }}" alt="ciao">
     
             <div class="search-bar">
-                <div class="city-search">
+                <div class="search-elem">
                     <label for="city-input">Dove</label>
                     <input type="text" placeholder="Cerca la destinazione">
                 </div>
 
-                <div class="city-search">
+                <div class="search-elem">
                     <label for="city-input">Quante persone</label>
                     <input type="text" placeholder="Cerca la destinazione">
                 </div>
 
-                <div class="city-search">
+                <div class="search-elem">
                     <label for="city-input">Demo</label>
                     <input type="text" placeholder="Cerca la destinazione">
                 </div>
