@@ -28,9 +28,10 @@
                 </svg>
             </div>
 
-            <div class="distance-filter-section opacity-100">
-                <span>Raggio di distanza</span>
-                <input type="number" id="radius-input" value="20">
+            <div class="distance-filter-section" id="rangeSection">
+                <span id="title-distance">Raggio di distanza</span>
+                <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
+                <span id="slider-value"></span>
             </div>
         </div>
 
@@ -55,8 +56,20 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.0.0/maps/maps-web.min.js"></script>
+    <script>
+        /* PRENDIAMO GLI ELEMENTI DELLO SLIDER */
+        var slider = document.getElementById("radius-input");
+        var output = document.getElementById("slider-value");
+
+
+        /* AD OGNI MODIFICA DELLO SLIDER AGGIUNGIAMO AD OUTPUT */
+        slider.addEventListener("input", function() {
+            output.textContent = slider.value + 'Km';
+        });
+
+        output.textContent = slider.value + 'Km';
+    </script>
+
 
     <script>
 
@@ -146,16 +159,18 @@
             searchApartmentsCoordinates();
         });
 
-        /* [STILE] CAMBIA L'OPACITA' (100%) PER LA SEZIONE DELLA SELEZIONE DEL RAGGIO */
-        document.getElementById('city-input').addEventListener('focus', function(event) {
-            const distanceFilterSection = document.querySelector('.distance-filter-section');
-            distanceFilterSection.style.opacity = '100';
-        });
+        /* CAMBIO OPACITA' DELLA SEZIONE DEL RANGE */
+        document.addEventListener('click', function(event) {
 
-        /* [STILE] CAMBIA L'OPACITA' (0%) PER LA SEZIONE DELLA SELEZIONE DEL RAGGIO */
-        document.getElementById('city-input').addEventListener('blur', function(event) {
+            /* PRENDO LA SEZIONE DEL FILTRO */
             const distanceFilterSection = document.querySelector('.distance-filter-section');
-            distanceFilterSection.style.opacity = '0';
+
+            /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
+            if (!event.target.matches('#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
+                distanceFilterSection.style.opacity = '0';
+            } else {
+                distanceFilterSection.style.opacity = '100';
+            }
         });
 
         /* VERIFICA SE ALL'INVIO L'INPUT CITTA' E' VUOTO */
@@ -187,7 +202,6 @@
                     showAllApartments();
                 }
         });
-
 
 
         /* FUNZIONE CHE RISTAMPA TUTTI GLI APPARTAMENTI SE L'INPUT CITY E' VUOTO */
