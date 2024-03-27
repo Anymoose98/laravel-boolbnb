@@ -56,6 +56,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.0.0/maps/maps-web.min.js"></script>
 
     <script>
 
@@ -173,6 +174,22 @@
         });
 
 
+        /* VERIFICA SE AL CLICK L'INPUT CITTA' E' VUOTO */
+        document.getElementById('searchBtn').addEventListener('click', function(event) {
+
+                event.preventDefault();
+
+                /* SE E' VERO RISTAMPA TUTTI GLI APPARTAMENTI */
+                const city = document.getElementById('city-input').value;
+                if (city !== '') {
+                    searchApartmentsCoordinates();
+                } else {
+                    showAllApartments();
+                }
+        });
+
+
+
         /* FUNZIONE CHE RISTAMPA TUTTI GLI APPARTAMENTI SE L'INPUT CITY E' VUOTO */
         function showAllApartments() {
 
@@ -205,9 +222,9 @@
 
                     cardsContainer.appendChild(row);
                 })
-                .catch(function(error) {
-                    console.log(error);
-                });
         }
     </script>
+
+
+
 @endsection
