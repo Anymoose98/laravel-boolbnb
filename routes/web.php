@@ -39,4 +39,7 @@ Route::middleware(["auth", "verified"])->group(function(){
     Route::resource('/apartments', ApartmentsController::class);
 });
 
+
+Route::get('/search', [ApartmentsController::class, 'search']);
+
 require __DIR__.'/auth.php';

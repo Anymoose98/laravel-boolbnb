@@ -39,6 +39,20 @@ class ApartmentsController extends Controller
     return view("apartments.index", compact('apartment'));
     }
 
+    public function search(Request $request)
+    {
+        $city = $request->input('city');
+        $guests = $request->input('guests');
+
+        // Esegui la logica di ricerca basata sui parametri forniti
+
+        $apartments = Apartments::where('city', $city)
+            ->where('guests', $guests)
+            ->get();
+
+        return response()->json($apartments);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
