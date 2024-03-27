@@ -30,7 +30,8 @@
 
             <div class="distance-filter-section opacity-100">
                 <span>Raggio di distanza</span>
-                <input type="number" id="radius-input" value="20">
+                <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
+                <span id="slider-value"></span>
             </div>
         </div>
 
@@ -75,6 +76,22 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.0.0/maps/maps-web.min.js"></script>
+
+
+    <script>
+        // Seleziona lo slider e lo span
+        var slider = document.getElementById("radius-input");
+        var output = document.getElementById("slider-value");
+
+        // Aggiorna il valore dello span quando il valore dello slider cambia
+        slider.addEventListener("input", function() {
+            output.textContent = slider.value + 'Km';
+        });
+
+        // Inizializza il valore dello span con il valore iniziale dello slider
+        output.textContent = slider.value + 'Km';
+    </script>
+
 
     <script>
 
