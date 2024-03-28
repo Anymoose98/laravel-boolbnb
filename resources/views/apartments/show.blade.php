@@ -8,8 +8,8 @@
             <h4>Descrizione: </h4>{{ $apartments->description}}
             <h4>Numero stanza: </h4>{{ $apartments->rooms}}<hr>
             <h4  class="my-3">Immagine dell'appartamento:</h4>
-            <div class="img-auto">
-                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" >
+            <div class="img-show">
+                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" class="img-show">
                 <h4> Letti disponibili: </h4>{{ $apartments->beds}}<hr>
                 <h4>Bagni utilizzabili:</h4>{{ $apartments->bathrooms}}<hr>
                

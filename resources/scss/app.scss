@@ -137,6 +137,11 @@ a{
 
 }
 
+
+.img-show{
+    width: 300px;
+    height: auto;
+}
 .distance-filter-section{
     width: 100px;
     height: 70px;
@@ -155,6 +160,11 @@ a{
     font-size: 20px;
 }
 
+.slider{
+    width: 60%;
+    margin: 0 25px;
+    cursor: grab;
+}
 
 @media screen and (max-width: 576px) {
     .cards-container {

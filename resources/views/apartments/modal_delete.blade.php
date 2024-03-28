@@ -12,11 +12,11 @@
           </div>
   
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+              <button type="button" class="btn btn-secondary btn-sm btn-square" data-bs-dismiss="modal">Chiudi</button>
               <form id="form_delete" action="{{ route("apartments.destroy", ["apartment" => $apartments->id] )}}" method="post"> 
                   @csrf
                   @method("DELETE")
-              <button type="submit" class="btn btn-red btn-sm btn-square" >  Elimina</button>
+              <button type="submit" class="btn btn-danger btn-sm btn-square" >  Elimina</button>
   
               </form>
           </div>
