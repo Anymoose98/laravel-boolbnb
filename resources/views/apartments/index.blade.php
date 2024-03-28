@@ -11,7 +11,7 @@
 
                     <div>
                         <a href=" {{ route("apartments.create")}} "><button class="btn btn-primary">Add New Apartment</button></a>
-                    </div>    
+                    </div>
                </div>
             </div>
             <div class="col-12">
@@ -19,7 +19,7 @@
                 <table class=" table mt-3 table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {{-- <th>ID</th> --}}
                             <th>Descrizione</th>
                             <th>Stanze</th>
                             <th>Letti</th>
@@ -32,33 +32,33 @@
                     <tbody>
                           @foreach($apartment as $apartments)
                             <tr>
-                                <td>{{ $apartments->id}}</td>
+                                {{-- <td>{{ $apartments->id}}</td> --}}
                                 <td>{{ $apartments->description}}</td>
                                 <td>{{ $apartments->rooms}}</td>
                                 <td>{{ $apartments->beds}}</td>
                                 <td>{{ $apartments->bathrooms}}</td>
                                 <td>{{ $apartments->square_meters}}mq</td>
                                 <td>{{ $apartments->location}}</td>
-                                
+
                                <td>
                                     {{-- Bottone che rimanda alla show --}}
                                     <a href="{{ route("apartments.show", ["apartment" => $apartments->id ])}}"><button class="btn btn-sm btn-square btn-primary"><i class="fas fa-eye"></i></button></a>
                                     {{-- Bottone che rimanda all'edit --}}
                                     <a href="{{ route("apartments.edit", ["apartment" => $apartments->id ])}}"><button class="btn btn-sm btn-square btn-warning"><i class="fas fa-edit"></i></button></a>
                                     {{-- Bottone che richiama la modale --}}
-                                    <button class="btn btn-sm btn-square btn-danger" data-bs-toggle="modal" 
-                                            data-bs-target="#modal_project_delete-{{ $apartments->id }}" 
+                                    <button class="btn btn-sm btn-square btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#modal_project_delete-{{ $apartments->id }}"
                                             data-id= "{{ $apartments->id }}" data-name="{{ $apartments->description }}" data-type="apartments">Elimina
                                         </button>
                                     @include("apartments.modal_delete")
-                                 </td> 
-                        
+                                 </td>
+
                             </tr>
-                            @endforeach  
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        
+
     @endsection
