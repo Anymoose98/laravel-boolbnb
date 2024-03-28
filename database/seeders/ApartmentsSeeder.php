@@ -18,7 +18,7 @@ class ApartmentsSeeder extends Seeder
 
 
 
-         // php artisan db:seed --class=ApartmentsTableSeeder
+         // php artisan db:seed --class=ApartmentsSeeder
          for ($i = 0; $i < 30; $i++) {
             $Apartments = new Apartments();
             $Apartments -> description = $faker->randomElement([

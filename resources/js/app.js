@@ -27,19 +27,21 @@ const myButton = document.getElementById('myButton');
 const API_KEY = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
 const indirizzoInput = document.getElementById('indirizzo');
 
-// Controllo JS della password di conferma
-// document.addEventListener("DOMContentLoaded", function() {
-//     const form = document.getElementById("registrationForm");
-//     form.addEventListener("submit", function(event) {
-//         let password = document.getElementById("password").value;
-//         let confirmPassword = document.getElementById("password-confirm").value;
+ document.addEventListener("DOMContentLoaded", function() {
+     const form = document.getElementById("registrationForm");
+     form.addEventListener("submit", function(event) {
+         let password = document.getElementById("password").value;
+         let confirmPassword = document.getElementById("password-confirm").value;
 
-//         if (password !== confirmPassword) {
-//             alert("LE PASSWORD NON COINCIDONO");
-//             event.preventDefault();
-//         }
-//     });
-// });
+         if (password !== confirmPassword) {
+            document.getElementById('error-password').style.display = 'block';
+            event.preventDefault();
+            
+             
+             
+         }
+     });
+ });
 
 
 var options = {
@@ -55,5 +57,4 @@ var options = {
 }
 var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
 var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
-
 document.getElementById("indirizzoSearchBox").appendChild(searchBoxHTML);
