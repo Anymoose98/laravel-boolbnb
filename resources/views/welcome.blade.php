@@ -44,11 +44,16 @@
                 <div class="col-12 col-lg-6 col-xxl-3">
                     <div class="personal-content">
                         <div class="image-card-container">
-                            <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @if ($apartment->image === 0)
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                                @else
+                                <img src="{{ asset('/storage/placeholder.png') }}" alt="">
+                                @endif
                         </div>
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
-                            <p>{{ $apartment->description }}</p>
+                            {{-- $apartment->description.substring(0, 10) --}}
+                            <p id="description gradient-text">{{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
                         </div>
                     </div>
                 </div>
@@ -57,6 +62,7 @@
     </div>
 
     <script>
+
         /* PRENDIAMO GLI ELEMENTI DELLO SLIDER */
         var slider = document.getElementById("radius-input");
         var output = document.getElementById("slider-value");

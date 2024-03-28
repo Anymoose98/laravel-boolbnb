@@ -1,16 +1,15 @@
-@import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-
-body{
-    font-family: 'Inter';
-    background-color:  rgb(241, 241, 241);
+body {
+    font-family: "Inter";
+    background-color: rgb(241, 241, 241);
 }
 
-a{
+a {
     text-decoration: none;
 
-    .seller-button{
+    .seller-button {
         background-color: black;
         color: white;
         border: none;
@@ -18,7 +17,7 @@ a{
         font-size: 20px;
         display: flex;
         padding: 10px 20px;
-        font-family: 'Inter';
+        font-family: "Inter";
         font-weight: 700;
         align-items: center;
         text-decoration: none;
@@ -28,7 +27,7 @@ a{
     }
 }
 
-.button-style{
+.button-style {
     background-color: rgb(0, 0, 0);
     color: white;
     border-radius: 10px;
@@ -48,24 +47,24 @@ a{
         background-color: rgb(255, 255, 255);
         z-index: 999;
         position: absolute;
-        bottom: -50px; 
+        bottom: -50px;
         box-shadow: 0px 6px 10px 5px rgba(42, 42, 42, 0.069);
         border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0 25px;
-        
-        .search-elem{
+
+        .search-elem {
             padding: 0 20px;
             border-right: 1px solid rgb(213, 213, 213);
 
-            &:nth-last-child(2){
+            &:nth-last-child(2) {
                 border-right: 1px solid rgba(253, 0, 0, 0);
             }
         }
 
-        .search-btn{
+        .search-btn {
             height: 60px;
             width: 60px;
             background-color: black;
@@ -76,8 +75,8 @@ a{
         }
 
         .search-elem label {
-            display: block; 
-            margin-bottom: 5px; 
+            display: block;
+            margin-bottom: 5px;
             font-weight: 800;
         }
 
@@ -86,46 +85,44 @@ a{
 
             &:focus {
                 outline: none !important;
-                border:1px solid rgb(0, 0, 0);
-              }
+                border: 1px solid rgb(0, 0, 0);
+            }
         }
-        
     }
 
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover; 
+        object-fit: cover;
         border-radius: 0 0 40px 40px;
     }
 }
 
-.cards-container{
+.cards-container {
     padding: 120px 100px;
 }
 
-.personal-content{
+.personal-content {
     margin: 30px 0;
     width: 400px;
     height: 400px;
     background-color: white;
     border-radius: 20px;
 
-    .image-card-container{
+    .image-card-container {
         width: 100%;
         height: calc(100% - 110px);
         border-radius: 20px 20px 0 0;
 
-        img{
+        img {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
+            object-fit: cover;
             border-radius: 20px 20px 0 0;
         }
-
     }
 
-    .apartment-details{
+    .apartment-details {
         width: 100%;
         height: 110px;
         display: flex;
@@ -134,15 +131,13 @@ a{
         padding: 0 30px;
         line-height: 0.6;
     }
-
 }
 
-
-.img-show{
+.img-show {
     width: 300px;
     height: auto;
 }
-.distance-filter-section{
+.distance-filter-section {
     width: 100px;
     height: 70px;
     background-color: rgb(255, 255, 255);
@@ -160,7 +155,7 @@ a{
     font-size: 20px;
 }
 
-.slider{
+.slider {
     width: 60%;
     margin: 0 25px;
     cursor: grab;
@@ -180,15 +175,4 @@ a{
         display: flex;
         justify-content: center;
     }
-  }
-
-
-
-
-
-
-
-
-
-
-
+}

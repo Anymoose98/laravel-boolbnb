@@ -30,19 +30,19 @@ const indirizzoInput = document.getElementById('indirizzo');
 
 
 
-// Controllo JS della password di conferma 
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("registrationForm");
-    form.addEventListener("submit", function(event) {
-        let password = document.getElementById("password").value;
-        let confirmPassword = document.getElementById("password-confirm").value;
+// Controllo JS della password di conferma
+// document.addEventListener("DOMContentLoaded", function() {
+//     const form = document.getElementById("registrationForm");
+//     form.addEventListener("submit", function(event) {
+//         let password = document.getElementById("password").value;
+//         let confirmPassword = document.getElementById("password-confirm").value;
 
-        if (password !== confirmPassword) {
-            alert("LE PASSWORD NON COINCIDONO");
-            event.preventDefault(); 
-        }
-    });
-});
+//         if (password !== confirmPassword) {
+//             alert("LE PASSWORD NON COINCIDONO");
+//             event.preventDefault();
+//         }
+//     });
+// });
 
 
 
