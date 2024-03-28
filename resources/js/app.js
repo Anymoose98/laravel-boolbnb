@@ -45,4 +45,20 @@ const indirizzoInput = document.getElementById('indirizzo');
 // });
 
 
+var options = {
+    searchOptions: {
+        key: "GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo",
+        language: "en-GB",
+        limit: 5,
+    },
+    autocompleteOptions: {
+        key: "GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo",
+        language: "en-GB",
+    },
+}
+var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+var searchInput = document.getElementById("indirizzoSearchBox")
+searchInput.classList.add("form-control", "d-flex");
+searchInput.appendChild(searchBoxHTML);
 
