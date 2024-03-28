@@ -20,12 +20,12 @@
                 <div class="col-6 my-3">
                     <div class="card">
                         <img src="{{ asset('/storage/' . $apartments->image) }}" alt="{{ $apartments->name }}"
-                            class="card-img-top">
+                            class="card-img-top img-index">
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h3 class="card-title">
                                 {{ $apartments->description }}
-                            </h5>
-                            <p class="card-text">{{ $apartments->location }}</p>
+                            </h3>
+                            <h5 class="card-text">{{ $apartments->location }}</h5>
                             <a href="{{ route('apartments.show', ['apartment' => $apartments->id]) }}">
                                 <button class="btn btn-sm btn-square btn-primary">Clicca qui per maggiori
                                     informazioni</button>
