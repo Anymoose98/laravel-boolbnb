@@ -37,7 +37,7 @@
                             <button class="btn btn-sm btn-square btn-danger mx-1" data-bs-toggle="modal"
                                 data-bs-target="#modal_project_delete-{{ $apartments->id }}"
                                 data-id= "{{ $apartments->id }}" data-name="{{ $apartments->description }}"
-                                data-type="apartments">Elimina
+                                data-type="apartments"><i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
                     </div>

@@ -31,7 +31,7 @@
             {{-- Immagini appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="image">Immagine di copertina dell'appartamento <span class="text-danger">*</span></label>
-                <div>
+                <div class="my-3">
 
                     <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" class="img-show" >
                 </div>
