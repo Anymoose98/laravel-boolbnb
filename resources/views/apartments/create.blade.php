@@ -103,11 +103,15 @@
                 @enderror
             </div>
 
+            <div class="form-footer mt-2">
+                <p class="text-muted"><span class="text-danger">*</span> I campi contrassegnati sono obbligatori.</p>
+            </div>
 
             <a  href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
 
 
             </form>
+            
         </div>
     </div>
 </div>
