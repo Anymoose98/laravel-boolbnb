@@ -42,8 +42,8 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
                 @include('apartments.modal_delete')
+                @endforeach
 
             {{--  class="col-12 d-flex flex-wrap"> --}}
 
