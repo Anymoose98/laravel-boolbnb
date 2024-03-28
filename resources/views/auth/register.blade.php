@@ -22,7 +22,7 @@
                             @endif
 
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome<span class="text-danger">*</span></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome<span class="text-danger"> *</span></label>
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 @error('name')
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="surname" class="col-md-4 col-form-label text-md-right">Cognome<span class="text-danger">*</span></label>
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">Cognome<span class="text-danger"> *</span></label>
                             <div class="col-md-6">
                                 <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
                                 @error('surname')
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="birth_date" class="col-md-4 col-form-label text-md-right">Data di nascita<span class="text-danger">*</span></label>
+                            <label for="birth_date" class="col-md-4 col-form-label text-md-right">Data di nascita<span class="text-danger"> *</span></label>
                             <div class="col-md-6">
                                 <input id="birth_date" type="date" class="form-control @error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
                                 @error('birth_date')
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Indirizzo email<span class="text-danger">*</span></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Indirizzo email<span class="text-danger"> *</span></label>
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 @error('email')
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password<span class="text-danger">*</span></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password<span class="text-danger"> *</span></label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
@@ -72,10 +72,12 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Conferma password<span class="text-danger">*</span></label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Conferma password<span class="text-danger"> *</span></label>
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="text-danger error-password mt-1" id="error-password"><i class="fa-solid fa-circle-exclamation"></i> Le password non corrispondono</div>
                             </div>
+                            
                         </div>
 
                         <div class="mb-4 row mb-0">
