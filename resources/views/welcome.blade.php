@@ -44,11 +44,11 @@
                 <div class="col-12 col-lg-6 col-xxl-3">
                     <div class="personal-content">
                         <div class="image-card-container">
-                            @if ($apartment->image === 0)
-                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
-                                @else
+                            @if ($apartment->image == 0)
                                 <img src="{{ asset('/storage/placeholder.png') }}" alt="">
-                                @endif
+                            @else
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @endif
                         </div>
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
@@ -133,17 +133,21 @@
                     /* PER OGNI APPARTAMENTO VIENE CREATA UNA CARD CON I VALORI DELLA CHIAMATA */
                     apartments.forEach(apartment => {
                         const card = `
-        <div class="col-12 col-lg-6 col-xxl-3">
-            <div class="personal-content">
-                <div class="image-card-container">
-                    <img src="/storage/${apartment.image}" alt="${apartment.name}">
+                        <div class="col-12 col-lg-6 col-xxl-3">
+                    <div class="personal-content">
+                        <div class="image-card-container">
+                            @if ($apartment->image === 0)
+                                <img src="{{ asset('/storage/' . ${ apartment.image }) }}" alt="{{ $apartment->name }}">
+                                @else
+                                <img src="{{ asset('/storage/placeholder.png') }}" alt="">
+                                @endif
+                        </div>
+                        <div class="apartment-details">
+                            <h2 class="fw-bolder">${ apartment.location }</h2>
+                            <p id="description gradient-text">${apartment.description}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="apartment-details">
-                    <h2 class="fw-bolder">${apartment.location}</h2>
-                    <p>${apartment.description}</p>
-                </div>
-            </div>
-        </div>
     `;
                         row.insertAdjacentHTML('beforeend', card);
                     });

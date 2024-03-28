@@ -44,11 +44,11 @@
                 <div class="col-12 col-lg-6 col-xxl-3">
                     <div class="personal-content">
                         <div class="image-card-container">
-                            @if ($apartment->image === 0)
-                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
-                                @else
+                            @if ($apartment->image == 0)
                                 <img src="{{ asset('/storage/placeholder.png') }}" alt="">
-                                @endif
+                            @else
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @endif
                         </div>
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
