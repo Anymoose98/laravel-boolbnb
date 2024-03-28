@@ -33,7 +33,7 @@
                 <label class="mt-3" for="image">Immagine di copertina dell'appartamento <span class="text-danger">*</span></label>
                 <div>
 
-                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" >
+                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" class="img-show" >
                 </div>
                 
                 
