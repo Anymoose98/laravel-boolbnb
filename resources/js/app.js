@@ -23,12 +23,9 @@ deleteButtons.forEach((button) => {
 });
 
 
-
 const myButton = document.getElementById('myButton');
-const key = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
+const API_KEY = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
 const indirizzoInput = document.getElementById('indirizzo');
-
-
 
 // Controllo JS della password di conferma
 // document.addEventListener("DOMContentLoaded", function() {
@@ -47,18 +44,16 @@ const indirizzoInput = document.getElementById('indirizzo');
 
 var options = {
     searchOptions: {
-        key: "GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo",
-        language: "en-GB",
+        key: API_KEY,
+        language: "it-IT",
         limit: 5,
     },
     autocompleteOptions: {
-        key: "GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo",
-        language: "en-GB",
+        key: API_KEY,
+        language: "it-IT",
     },
 }
 var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
 var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
-var searchInput = document.getElementById("indirizzoSearchBox")
-searchInput.classList.add("form-control", "d-flex");
-searchInput.appendChild(searchBoxHTML);
 
+document.getElementById("indirizzoSearchBox").appendChild(searchBoxHTML);

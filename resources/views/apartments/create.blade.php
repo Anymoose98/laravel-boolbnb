@@ -9,103 +9,105 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
-        @endif
+            @endif
             <h2 class="text-center mt-3">Aggiungi dati appartamento</h2>
         </div>
         <div class="col-12">
             <form action="{{ route("apartments.store") }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            {{-- Descrizione appartamento --}}
-            <div class="form-group">
-                <label class="mt-3" for="marca">Descrizione <span class="text-danger">*</span></label>
-                <input type="text" name="description" id="description" class="form-control" placeholder="Inserisci una breve descrizione" required  value="{{ old("description")  }}">
-                @error('description')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            {{-- Immagini appartamento --}}
-            <div class="form-group">
-                <label class="mt-3" for="image">Immagine di copertina dell'appartamento <span class="text-danger">*</span></label>
-                <input type="file" name="image" id="image" accept="image/*" class="form-control">
-                @error('image')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label class="mt-3" for="image_gallery">Seleziona le immagini dell'appartamento</label>
-                <input type="file" name="image_gallery[]" id="image_gallery" accept="image/*" class="form-control" multiple>
-                @error('image')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-          
-            {{-- Numero stanze --}}
-            <div class="form-group">
-                <label class="mt-3" for="rooms">Numero Stanze <span class="text-danger">*</span></label>
-                <input type="text" name="rooms" id="rooms" class="form-control" placeholder="Inserisci il numero delle stanze " value="{{ old("rooms")  }}" > 
-                @error('rooms')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            {{-- Numero letti --}}
-            <div class="form-group">
-                <label class="mt-3" for="beds">Letti disponibili <span class="text-danger">*</span></label>
-                <input type="text" name="beds" id="beds" class="form-control" placeholder="Inserisci il numero di letti " value="{{ old("beds")  }}"> 
-                @error('beds')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            {{-- Numero bagni --}}
-            <div class="form-group">
-                <label class="mt-3" for="bathrooms">Numero Bagni <span class="text-danger">*</span></label>
-                <input type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="Inserisci il numero di bagni " value="{{ old("bathrooms")  }}" > 
-                @error('bathrooms')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            {{-- Metratura appartamento --}}
-            <div class="form-group">
-                <label class="mt-3" for="square_meters">Metri quadrati <span class="text-danger">*</span></label>
-                <input type="text" name="square_meters" id="square_meters" class="form-control" placeholder="Inserisci i metri quadrati " value="{{ old("square_meters")  }}"> 
-                @error('square_meters')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            {{-- Zona --}}
-            <div class="form-group">
-                <label class="mt-3" for="location">Città <span class="text-danger">*</span></label>
-                <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location")  }}"> 
-                @error('location')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            {{-- Indirizzo --}}
-            <div class="form-group">
-                <label class="mt-3" for="indirizzo">Indirizzo <span class="text-danger">*</span></label>
-                <div id="indirizzoSearchBox"></div>
-                <input type="hidden" name="indirizzo" id="indirizzo" class="form-control">
-            </div>
-            
-            {{-- Visibilità --}}
-            <div class="form-group">
-                <label class="mt-3" for="visibility">Visibilità <span class="text-danger">*</span></label>
-                <input type="radio" name="visibility" value="Si">
-                <label for=""  > Si</label>
-                <input type="radio" name="visibility"   value="No">
-                <label for="" > No</label>
-                @error('visibility')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                @csrf
+                
+                {{-- Descrizione appartamento --}}
+                <div class="form-group">
+                    <label class="mt-3" for="marca">Descrizione <span class="text-danger">*</span></label>
+                    <input type="text" name="description" id="description" class="form-control" placeholder="Inserisci una breve descrizione" required value="{{ old("description")  }}">
+                    @error('description')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- Immagini appartamento --}}
+                <div class="form-group">
+                    <label class="mt-3" for="image">Immagine di copertina dell'appartamento <span class="text-danger">*</span></label>
+                    <input type="file" name="image" id="image" accept="image/*" class="form-control">
+                    @error('image')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="mt-3" for="image_gallery">Seleziona le immagini dell'appartamento</label>
+                    <input type="file" name="image_gallery[]" id="image_gallery" accept="image/*" class="form-control" multiple>
+                    @error('image')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
+                {{-- Numero stanze --}}
+                <div class="form-group">
+                    <label class="mt-3" for="rooms">Numero Stanze <span class="text-danger">*</span></label>
+                    <input type="text" name="rooms" id="rooms" class="form-control" placeholder="Inserisci il numero delle stanze " value="{{ old("rooms")  }}">
+                    @error('rooms')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <a  href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
+                {{-- Numero letti --}}
+                <div class="form-group">
+                    <label class="mt-3" for="beds">Letti disponibili <span class="text-danger">*</span></label>
+                    <input type="text" name="beds" id="beds" class="form-control" placeholder="Inserisci il numero di letti " value="{{ old("beds")  }}">
+                    @error('beds')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
+                {{-- Numero bagni --}}
+                <div class="form-group">
+                    <label class="mt-3" for="bathrooms">Numero Bagni <span class="text-danger">*</span></label>
+                    <input type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="Inserisci il numero di bagni " value="{{ old("bathrooms")  }}">
+                    @error('bathrooms')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Metratura appartamento --}}
+                <div class="form-group">
+                    <label class="mt-3" for="square_meters">Metri quadrati <span class="text-danger">*</span></label>
+                    <input type="text" name="square_meters" id="square_meters" class="form-control" placeholder="Inserisci i metri quadrati " value="{{ old("square_meters")  }}">
+                    @error('square_meters')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Zona --}}
+                <div class="form-group">
+                    <label class="mt-3" for="location">Città <span class="text-danger">*</span></label>
+                    <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location")  }}">
+                    @error('location')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Indirizzo --}}
+                <div class="form-group">
+                    <label class="mt-3" for="indirizzo">Indirizzo <span class="text-danger">*</span></label>
+                    <div id="indirizzoSearchBox"></div>
+                </div>
+
+                {{-- Visibilità --}}
+                <div class="form-group">
+                    <label class="mt-3" for="visibility">Visibilità <span class="text-danger">*</span></label>
+                    <input type="radio" name="visibility" value="Si">
+                    <label for=""> Si</label>
+                    <input type="radio" name="visibility" value="No">
+                    <label for=""> No</label>
+                    @error('visibility')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <a href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
 
             </form>
         </div>
@@ -113,5 +115,5 @@
 </div>
 
 <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
-<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
+<script src="/tomtom-input.js"></script>
 @endsection
