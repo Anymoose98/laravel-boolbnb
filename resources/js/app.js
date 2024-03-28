@@ -55,3 +55,11 @@ var options = {
 var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
 var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
 document.getElementById("indirizzoSearchBox").appendChild(searchBoxHTML);
+
+let input = document.querySelectorAll('.tt-search-box-input')
+
+input.forEach((element) => {
+    element.setAttribute("name", "address")
+    element.setAttribute("autocomplete", "off")
+    element.setAttribute("required", "required");
+})

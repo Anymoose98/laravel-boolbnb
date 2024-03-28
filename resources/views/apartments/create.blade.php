@@ -52,8 +52,6 @@
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                
-          
 
                 {{-- Numero letti --}}
                 <div class="form-group">
@@ -82,19 +80,13 @@
                     @enderror
                 </div>
 
-                {{-- Zona --}}
-                <div class="form-group">
-                    <label class="mt-3" for="location">Città <span class="text-danger">*</span></label>
-                    <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location")  }}">
-                    @error('location')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 {{-- Indirizzo --}}
                 <div class="form-group">
                     <label class="mt-3" for="indirizzo">Indirizzo <span class="text-danger">*</span></label>
                     <div id="indirizzoSearchBox"></div>
+                    @error('address')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Visibilità --}}

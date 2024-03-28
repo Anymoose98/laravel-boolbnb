@@ -29,7 +29,8 @@ class StoreApartmentsRequest extends FormRequest
             "beds" => "required|numeric|gt:0",
             "bathrooms" => "required|numeric|gt:0",
             "square_meters" => "required|numeric|gt:0",
-            "location" => "required|max:255",
+            "location" => "max:255",
+            "address" => "required|max:255",
             "image" => "required",
             "visibility" => "required",
         ];
@@ -50,9 +51,10 @@ class StoreApartmentsRequest extends FormRequest
             "square_meters.required" => "Il campo bagni è obbligatorio",
             "square_meters.numeric" => "Il campo bagni deve essere un numero",
             "square_meters.gt0" => "Il campo bagni deve essere maggiore di 0",
-            "location.required" => "Il campo location è obbligatorio",
             "location.max" => "Il campo location deve essere di massimo 255 caratteri",
             "image.required" => "Il campo immagine di copertina è obbligatorio",
+            "address.required" => "Il campo indirizzo è obbligatorio",
+            "address.max" => "Il campo indirizzo deve essere di massimo 255 caratteri",
             "visibility.required" => "Seleziona uno dei due bottoni",
         ];
     }

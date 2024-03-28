@@ -21,7 +21,7 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-/*     public function __construct()
+    /*     public function __construct()
     {
         $this->middleware(function ($request, $next) {
             // Condividi la variabile $apartment con tutte le views
@@ -32,14 +32,14 @@ class ApartmentsController extends Controller
 
     public function index()
     {
-            // Ottieni l'utente autenticato
-    $user = auth()->user();
+        // Ottieni l'utente autenticato
+        $user = auth()->user();
 
-    // Accedi alla relazione apartments() dell'utente per ottenere tutti gli appartamenti associati
-    $apartment = $user->apartments;
+        // Accedi alla relazione apartments() dell'utente per ottenere tutti gli appartamenti associati
+        $apartment = $user->apartments;
 
-    // Passa gli appartamenti alla vista
-    return view("apartments.index", compact('apartment'));
+        // Passa gli appartamenti alla vista
+        return view("apartments.index", compact('apartment'));
     }
 
     public function search(Request $request)
@@ -79,65 +79,57 @@ class ApartmentsController extends Controller
         $apartment->user_id = auth()->user()->id;
 
         $form_data = $request->all();
-        // $address = urlencode($form_data['address']); // Access address from form data
-        // $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
-        // $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
-    
-        // $response = file_get_contents($url);
-        // $data = json_decode($response, true);
-    
-        
-        // if ($data && isset($data['results']) && count($data['results']) > 0) {
-        //     $latitude = $data['results'][0]['position']['lat'];
-        //     $longitude = $data['results'][0]['position']['lon'];
+        $address = urlencode($form_data['address']);
+        $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+        $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+
+        if ($data && isset($data['results']) && count($data['results']) > 0) {
+            $latitude = $data['results'][0]['position']['lat'];
+            $longitude = $data['results'][0]['position']['lon'];
+            $city = $data['results'][0]['address']['municipality'];
             // Assign latitude and longitude directly to the apartment object
-        //     $apartment->latitude = $latitude;
-        //     $apartment->longitude = $longitude;
-        // } else {
-            // Handle the case where coordinates are not found
-            // You might want to return an error message or handle it in some way
-            // For now, let's set latitude and longitude to null
-        //     $apartment->latitude = null;
-        //     $apartment->longitude = null;
-        // }
-        
-        
-        if($request->hasFile("image")){
+            $apartment->latitude = $latitude;
+            $apartment->longitude = $longitude;
+            $apartment->location = $city;
+        } else {
+            $apartment->latitude = null;
+            $apartment->longitude = null;
+            $apartment->location = null;
+        }
+
+
+        if ($request->hasFile("image")) {
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
         // Fill the apartment object with other form data
-       
+
         $apartment->fill($form_data);
-    
+
         // Save the apartment to the database
         $apartment->save();
-        
-        /* Dopo aver salvato il posto controllo se sono presenti immagini di galleria */
-        if($request->has("image_gallery")){
-            /* Recupero immagini in una variabile */
+
+        if ($request->has("image_gallery")) {
             $images = $form_data["image_gallery"];
-            /* Ciclo le immagini */
-            foreach($images as $image){
-                /* Upload immagini */
+            foreach ($images as $image) {
                 $path = Storage::disk("public")->put("image_gallery", $image);
-                
-                /* Inserimento con fillable */
+
                 $data_image["apartments_id"] = $apartment->id;
                 $data_image["image_gallery"] = $path;
 
-                /* Creazione nuovo record nella tabella */
                 $imageGallery = new ImageGallery;
                 $imageGallery->fill($data_image);
-                /* salvataggio nuovo record */
                 $imageGallery->save();
-                
             }
         }
         return redirect()->route("apartments.index");
     }
-    
-    
+
+
 
     /**
      * Display the specified resource.
@@ -147,7 +139,7 @@ class ApartmentsController extends Controller
      */
     public function show(Apartments $apartments, $id)
     {
-       
+
         $apartments = Apartments::find($id);
         return view("apartments.show", compact("apartments"));
     }
@@ -165,13 +157,13 @@ class ApartmentsController extends Controller
 
         // Get the ID of the currently authenticated user
         $userId = Auth::id();
-    
+
         // Compare the user ID of the currently authenticated user with the user ID associated with the apartment
         if ($userId !== $apartment->user_id) {
             // User is not authorized to edit this apartment
             return view('unauthorized');
         }
-    
+
         $apartments = Apartments::find($id);
 
         return view("apartments.edit", compact("apartments"));
@@ -198,7 +190,7 @@ class ApartmentsController extends Controller
             // Keep the existing image path
             $form_data['image'] = $apartments->image;
         }
-        
+
         $apartments->update($form_data);
         return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
     }
@@ -213,10 +205,10 @@ class ApartmentsController extends Controller
     {
         $apartments = Apartments::find($id);
 
-        if($apartments->image != null){
+        if ($apartments->image != null) {
             Storage::disk("public")->delete($apartments->image);
         }
-     
+
         $apartments->image_gallery()->delete();
         $apartments->delete();
         return redirect()->route("apartments.index", ["apartment" => $apartments]);
