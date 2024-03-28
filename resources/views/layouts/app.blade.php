@@ -55,7 +55,6 @@
                         <div class="ms-3 fs-4 logo-write fw-bolder">
                             BoolBnB
                         </div>
-                        {{-- config('app.name', 'Laravel') --}}
                     </a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

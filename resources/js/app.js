@@ -39,9 +39,6 @@ const indirizzoInput = document.getElementById('indirizzo');
          if (password !== confirmPassword) {
             document.getElementById('error-password').style.display = 'block';
             event.preventDefault();
-            
-             
-             
          }
      });
  });

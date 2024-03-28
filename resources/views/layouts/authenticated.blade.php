@@ -96,26 +96,26 @@
             </nav>
         </header>
  
-        <div class="container-fluid vh-100">
+        {{-- <div class="container-fluid vh-100">
             <div class="row">
                 <nav class="col-md-3 col-lg-2 sidebar collapse d-md-block bg-grey navbar-light" id="sidebarMenu">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
-                            {{-- <li class="nav-item my-3">
+                            <li class="nav-item my-3">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == "admin.optionals.index" ? "bg-success" : "" }}"
-                                href="{{ route("admin.optionals.index") }}"> 
+                                href="{{ route("admin.optionals.index") }}">
                                     <i class="fa-solid fa-pencil-alt fa-lg fa-fw"></i>Optionals
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == "admin.carhouses.index" ? "bg-success" : "" }}"
-                                href="{{ route("admin.carhouses.index") }}"> 
-                                    <i class="fa-solid fa-house fa-lg fa-fw"></i>Car Houses
+                                href="{{ route("admin.carhouses.index") }}">  
+                                     <i class="fa-solid fa-house fa-lg fa-fw"></i>Car Houses
                                 </a>
-                            </li> --}}
+                            </li>
                         </ul>
                 </div>
-            </nav>
+            </nav>  --}}
             
                 <main class="col-md-9 col-lg-10">          
                     @yield('content')

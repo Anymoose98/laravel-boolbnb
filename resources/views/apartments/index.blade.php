@@ -6,7 +6,7 @@
             <div class="col-12 mt-4">
                <div class="d-flex justify-content-between">
                     <div>
-                        <h2>Appartamenti</h2>
+                        <h2>I tuoi appartamenti</h2>
                     </div>
 
                     <div>
@@ -15,6 +15,16 @@
                </div>
             </div>
             <div class="col-12">
+                {{-- @foreach($apartment as $apartments)
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}"" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"><td>{{ $apartments->description}}</td></h5>
+                      <p class="card-text">{{ $apartments->location}}</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                @endforeach --}}
                 {{-- Tabella con le informazione relative all'appartamento --}}
                 <table class=" table mt-3 table-striped text-center">
                     <thead>
