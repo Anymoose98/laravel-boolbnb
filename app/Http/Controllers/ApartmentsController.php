@@ -79,27 +79,27 @@ class ApartmentsController extends Controller
         $apartment->user_id = auth()->user()->id;
 
         $form_data = $request->all();
-        $address = urlencode($form_data['address']); // Access address from form data
-        $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
-        $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
+        // $address = urlencode($form_data['address']); // Access address from form data
+        // $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+        // $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
     
-        $response = file_get_contents($url);
-        $data = json_decode($response, true);
+        // $response = file_get_contents($url);
+        // $data = json_decode($response, true);
     
         
-        if ($data && isset($data['results']) && count($data['results']) > 0) {
-            $latitude = $data['results'][0]['position']['lat'];
-            $longitude = $data['results'][0]['position']['lon'];
+        // if ($data && isset($data['results']) && count($data['results']) > 0) {
+        //     $latitude = $data['results'][0]['position']['lat'];
+        //     $longitude = $data['results'][0]['position']['lon'];
             // Assign latitude and longitude directly to the apartment object
-            $apartment->latitude = $latitude;
-            $apartment->longitude = $longitude;
-        } else {
+        //     $apartment->latitude = $latitude;
+        //     $apartment->longitude = $longitude;
+        // } else {
             // Handle the case where coordinates are not found
             // You might want to return an error message or handle it in some way
             // For now, let's set latitude and longitude to null
-            $apartment->latitude = null;
-            $apartment->longitude = null;
-        }
+        //     $apartment->latitude = null;
+        //     $apartment->longitude = null;
+        // }
         
         
         if($request->hasFile("image")){
