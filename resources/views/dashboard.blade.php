@@ -154,18 +154,25 @@
                     /* PER OGNI APPARTAMENTO VIENE CREATA UNA CARD CON I VALORI DELLA CHIAMATA */
                     apartments.forEach(apartment => {
                         const card = `
-        <div class="col-12 col-lg-6 col-xxl-3">
-            <div class="personal-content">
-                <div class="image-card-container">
-                    <img src="/storage/${apartment.image}" alt="${apartment.name}">
-                </div>
-                <div class="apartment-details">
-                    <h2 class="fw-bolder">${apartment.location}</h2>
-                    <p>${apartment.description}</p>
-                </div>
+    <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
+         data-name="${apartment.name}" data-location="${apartment.location}"
+         data-description="${apartment.description}">
+        <div class="personal-content">
+            <div class="image-card-container">
+                ${apartment.image == 0 ? 
+                    `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
+                    `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
+                }
+            </div>
+            <div class="apartment-details">
+                <h2 class="fw-bolder">${apartment.location}</h2>
+                <p id="description" class="gradient-text">
+                    ${apartment.description.slice(0, 25) + '...'}
+                </p>
             </div>
         </div>
-    `;
+    </div>
+`;
                         row.insertAdjacentHTML('beforeend', card);
                     });
 
@@ -246,18 +253,25 @@
 
                     apartments.forEach(apartment => {
                         const card = `
-                    <div class="col-12 col-lg-6 col-xxl-3">
-                        <div class="personal-content">
-                            <div class="image-card-container">
-                                <img src="/storage/${apartment.image}" alt="${apartment.name}">
-                            </div>
-                            <div class="apartment-details">
-                                <h2 class="fw-bolder">${apartment.location}</h2>
-                                <p>${apartment.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
+    <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
+         data-name="${apartment.name}" data-location="${apartment.location}"
+         data-description="${apartment.description}">
+        <div class="personal-content">
+            <div class="image-card-container">
+                ${apartment.image == 0 ? 
+                    `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
+                    `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
+                }
+            </div>
+            <div class="apartment-details">
+                <h2 class="fw-bolder">${apartment.location}</h2>
+                <p id="description" class="gradient-text">
+                    ${apartment.description.slice(0, 25) + '...'}
+                </p>
+            </div>
+        </div>
+    </div>
+`;
                         row.insertAdjacentHTML('beforeend', card);
                     });
 
