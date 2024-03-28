@@ -88,12 +88,6 @@
                 <nav class="col-md-3 col-lg-2 sidebar collapse d-md-block bg-grey navbar-light" id="sidebarMenu">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-black{{ Route::currentRouteName() == "apartments.index" ? "bg-success" : "" }}"
-                                href="{{ route("apartments.index") }}"> 
-                                    <i class="fas fa-house "></i> Apartments
-                                </a>
-                            </li>
                             {{-- <li class="nav-item my-3">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == "admin.optionals.index" ? "bg-success" : "" }}"
                                 href="{{ route("admin.optionals.index") }}"> 

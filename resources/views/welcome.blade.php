@@ -41,7 +41,9 @@
     <div class="cards-container">
         <div class="row justify-content-start align-items-start">
             @foreach ($apartments as $apartment)
-                <div class="col-12 col-lg-6 col-xxl-3">
+                <div class="col-12 col-lg-6 col-xxl-3" data-image="{{ $apartment->image }}"
+                    data-name="{{ $apartment->name }}" data-location="{{ $apartment->location }}"
+                    data-description="{{ $apartment->description }}">
                     <div class="personal-content">
                         <div class="image-card-container">
                             @if ($apartment->image == 0)
@@ -52,8 +54,8 @@
                         </div>
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
-                            {{-- $apartment->description.substring(0, 10) --}}
-                            <p id="description gradient-text">{{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
+                            <p id="description gradient-text">
+                                {{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
                         </div>
                     </div>
                 </div>
@@ -62,7 +64,6 @@
     </div>
 
     <script>
-
         /* PRENDIAMO GLI ELEMENTI DELLO SLIDER */
         var slider = document.getElementById("radius-input");
         var output = document.getElementById("slider-value");
@@ -78,7 +79,6 @@
 
 
     <script>
-
         /* FUNZIONE CHE RECUPERA LE COORDINATE DELLA CITTA' CERCATA */
         function searchApartmentsCoordinates() {
 
@@ -130,28 +130,36 @@
                     const row = document.createElement('div');
                     row.classList.add('row');
 
-                    /* PER OGNI APPARTAMENTO VIENE CREATA UNA CARD CON I VALORI DELLA CHIAMATA */
+                    /* PER OGNI APPARTAMENTO VIENE CREATA UNA STRINGA HTML PER LA CARTA */
                     apartments.forEach(apartment => {
                         const card = `
-                        <div class="col-12 col-lg-6 col-xxl-3">
+                        <div class="col-12 col-lg-6 col-xxl-3" data-image="{{ $apartment->image }}"
+                    data-name="{{ $apartment->name }}" data-location="{{ $apartment->location }}"
+                    data-description="{{ $apartment->description }}">
                     <div class="personal-content">
                         <div class="image-card-container">
-                            @if ($apartment->image === 0)
-                                <img src="{{ asset('/storage/' . ${ apartment.image }) }}" alt="{{ $apartment->name }}">
-                                @else
+                            @if ($apartment->image == 0)
                                 <img src="{{ asset('/storage/placeholder.png') }}" alt="">
-                                @endif
+                            @else
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @endif
                         </div>
                         <div class="apartment-details">
-                            <h2 class="fw-bolder">${ apartment.location }</h2>
-                            <p id="description gradient-text">${apartment.description}</p>
+                            <h2 class="fw-bolder">{{ $apartment->location }}</h2>
+                            <p id="description gradient-text">
+                                {{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
                         </div>
                     </div>
                 </div>
-    `;
-                        row.insertAdjacentHTML('beforeend', card);
+                `;
+                        cardHTMLArray.push(card);
                     });
 
+                    /* Unisci tutte le stringhe HTML delle carte in un'unica stringa */
+                    const cardsHTML = cardHTMLArray.join('');
+
+                    /* Aggiungi la stringa HTML delle carte al contenitore delle carte */
+                    row.innerHTML = cardsHTML;
                     cardsContainer.appendChild(row);
                 })
         }
@@ -176,7 +184,8 @@
             const distanceFilterSection = document.querySelector('.distance-filter-section');
 
             /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
-            if (!event.target.matches('#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
+            if (!event.target.matches(
+                '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
                 distanceFilterSection.style.opacity = '0';
             } else {
                 distanceFilterSection.style.opacity = '100';
@@ -189,7 +198,7 @@
                 event.preventDefault();
 
                 /* SE E' VERO RISTAMPA TUTTI GLI APPARTAMENTI */
-                const city = this.value.trim(); 
+                const city = this.value.trim();
                 if (city !== '') {
                     searchApartmentsCoordinates();
                 } else {
@@ -202,15 +211,15 @@
         /* VERIFICA SE AL CLICK L'INPUT CITTA' E' VUOTO */
         document.getElementById('searchBtn').addEventListener('click', function(event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                /* SE E' VERO RISTAMPA TUTTI GLI APPARTAMENTI */
-                const city = document.getElementById('city-input').value;
-                if (city !== '') {
-                    searchApartmentsCoordinates();
-                } else {
-                    showAllApartments();
-                }
+            /* SE E' VERO RISTAMPA TUTTI GLI APPARTAMENTI */
+            const city = document.getElementById('city-input').value;
+            if (city !== '') {
+                searchApartmentsCoordinates();
+            } else {
+                showAllApartments();
+            }
         });
 
 
@@ -228,18 +237,26 @@
                     row.classList.add('row');
 
                     apartments.forEach(apartment => {
+                        let appartamenti = ${ apartment.description }
                         const card = `
-                    <div class="col-12 col-lg-6 col-xxl-3">
-                        <div class="personal-content">
-                            <div class="image-card-container">
-                                <img src="/storage/${apartment.image}" alt="${apartment.name}">
-                            </div>
-                            <div class="apartment-details">
-                                <h2 class="fw-bolder">${apartment.location}</h2>
-                                <p>${apartment.description}</p>
-                            </div>
+                        <div class="col-12 col-lg-6 col-xxl-3" data-image="{{ $apartment->image }}"
+                    data-name="{{ $apartment->name }}" data-location="{{ $apartment->location }}"
+                    data-description="{{ $apartment->description }}">
+                    <div class="personal-content">
+                        <div class="image-card-container">
+                            @if ($apartment->image == 0)
+                                <img src="{{ asset('/storage/placeholder.png') }}" alt="">
+                            @else
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @endif
+                        </div>
+                        <div class="apartment-details">
+                            <h2 class="fw-bolder">{{ $apartment->location }}</h2>
+                            <p id="description gradient-text">
+                                {{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
                         </div>
                     </div>
+                </div>
                 `;
                         row.insertAdjacentHTML('beforeend', card);
                     });
@@ -248,7 +265,4 @@
                 })
         }
     </script>
-
-
-
 @endsection
