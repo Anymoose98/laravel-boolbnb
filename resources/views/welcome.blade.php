@@ -133,7 +133,7 @@
                     const row = document.createElement('div');
                     row.classList.add('row');
 
-                    /* PER OGNI APPARTAMENTO VIENE CREATA UNA STRINGA HTML PER LA CARTA */
+                    /* PER OGNI APPARTAMENTO VIENE CREATA UNA STRINGA HTML PER LA CARD */
                     apartments.forEach(apartment => {
                         const card = `
     <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
@@ -234,6 +234,7 @@ cardsContainer.appendChild(row);
                     const row = document.createElement('div');
                     row.classList.add('row');
 
+                    /* RISTAMPA TUTTE LE CARD SE LA RICERCA E' VUOTA */
                     apartments.forEach(apartment => {
                         const card = `
     <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
