@@ -16,8 +16,8 @@
                 </div>
         
                 <div class="search-elem">
-                    <label for="guest-input">Quanti letti</label>
-                    <input type="text" name="guest-input" id="guest-input" placeholder="Inserisci il numero di letti">
+                    <label for="beds-input">Quanti letti</label>
+                    <input type="text" name="beds-input" id="beds-input" placeholder="Inserisci il numero di letti">
                 </div>
         
                 <div class="search-elem">
@@ -58,7 +58,8 @@
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
                             <p id="description gradient-text">
-                                {{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
+                                {{ Illuminate\Support\Str::limit($apartment->description, 30) }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -85,8 +86,14 @@
         /* FUNZIONE CHE RECUPERA LE COORDINATE DELLA CITTA' CERCATA */
         function searchApartmentsCoordinates() {
 
-            /* INPUT DELLA CITTA' */
-            const city = document.getElementById('city-input').value;
+            /* INPUT DEI FILTRI */
+            let city = document.getElementById('city-input').value;
+            let beds = document.getElementById('beds-input').value;
+
+            /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
+            if(beds == ""){
+                beds = 0;
+            }
 
             /* CHIAMATA AXIOS PER RECUPERARE LE COORDINATE DELLA CITTA' INSERITA */
             axios.get('https://api.tomtom.com/search/2/geocode/' + city + '.json', {
@@ -102,13 +109,12 @@
                 const longitude = results[0].position.lon;
 
                 /* PASSA I PARAMETRI LATITUDINE E LONGITUDINE ALLA FUNZIONE */
-                searchApartments(latitude, longitude);
+                searchApartments(latitude, longitude, beds);
             })
         }
 
         /* FUNZIONE CHE RICERCA GLI APPARTAMENTI */
-        function searchApartments(latitude, longitude) {
-
+        function searchApartments(latitude, longitude, beds) {
             /* INPUT DEL RAGGIO DI RICERCA */
             const radius = document.getElementById('radius-input').value;
 
@@ -117,7 +123,8 @@
                     params: {
                         latitude: latitude,
                         longitude: longitude,
-                        radius: radius
+                        beds: beds,
+                        radius: radius,
                     }
                 })
                 .then(function(response) {
@@ -133,7 +140,7 @@
                     const row = document.createElement('div');
                     row.classList.add('row');
 
-                    /* PER OGNI APPARTAMENTO VIENE CREATA UNA STRINGA HTML PER LA CARTA */
+                    /* PER OGNI APPARTAMENTO VIENE CREATA UNA STRINGA HTML PER LA CARD */
                     apartments.forEach(apartment => {
                         const card = `
     <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
@@ -234,6 +241,7 @@ cardsContainer.appendChild(row);
                     const row = document.createElement('div');
                     row.classList.add('row');
 
+                    /* RISTAMPA TUTTE LE CARD SE LA RICERCA E' VUOTA */
                     apartments.forEach(apartment => {
                         const card = `
     <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
