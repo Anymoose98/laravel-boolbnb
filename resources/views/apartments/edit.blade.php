@@ -36,7 +36,14 @@
                     <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" >
                 </div>
                 
-                <input type="file" name="image" id="image" accept="image/*" class="form-control" >
+                
+                @if (old('image'))
+                <input type="file" name="image" id="image" value="{{ old('image') }}"><br>
+                @else
+                <!-- If no old image input, provide a file input -->
+                <input type="file" name="image" id="image"><br>
+                @endif
+                
                 @error('image')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -83,10 +90,10 @@
             </div>
             {{-- Visibilità --}}
             <div class="form-group">
-                <label class="mt-3" for="visibility">Visibilità <span class="text-danger">*</span></label>
-                <input type="radio" name="visibility" value="Si">
+                <label class="mt-3" for="visibility">Visibilità <span class="text-danger" >*</span></label>
+                <input type="radio" name="visibility"  value="Si" {{ old('visibility', $apartments->visibility) == 'Si' ? 'checked' : '' }}>
                 <label for=""  > Si</label>
-                <input type="radio" name="visibility"   value="No">
+                <input type="radio" name="visibility"   value="No" {{ old('visibility', $apartments->visibility) == 'No' ? 'checked' : '' }}>
                 <label for="" > No</label>
                 @error('visibility')
                     <div class ="text-danger">{{ $message }}</div>

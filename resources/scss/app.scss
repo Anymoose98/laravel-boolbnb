@@ -166,6 +166,15 @@ a{
     cursor: grab;
 }
 
+.btn-bg{
+    background-color: red;
+    color: white;
+}
+.pagina_error{
+    text-align: center;   
+    justify-content: center;
+    font-size: 100px;
+}
 @media screen and (max-width: 576px) {
     .cards-container {
         display: flex;

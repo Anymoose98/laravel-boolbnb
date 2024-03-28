@@ -19,7 +19,7 @@
                 <table class=" table mt-3 table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                        
                             <th>Descrizione</th>
                             <th>Stanze</th>
                             <th>Letti</th>
@@ -32,7 +32,7 @@
                     <tbody>
                           @foreach($apartment as $apartments)
                             <tr>
-                                <td>{{ $apartments->id}}</td>
+                                
                                 <td>{{ $apartments->description}}</td>
                                 <td>{{ $apartments->rooms}}</td>
                                 <td>{{ $apartments->beds}}</td>

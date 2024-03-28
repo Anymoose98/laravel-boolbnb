@@ -10,6 +10,9 @@ use App\Http\Requests\UpdateApartmentsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
+
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentsController extends Controller
 {
@@ -157,6 +160,18 @@ class ApartmentsController extends Controller
      */
     public function edit(Apartments $apartments, $id)
     {
+
+        $apartment = Apartments::findOrFail($id);
+
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+    
+        // Compare the user ID of the currently authenticated user with the user ID associated with the apartment
+        if ($userId !== $apartment->user_id) {
+            // User is not authorized to edit this apartment
+            return view('unauthorized');
+        }
+    
         $apartments = Apartments::find($id);
 
         return view("apartments.edit", compact("apartments"));
@@ -173,19 +188,16 @@ class ApartmentsController extends Controller
     {
         $form_data = $request->all();
         $apartments = Apartments::find($id);
-        if($request->hasFile("image") ){
-            if($apartments->image != null){
+        if ($request->hasFile("image")) {
+            if ($apartments->image != null) {
                 Storage::disk("public")->delete($apartments->image);
             }
-            $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
+            $path = Storage::disk("public")->put("apartment_image", $request->file("image"));
             $form_data["image"] = $path;
-        }
-
-         else {
-            // Mantieni il percorso dell'immagine esistente
+        } else {
+            // Keep the existing image path
             $form_data['image'] = $apartments->image;
         }
-
         
         $apartments->update($form_data);
         return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
