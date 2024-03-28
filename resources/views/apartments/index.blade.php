@@ -6,17 +6,17 @@
             <div class="col-12 mt-4">
                <div class="d-flex justify-content-between">
                     <div>
-                        <h2>Apartments</h2>
+                        <h2>Appartamenti</h2>
                     </div>
 
                     <div>
-                        <a href=" {{ route("apartments.create")}} "><button class="btn btn-primary">Add New Apartment</button></a>
+                        <a href=" {{ route("apartments.create")}} "><button class="btn btn-primary">Aggiungi un nuovo Appartamento</button></a>
                     </div>
                </div>
             </div>
             <div class="col-12">
                 {{-- Tabella con le informazione relative all'appartamento --}}
-                <table class=" table mt-3 table-striped">
+                <table class=" table mt-3 table-striped text-center">
                     <thead>
                         <tr>
 
