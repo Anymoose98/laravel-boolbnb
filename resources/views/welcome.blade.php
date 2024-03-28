@@ -9,36 +9,44 @@
 
     <div class="searchbar-size">
 
-            <div class="search-bar">
-                <div class="search-elem">
-                    <label for="city-input">Dove</label>
-                    <input type="text" name="city-input" id="city-input" placeholder="Cerca la destinazione">
-                </div>
-        
-                <div class="search-elem">
-                    <label for="beds-input">Quanti letti</label>
-                    <input type="text" name="beds-input" id="beds-input" placeholder="Inserisci il numero di letti">
-                </div>
-        
-                <div class="search-elem">
-                    <label for="city-input">Demo</label>
-                    <input type="text" placeholder="Cerca la destinazione">
-                </div>
-        
-                <div class="search-btn" role="button" id="searchBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-search"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg>
-                </div>
-        
-                <div class="distance-filter-section" id="rangeSection">
-                    <span id="title-distance">Raggio di distanza</span>
-                    <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
-                    <span id="slider-value"></span>
+        <div class="search-bar">
+            <div class="search-elem">
+                <label for="city-input">Dove</label>
+                <input type="text" name="city-input" id="city-input" placeholder="Cerca la destinazione">
+            </div>
+
+            <div class="search-elem">
+                <label for="beds-input">Quanti letti</label>
+                <input type="text" name="beds-input" id="beds-input" placeholder="Inserisci il numero di letti">
+            </div>
+
+            <div class="search-elem me-5">
+                <label for="filter-input">Filtri</label>
+                <i name="filter-input" id="filter-input" class="fa-solid fa-sliders"></i>
+
+                <div class="filter-section" id="filterSection">
+
                 </div>
             </div>
+
+
+
+            <div class="search-btn" role="button" id="searchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </div>
+
+
+
+            <div class="distance-filter-section" id="rangeSection">
+                <span id="title-distance">Raggio di distanza</span>
+                <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
+                <span id="slider-value"></span>
+            </div>
+        </div>
     </div>
 
     <div class="cards-container">
@@ -91,7 +99,7 @@
             let beds = document.getElementById('beds-input').value;
 
             /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
-            if(beds == ""){
+            if (beds == "") {
                 beds = 0;
             }
 
@@ -162,10 +170,10 @@
         </div>
     </div>
 `;
-    row.insertAdjacentHTML('beforeend', card);
-});
+                        row.insertAdjacentHTML('beforeend', card);
+                    });
 
-cardsContainer.appendChild(row);
+                    cardsContainer.appendChild(row);
                 })
         }
 
@@ -190,12 +198,30 @@ cardsContainer.appendChild(row);
 
             /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
             if (!event.target.matches(
-                '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
+                    '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
                 distanceFilterSection.style.opacity = '0';
             } else {
                 distanceFilterSection.style.opacity = '100';
             }
         });
+
+
+
+        /* CAMBIO OPACITA' DELLA SEZIONE DEL RANGE */
+        document.addEventListener('click', function(event) {
+
+            /* PRENDO LA SEZIONE DEL FILTRO */
+            const filterSection = document.querySelector('.filter-section');
+
+            /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
+            if (!event.target.matches(
+                    '#filter-input')) {
+                filterSection.style.opacity = '0';
+            } else {
+                filterSection.style.opacity = '100';
+            }
+        });
+
 
         /* VERIFICA SE ALL'INVIO L'INPUT CITTA' E' VUOTO */
         document.getElementById('city-input').addEventListener('keyup', function(event) {
@@ -263,10 +289,10 @@ cardsContainer.appendChild(row);
         </div>
     </div>
 `;
-    row.insertAdjacentHTML('beforeend', card);
-});
+                        row.insertAdjacentHTML('beforeend', card);
+                    });
 
-cardsContainer.appendChild(row);
+                    cardsContainer.appendChild(row);
                 })
         }
     </script>
