@@ -11,8 +11,8 @@
             </div>
 
             <div class="search-elem">
-                <label for="guest-input">Quante persone</label>
-                <input type="text" name="guest-input" id="guest-input" placeholder="Inserisci il numero di ospiti">
+                <label for="guest-input">Quanti letti</label>
+                <input type="text" name="guest-input" id="guest-input" placeholder="Inserisci il numero di letti">
             </div>
 
             <div class="search-elem">
