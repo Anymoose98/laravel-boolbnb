@@ -48,7 +48,8 @@
                         </div>
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
-                            <p>{{ $apartment->description }}</p>
+                            {{-- $apartment->description.substring(0, 10) --}}
+                            <p id="description">{{ Illuminate\Support\Str::limit($apartment->description, 30) }}</p>
                         </div>
                     </div>
                 </div>
@@ -57,6 +58,7 @@
     </div>
 
     <script>
+
         /* PRENDIAMO GLI ELEMENTI DELLO SLIDER */
         var slider = document.getElementById("radius-input");
         var output = document.getElementById("slider-value");

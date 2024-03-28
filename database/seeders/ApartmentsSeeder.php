@@ -15,8 +15,11 @@ class ApartmentsSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
+
+
          // php artisan db:seed --class=ApartmentsTableSeeder
-         for ($i = 0; $i < 10; $i++) {
+         for ($i = 0; $i < 30; $i++) {
             $Apartments = new Apartments();
             $Apartments -> description = $faker->randomElement([
                             'Accogliente appartamento nel cuore della città, con vista mozzafiato sul skyline urbano.', 
@@ -36,15 +39,54 @@ class ApartmentsSeeder extends Seeder
                             'Villa con piscina infinity e vista sul mare, per un\'esperienza di lusso indimenticabile.',
                             'Cottage con camino e vasca idromassaggio, perfetto per una fuga romantica nel bosco.',
                             'Appartamento in palazzo storico con affreschi originali, a due passi dalle principali attrazioni culturali.',]);
+            
             $Apartments -> rooms = $faker->numberBetween(1, 10);
             $Apartments -> beds = $faker->numberBetween(1, 6);
             $Apartments -> image = $faker->image('public/storage', 400, 300, null, false);
             $Apartments -> bathrooms = $faker->numberBetween(1, 3);
             $Apartments -> square_meters = $faker->numberBetween(50, 200);
-            $Apartments -> location = $faker->address;
+            $Apartments -> location = $faker->randomElement(['Roma', 'Milano', 'Torino', 'Napoli', 'Brescia', 'Latina', 'Palermo']);
+
+
+            switch ( $Apartments -> location){
+                case 'Roma':
+                    $Apartments -> longitude = 12.483584;
+                    $Apartments -> latitude = 41.893604;
+                    break;
+
+                case 'Milano':
+                    $Apartments -> longitude = 9.190082;
+                    $Apartments -> latitude = 45.464179;
+                    break;
+
+                case 'Torino':
+                    $Apartments -> longitude = 7.677659;
+                    $Apartments -> latitude = 45.065898;
+                    break;
+                
+                case 'Napoli':
+                    $Apartments -> longitude = 14.238127;
+                    $Apartments -> latitude = 40.847612;
+                    break;
+
+                case 'Brescia':
+                    $Apartments -> longitude = 10.217927;
+                    $Apartments -> latitude = 45.533868;
+                    break;
+
+                case 'Latina':
+                    $Apartments -> longitude = 12.904524;
+                    $Apartments -> latitude = 41.466954;
+                    break;
+
+                case 'Palermo':
+                    $Apartments -> longitude = 13.356308;
+                    $Apartments -> latitude = 38.113794;
+                    break;
+            }
+
             $Apartments -> visibility = 'Si';
-            $Apartments -> longitude = $faker->longitude;
-            $Apartments -> latitude = $faker->latitude;
+
             // $Apartments -> image_gallery = $faker->image('public/storage', 400, 300, null, false);
             $Apartments->save();
             }
