@@ -12,17 +12,17 @@
                 <label for="city-input">Dove</label>
                 <input type="text" name="city-input" id="city-input" placeholder="Cerca la destinazione">
             </div>
-    
+
             <div class="search-elem">
                 <label for="guest-input">Quanti letti</label>
                 <input type="text" name="guest-input" id="guest-input" placeholder="Inserisci il numero di letti">
             </div>
-    
+
             <div class="search-elem">
                 <label for="city-input">Demo</label>
                 <input type="text" placeholder="Cerca la destinazione">
             </div>
-    
+
             <div class="search-btn" role="button" id="searchBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-search"
                     viewBox="0 0 16 16">
@@ -30,7 +30,7 @@
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
             </div>
-    
+
             <div class="distance-filter-section" id="rangeSection">
                 <span id="title-distance">Raggio di distanza</span>
                 <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
@@ -39,8 +39,8 @@
         </div>
 </div>
 
-    <div class="cards-container">
-        <div class="row justify-content-start align-items-start">
+    <div class="container">
+        <div class="row justify-content-start align-items-start flex-wrap">
             @foreach ($apartments as $apartment)
                 <div class="col-12 col-lg-6 col-xxl-3">
                     <div class="personal-content">
@@ -73,7 +73,7 @@
                 <image id="image0_237_374" width="96" height="96" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC10lEQVR4nO3du2sUYRTG4S8ogpcELFRUtLCyEUErbdLZWdraaWNhaSuKN6wsLPRPsA0WFhZWgkaLNDbeCwsLQQhIyJKfDBkQF8JmdvbMOWfmfdrJfpfzBmb3MB9TioiIiIiISHDAYeAZsAQc917PYABzwFXgN/+sAjeAHd7r6zXgFPCarb0Dznqvs3eA3cBNYI3J1oFHwF7vdfcCsAh8oLlPwAXv9acF7AeeABu0U92oD3jvJxXgEvCT2flV37jnvPcWGnACeIGdV8BJ732GA+wErtdfJ639qW/ou7z3HQJwBlimeyvAuTJU1ddE4D4wws9GfaNfKEMCXAS+E8cP4HIZUP8mqqVe9pW26N9EtdqrvtI2+jdR5e4rNezfRJWzr9SifxNVjr7SDPs3UcXtKxn0b6KK1VfqoH8TlW9fqeP+TVQ+fSXH/k1U3fSVgvRvorLtKwXs30Rl01fy3lU2CsCZAnCmAJwpAGcKwJkCcKYA+haAiIjIVqxvUiQf31z2AmE8vrnsBcJ4fHPZC4Tx+OayFwjj8c1lLxDG45vLXiCMxzeXvUAYj2/OuUBrwHPgCnAeOFKGximAdeAxcLAMnUMAX4DTNrtJqOMA3ui/3i+Ar8Chpp/vvY4CGFXPpdrsILmOAnhqs/oe6CCAEXDUZvU90EEAL7fxNwvAw/oh4sjHpKq1fQMeAPNTF31s841MMf61Cdf3Ae/JZ3kmpzCbzjrF+IsTrt8lr9util8XoJEpxj824fpn8vrYqvh1ARppPeGY5Kd2RqWtpjO2nnAMyZW2Op9wDMmVtjqfcAzJlbY6n1D+pwCcKQBnCkBERMSIwW+Pmf5uIDkF4EwBOFMAzhSAMwXgTAE4UwDOFIAzBeBMAThTAM5KdiRXsiO5kh3JlewY+qOJ3th8z8twH871Btwhr1slOzbfbVC9+yubt8Ce0gfAfH3spzrKGv2IUrXGe9XJnmrxfwHQQgSDLzGBTQAAAABJRU5ErkJggg=="/>
                 </defs>
             </svg>
-                
+
             <div class="ms-3">
                 Diventa venditore
             </div>
@@ -160,7 +160,7 @@
          data-description="${apartment.description}">
         <div class="personal-content">
             <div class="image-card-container">
-                ${apartment.image == 0 ? 
+                ${apartment.image == 0 ?
                     `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
                     `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
                 }
@@ -214,7 +214,7 @@
                 event.preventDefault();
 
                 /* SE E' VERO RISTAMPA TUTTI GLI APPARTAMENTI */
-                const city = this.value.trim(); 
+                const city = this.value.trim();
                 if (city !== '') {
                     searchApartmentsCoordinates();
                 } else {
@@ -259,7 +259,7 @@
          data-description="${apartment.description}">
         <div class="personal-content">
             <div class="image-card-container">
-                ${apartment.image == 0 ? 
+                ${apartment.image == 0 ?
                     `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
                     `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
                 }
