@@ -25,7 +25,10 @@
                 <i name="filter-input" id="filter-input" class="fa-solid fa-sliders"></i>
 
                 <div class="filter-section" id="filterSection">
+                    <span>Numero minimo di stanze</span>
 
+
+                    <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
                 </div>
             </div>
 
@@ -97,6 +100,7 @@
             /* INPUT DEI FILTRI */
             let city = document.getElementById('city-input').value;
             let beds = document.getElementById('beds-input').value;
+            let rooms = document.getElementById('rooms-input').value;
 
             /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
             if (beds == "") {
@@ -117,12 +121,12 @@
                 const longitude = results[0].position.lon;
 
                 /* PASSA I PARAMETRI LATITUDINE E LONGITUDINE ALLA FUNZIONE */
-                searchApartments(latitude, longitude, beds);
+                searchApartments(latitude, longitude, beds, rooms);
             })
         }
 
         /* FUNZIONE CHE RICERCA GLI APPARTAMENTI */
-        function searchApartments(latitude, longitude, beds) {
+        function searchApartments(latitude, longitude, beds, rooms) {
             /* INPUT DEL RAGGIO DI RICERCA */
             const radius = document.getElementById('radius-input').value;
 
@@ -132,6 +136,7 @@
                         latitude: latitude,
                         longitude: longitude,
                         beds: beds,
+                        rooms: rooms,
                         radius: radius,
                     }
                 })
@@ -196,13 +201,26 @@
             /* PRENDO LA SEZIONE DEL FILTRO */
             const distanceFilterSection = document.querySelector('.distance-filter-section');
 
-            /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
+            /* OPACITA' DELLE SEZIONI PER I FILTRI (I TIMER SERVONO PER FAR FUNZIONARE LA TRANSIZIONE DELLA SFUMATURA) */
             if (!event.target.matches(
                     '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
-                distanceFilterSection.style.opacity = '0';
+                
+                setTimeout(function() {
+                    distanceFilterSection.style.opacity = '0';
+                }, 10);
+
+                
+                setTimeout(function() {
+                    distanceFilterSection.style.display = 'none';
+                }, 310); 
             } else {
-                distanceFilterSection.style.opacity = '100';
+                
+                distanceFilterSection.style.display = 'flex';
+                setTimeout(function() {
+                    distanceFilterSection.style.opacity = '100';
+                }, 10); 
             }
+
         });
 
 
@@ -214,8 +232,7 @@
             const filterSection = document.querySelector('.filter-section');
 
             /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
-            if (!event.target.matches(
-                    '#filter-input')) {
+            if (!event.target.matches('#filter-input, #rooms-number')) {
                 filterSection.style.opacity = '0';
             } else {
                 filterSection.style.opacity = '100';

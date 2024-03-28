@@ -18,6 +18,7 @@ class ApartmentsController extends Controller
             $longitude = $request->input('longitude');
             $radius = $request->input('radius');
             $beds = $request->input('beds');
+            $rooms = $request->input('rooms');
     
             /* CALCOLO DEL RANGE DELLA DISTANZA */
             /* UN GRADO DI LONGITUDINE DOVREBBE ESSERE 111.12 [IMPRECISO] */
@@ -32,7 +33,8 @@ class ApartmentsController extends Controller
             /* QUERY CHE RICHIEDE GLI APPARTAMENTI ENTRO IL RANGE CALCOLATO */
             $query->whereBetween('latitude', [$latMin, $latMax])
                   ->whereBetween('longitude', [$lonMin, $lonMax])
-                  ->where('beds', '>=', $beds);
+                  ->where('beds', '>=', $beds)
+                  ->where('rooms', '>=', $rooms);
         }
     
         $apartments = $query->get();
