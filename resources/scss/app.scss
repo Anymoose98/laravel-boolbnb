@@ -39,13 +39,22 @@ a {
     display: none;
 }
 
+.fa-sliders{
+    cursor: pointer;
+    transition-duration: 0.3s;
+    color: #7b7b7b;
+
+    &:hover{
+        color: #000;
+    }
+}
 
 .searchbar-size{
     width: 100%;
     display: flex;
     justify-content: center;
     position: sticky;
-    top: 70px;
+    top: 60px;
     font-size: 20px;
     right: 50%;
     transform: translate(0, -100%);
@@ -100,7 +109,7 @@ a {
         }
 
 
-
+        
     }
 
     .distance-filter-section {
@@ -108,7 +117,7 @@ a {
         height: 70px;
         background-color: rgb(255, 255, 255);
         position: absolute;
-
+    
         top: 120px;
         border-radius: 10px;
         opacity: 0;
@@ -120,6 +129,7 @@ a {
         font-size: 20px;
     }
 
+
 .image-carousel-container {
     width: 100%;
     height: 550px;
@@ -127,12 +137,36 @@ a {
     display: flex;
     justify-content: center;
 
-
+    
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 0 0 40px 40px;
+    }
+}
+
+.filter-section {
+    width: 25%;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+
+    right: 0;
+    top: 120px;
+    border-radius: 10px;
+    opacity: 0;
+    transition-duration: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    padding: 0 50px;
+    font-size: 14px;
+
+    .rooms-number-input{
+        width: 40px;
     }
 }
 
@@ -198,11 +232,6 @@ a {
     text-align: center;
     justify-content: center;
     font-size: 100px;
-}
-.img-index{
-    height: 300px;
-    width: auto;
-    object-fit: cover;
 }
 
 @media screen and (max-width: 576px) {
@@ -315,19 +344,3 @@ a {
 .tt-search-box-close-icon.-hidden {
     visibility: hidden
 }
-
-.img-welcome{
-
-        width: 100%; /* Fa sì che l'immagine si adatti alla larghezza della card */
-        height: 200px; /* Imposta un'altezza fissa per tutte le immagini */
-
-}
-
-.cardx {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border: none;
-    margin-top: 20px;
-  }
-
