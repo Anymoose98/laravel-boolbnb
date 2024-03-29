@@ -100,7 +100,7 @@ a {
         }
 
 
-        
+
     }
 
     .distance-filter-section {
@@ -108,7 +108,7 @@ a {
         height: 70px;
         background-color: rgb(255, 255, 255);
         position: absolute;
-    
+
         top: 120px;
         border-radius: 10px;
         opacity: 0;
@@ -127,7 +127,7 @@ a {
     display: flex;
     justify-content: center;
 
-    
+
 
     img {
         width: 100%;
@@ -315,3 +315,19 @@ a {
 .tt-search-box-close-icon.-hidden {
     visibility: hidden
 }
+
+.img-welcome{
+
+        width: 100%; /* Fa sì che l'immagine si adatti alla larghezza della card */
+        height: 200px; /* Imposta un'altezza fissa per tutte le immagini */
+
+}
+
+.cardx {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: none;
+    margin-top: 20px;
+  }
+

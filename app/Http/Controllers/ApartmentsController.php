@@ -90,7 +90,7 @@ class ApartmentsController extends Controller
         if ($data && isset($data['results']) && count($data['results']) > 0) {
             $latitude = $data['results'][0]['position']['lat'];
             $longitude = $data['results'][0]['position']['lon'];
-            $city = $data['results'][0]['address']['municipality'];
+            $city = $address;
             // Assign latitude and longitude directly to the apartment object
             $apartment->latitude = $latitude;
             $apartment->longitude = $longitude;
@@ -164,9 +164,12 @@ class ApartmentsController extends Controller
             return view('unauthorized');
         }
 
-        $apartments = Apartments::find($id);
+        $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
 
-        return view("apartments.edit", compact("apartments"));
+        $apartments = Apartments::find($id);
+        $address = $apartments->location;
+
+        return view("apartments.edit", compact("apartments", "address"));
     }
 
     /**
@@ -176,22 +179,46 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApartmentsRequest $request, Apartments $apartments, $id)
+    public function update(UpdateApartmentsRequest $request, $id)
     {
-        $form_data = $request->all();
-        $apartments = Apartments::find($id);
+        $apartment = Apartments::findOrFail($id);
+    
+        if (auth()->id() !== $apartment->user_id) {
+            return view('unauthorized');
+        }
+    
+        $form_data = $request->validated();
+    
         if ($request->hasFile("image")) {
-            if ($apartments->image != null) {
-                Storage::disk("public")->delete($apartments->image);
+            if ($apartment->image != null) {
+                Storage::disk("public")->delete($apartment->image);
             }
             $path = Storage::disk("public")->put("apartment_image", $request->file("image"));
             $form_data["image"] = $path;
-        } else {
-            // Keep the existing image path
-            $form_data['image'] = $apartments->image;
         }
+    
+        if ($request->has('address') && $request->input('address') !== $apartment->address) {
+            $address = urlencode($form_data['address']);
+            $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+            $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
 
-        $apartments->update($form_data);
+    
+            $response = file_get_contents($url);
+            $data = json_decode($response, true);
+    
+            if ($data && isset($data['results']) && count($data['results']) > 0) {
+                $city = $address;
+                $latitude = $data['results'][0]['position']['lat'];
+                $longitude = $data['results'][0]['position']['lon'];
+    
+                $form_data['location'] = $city;
+                $form_data['latitude'] = $latitude;
+                $form_data['longitude'] = $longitude;
+            }
+        }
+    
+        $apartment->update($form_data);
+    
         return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
     }
 
