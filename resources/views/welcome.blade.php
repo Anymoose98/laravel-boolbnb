@@ -89,34 +89,38 @@
 
     <script>
         /* FUNZIONE CHE RECUPERA LE COORDINATE DELLA CITTA' CERCATA */
-        function searchApartmentsCoordinates() {
+function searchApartmentsCoordinates() {
 
-            /* INPUT DEI FILTRI */
-            let city = document.getElementById('city-input').value;
-            let beds = document.getElementById('beds-input').value;
+/* INPUT DEI FILTRI */
+let city = document.getElementById('city-input').value;
+let beds = document.getElementById('beds-input').value;
 
-            /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
-            if(beds == ""){
-                beds = 0;
-            }
+/* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
+if(beds == ""){
+    beds = 0;
+}
 
-            /* CHIAMATA AXIOS PER RECUPERARE LE COORDINATE DELLA CITTA' INSERITA */
-            axios.get('https://api.tomtom.com/search/2/geocode/' + city + '.json', {
-                params: {
-                    key: 'ARRIZGGoUek6AqDTwVcXta7pCZ07Q490'
-                }
-            }).then(function(response) {
+// Codifica l'indirizzo della città per l'uso nell'URL
+const encodedCity = encodeURIComponent(city);
 
-                const results = response.data.results;
+/* CHIAMATA AXIOS PER RECUPERARE LE COORDINATE DELLA CITTA' INSERITA */
+axios.get(`https://api.tomtom.com/search/2/geocode/${encodedCity}.json`, {
+    params: {
+        key: 'ARRIZGGoUek6AqDTwVcXta7pCZ07Q490'
+    }
+}).then(function(response) {
 
-                /* PRENDE I PRIMI RISULTATI OTTENUTI */
-                const latitude = results[0].position.lat;
-                const longitude = results[0].position.lon;
+    const results = response.data.results;
 
-                /* PASSA I PARAMETRI LATITUDINE E LONGITUDINE ALLA FUNZIONE */
-                searchApartments(latitude, longitude, beds);
-            })
-        }
+    /* PRENDE I PRIMI RISULTATI OTTENUTI */
+    const latitude = results[0].position.lat;
+    const longitude = results[0].position.lon;
+
+    /* PASSA I PARAMETRI LATITUDINE E LONGITUDINE ALLA FUNZIONE */
+    searchApartments(latitude, longitude, beds);
+})
+}
+
 
         /* FUNZIONE CHE RICERCA GLI APPARTAMENTI */
         function searchApartments(latitude, longitude, beds) {
