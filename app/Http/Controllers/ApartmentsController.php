@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateApartmentsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\User;
+use App\Models\Service;
 use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,10 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-        return view("apartments.create");
+       
+        $services = Service::all();
+
+        return view("apartments.create", compact("services"));
     }
 
     /**
@@ -132,6 +136,10 @@ class ApartmentsController extends Controller
             }
         }
 
+        if($request->has("services")){
+            $apartment->services()->attach($form_data["services"]);
+        }
+        
         return redirect()->route("apartments.index");
     }
 
@@ -172,9 +180,10 @@ class ApartmentsController extends Controller
         $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
 
         $apartments = Apartments::find($id);
+        $services = Service::all();
         $address = $apartments->location;
 
-        return view("apartments.edit", compact("apartments", "address"));
+        return view("apartments.edit", compact("apartments", "address", "services"));
     }
 
     /**
@@ -228,7 +237,12 @@ class ApartmentsController extends Controller
 
     // Aggiorna l'appartamento con i dati del form puliti e validati
     $apartment->update($form_data);
-
+    
+    if ($request->has("services")) {
+        $apartment->services()->sync($request->input("services"));
+    }
+    
+    
     return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
 }
 

@@ -15,6 +15,14 @@
                 <hr>
                 <h4>Bagni utilizzabili:</h4>{{ $apartments->bathrooms}}
                 <hr>
+                    @forelse($apartments->services as $service)
+                    <i class="{{ $service->icon}}"> </i> {{ $service->name }} <br>
+                    
+
+                    @empty
+                        L'appartamento non ha servizi aggiuntivi
+                    @endforelse
+                    </p>
 
             </div>
             <h4>Metri quadrati: </h4>{{ $apartments->square_meters}}mq

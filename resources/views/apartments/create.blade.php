@@ -14,7 +14,7 @@
                 </ul>
             </div>
             @endif
-            <h2 class="text-center mt-3">Aggiungi dati appartamento</h2>
+            <h2 class="text-center mt-3">Aggiungi dati appartamento <i class="fa-solid fa-snowflake"></i></h2>
         </div>
         <div class="col-12">
             <form action="{{ route("apartments.store") }}" method="POST" enctype="multipart/form-data">
@@ -67,6 +67,25 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label class="mt-3" for="service_id">Servizi:</label><br>
+                <div class="container">
+                    <div class="row">
+                        @foreach($services as $service)
+                            <div class="col-4 my-1">
+                                <input type="checkbox" name="services[]" id="service-{{$service->id}}" value="{{$service->id}}" 
+                                    {{ is_array(old('services')) && in_array($service->id, old('services')) ? 'checked' : '' }}>
+                                <i class="{{ $service->icon }}"></i> <span>{{$service->name}}  </span><br>
+                            </div>
+                        @endforeach 
+                        @error('services') <!-- Note the error key is 'services', not 'bathrooms' -->
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            
             {{-- Metratura appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="square_meters">Metri quadrati <span class="text-danger">*</span></label>
@@ -78,7 +97,7 @@
             {{-- Zona --}}
             <div class="form-group">
                 <label class="mt-3" for="location">Città <span class="text-danger">*</span></label>
-                <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location")  }}"> 
+                <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location") }}"> 
                 @error('location')
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
@@ -88,7 +107,7 @@
                 {{-- Indirizzo --}}
                 <div class="form-group">
                     <label class="mt-3" for="indirizzo">Indirizzo <span class="text-danger">*</span></label>
-                    <div id="indirizzoSearchBox"></div>
+                    <div id="indirizzoSearchBox" value="{{ old("address") }}"></div>
                     @error('address')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror

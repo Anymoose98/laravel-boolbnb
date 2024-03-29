@@ -72,6 +72,25 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            {{-- Servizi --}}
+            <div class="form-group">
+                <label class="mt-3" for="service_id">Servizi:</label><br>
+                <div class="container">
+                    <div class="row">
+                        @foreach($services as $service)
+                            <div class="col-4 my-1">
+                                <input type="checkbox" name="services[]" id="service-{{$service->id}}" value="{{$service->id}}" 
+                                    {{ in_array($service->id, old('services', $apartments->services->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                <i class="{{ $service->icon }}"></i> <span>{{$service->name}}  </span><br>
+                            </div>
+                        @endforeach 
+                        @error('services') <!-- Note the error key is 'services' -->
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            
             {{-- Metratura appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="square_meters">Metri quadrati <span class="text-danger">*</span></label>

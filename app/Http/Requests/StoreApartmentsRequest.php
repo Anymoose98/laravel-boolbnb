@@ -29,7 +29,7 @@ class StoreApartmentsRequest extends FormRequest
             "beds" => "required|numeric|gt:0",
             "bathrooms" => "required|numeric|gt:0",
             "square_meters" => "required|numeric|gt:0",
-            "location" => "max:255",
+            "location" => "required|max:255",
             "address" => "required|max:255",
             "image" => "required",
             "visibility" => "required",
