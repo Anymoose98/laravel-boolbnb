@@ -87,45 +87,7 @@
             <div class="form-group">
                 <label class="mt-3" for="address">Indirizzo</label>
                 <input type="text" name="address" id="address" class="form-control" placeholder="Inserisci la via" value="{{ old("address")  }}">
-                <input type="text" id="autocomplete-input" placeholder="Enter a location...">
-                <ul id="suggestions"></ul>
             
-                <script>
-                    const autocompleteInput = document.getElementById('autocomplete-input');
-                    const suggestionsList = document.getElementById('suggestions');
-            
-                    autocompleteInput.addEventListener('input', function() {
-                        const searchTerm = this.value.trim();
-            
-                        if (searchTerm.length === 0) {
-                            suggestionsList.innerHTML = ''; // Clear suggestions if search term is empty
-                            return;
-                        }
-            
-                        axios.get('/autocomplete', {
-                            params: {
-                                search: searchTerm
-                            }
-                        })
-                        .then(response => {
-                            const suggestions = response.data;
-                            displaySuggestions(suggestions);
-                        })
-                        .catch(error => {
-                            console.error('Error fetching autocomplete data:', error);
-                        });
-                    });
-            
-                    function displaySuggestions(suggestions) {
-                        suggestionsList.innerHTML = '';
-            
-                        suggestions.forEach(suggestion => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = suggestion;
-                            suggestionsList.appendChild(listItem);
-                        });
-                    }
-                </script>
                    
 
                 @error('address')

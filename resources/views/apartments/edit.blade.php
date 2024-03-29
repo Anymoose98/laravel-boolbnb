@@ -88,6 +88,14 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="form-group">
+                <label class="mt-3" for="address">Indirizzo</label>
+                <input type="text" name="address" id="address" class="form-control" placeholder="Inserisci la via" value="{{ old("address")  }}">
+                @error('address')
+                    <div class ="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità <span class="text-danger" >*</span></label>
