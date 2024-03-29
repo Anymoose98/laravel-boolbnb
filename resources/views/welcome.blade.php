@@ -1,72 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-12">
     <div class="image-carousel-container">
         <img src="{{ asset('img/carousel-1.jpg') }}" alt="ciao">
 
 
     </div>
 
-
     <div class="searchbar-size">
 
-            <div class="search-bar">
-                <div class="search-elem">
-                    <label for="city-input">Dove</label>
-                    <input type="text" name="city-input" id="city-input" placeholder="Cerca la destinazione">
-                </div>
+        <div class="search-bar">
+            <div class="search-elem">
+                <label for="city-input">Dove</label>
+                <input type="text" name="city-input" id="city-input" placeholder="Cerca la destinazione">
+            </div>
 
-                <div class="search-elem">
-                    <label for="beds-input">Quanti letti</label>
-                    <input type="text" name="beds-input" id="beds-input" placeholder="Inserisci il numero di letti">
-                </div>
+            <div class="search-elem">
+                <label for="beds-input">Quanti letti</label>
+                <input type="text" name="beds-input" id="beds-input" placeholder="Inserisci il numero di letti">
+            </div>
 
-                <div class="search-elem">
-                    <label for="city-input">Demo</label>
-                    <input type="text" placeholder="Cerca la destinazione">
-                </div>
+            <div class="search-elem me-5">
+                <label for="filter-input">Filtri</label>
+                <i name="filter-input" id="filter-input" class="fa-solid fa-sliders"></i>
 
-                <div class="search-btn" role="button" id="searchBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-search"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg>
-                </div>
-
-                <div class="distance-filter-section" id="rangeSection">
-                    <span id="title-distance">Raggio di distanza</span>
-                    <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
-                    <span id="slider-value"></span>
+                <div class="filter-section" id="filterSection">
+                    <div class="number-room d-flex">
+                        <span id="label-rooms">Numero stanze</span>
+                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+                    </div>
+                    <div class="number-room d-flex">
+                        <span id="label-rooms">Numero stanze</span>
+                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+                    </div>
                 </div>
             </div>
+
+
+
+            <div class="search-btn" role="button" id="searchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
             </div>
+
+
+
+            <div class="distance-filter-section" id="rangeSection">
+                <span id="title-distance">Raggio di distanza</span>
+                <input type="range" min="20" max="100" value="20" class="slider" id="radius-input">
+                <span id="slider-value"></span>
+            </div>
+        </div>
     </div>
-</div>
 
-        <div class="row flex-wrap">
+    <div class="cards-container">
+        <div class="row justify-content-start align-items-start">
             @foreach ($apartments as $apartment)
-                <div class="col-lg-3 col-md-4 col-sm-6 mt-4" data-image="{{ $apartment->image }}"
+                <div class="col-12 col-lg-6 col-xxl-3" data-image="{{ $apartment->image }}"
                     data-name="{{ $apartment->name }}" data-location="{{ $apartment->location }}"
                     data-description="{{ $apartment->description }}">
-                    <div class="card cardx ">
-                        @if ($apartment->image == 0)
-                        <img src="{{ asset('/storage/placeholder.png') }}" class="card-img-top img-welcome" alt="">
-                    @else
-                        <img src="{{ asset('/storage/' . $apartment->image) }}" class="card-img-top img-welcome" alt="{{ $apartment->name }}">
-                    @endif
-                        <div class="card-body">
-                          <h5 class="card-title"><p id="description" class="gradient-text">
-                            {{ Illuminate\Support\Str::limit($apartment->description, 30) }}
-                        </p></h5>
-                          <p class="card-text">{{ $apartment->location }}</p>
-                          <a href="#" class="btn btn-primary">Mostra Dettagli</a>
+                    <div class="personal-content">
+                        <div class="image-card-container">
+                            @if ($apartment->image == 0)
+                                <img src="{{ asset('/storage/placeholder.png') }}" alt="">
+                            @else
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @endif
                         </div>
-                      </div>
-
+                        <div class="apartment-details">
+                            <h2 class="fw-bolder">{{ $apartment->location }}</h2>
+                            <p id="description gradient-text">
+                                {{ Illuminate\Support\Str::limit($apartment->description, 30) }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -89,41 +99,38 @@
 
     <script>
         /* FUNZIONE CHE RECUPERA LE COORDINATE DELLA CITTA' CERCATA */
-function searchApartmentsCoordinates() {
+        function searchApartmentsCoordinates() {
 
-/* INPUT DEI FILTRI */
-let city = document.getElementById('city-input').value;
-let beds = document.getElementById('beds-input').value;
+            /* INPUT DEI FILTRI */
+            let city = document.getElementById('city-input').value;
+            let beds = document.getElementById('beds-input').value;
+            let rooms = document.getElementById('rooms-input').value;
 
-/* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
-if(beds == ""){
-    beds = 0;
-}
+            /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
+            if (beds == "") {
+                beds = 0;
+            }
 
-// Codifica l'indirizzo della città per l'uso nell'URL
-const encodedCity = encodeURIComponent(city);
+            /* CHIAMATA AXIOS PER RECUPERARE LE COORDINATE DELLA CITTA' INSERITA */
+            axios.get('https://api.tomtom.com/search/2/geocode/' + city + '.json', {
+                params: {
+                    key: 'ARRIZGGoUek6AqDTwVcXta7pCZ07Q490'
+                }
+            }).then(function(response) {
 
-/* CHIAMATA AXIOS PER RECUPERARE LE COORDINATE DELLA CITTA' INSERITA */
-axios.get(`https://api.tomtom.com/search/2/geocode/${encodedCity}.json`, {
-    params: {
-        key: 'ARRIZGGoUek6AqDTwVcXta7pCZ07Q490'
-    }
-}).then(function(response) {
+                const results = response.data.results;
 
-    const results = response.data.results;
+                /* PRENDE I PRIMI RISULTATI OTTENUTI */
+                const latitude = results[0].position.lat;
+                const longitude = results[0].position.lon;
 
-    /* PRENDE I PRIMI RISULTATI OTTENUTI */
-    const latitude = results[0].position.lat;
-    const longitude = results[0].position.lon;
-
-    /* PASSA I PARAMETRI LATITUDINE E LONGITUDINE ALLA FUNZIONE */
-    searchApartments(latitude, longitude, beds);
-})
-}
-
+                /* PASSA I PARAMETRI LATITUDINE E LONGITUDINE ALLA FUNZIONE */
+                searchApartments(latitude, longitude, beds, rooms);
+            })
+        }
 
         /* FUNZIONE CHE RICERCA GLI APPARTAMENTI */
-        function searchApartments(latitude, longitude, beds) {
+        function searchApartments(latitude, longitude, beds, rooms) {
             /* INPUT DEL RAGGIO DI RICERCA */
             const radius = document.getElementById('radius-input').value;
 
@@ -133,6 +140,7 @@ axios.get(`https://api.tomtom.com/search/2/geocode/${encodedCity}.json`, {
                         latitude: latitude,
                         longitude: longitude,
                         beds: beds,
+                        rooms: rooms,
                         radius: radius,
                     }
                 })
@@ -152,12 +160,12 @@ axios.get(`https://api.tomtom.com/search/2/geocode/${encodedCity}.json`, {
                     /* PER OGNI APPARTAMENTO VIENE CREATA UNA STRINGA HTML PER LA CARD */
                     apartments.forEach(apartment => {
                         const card = `
-    <div class="col-4" data-image="${apartment.image}"
+    <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
          data-name="${apartment.name}" data-location="${apartment.location}"
          data-description="${apartment.description}">
         <div class="personal-content">
             <div class="image-card-container">
-                ${apartment.image == 0 ?
+                ${apartment.image == 0 ? 
                     `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
                     `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
                 }
@@ -171,10 +179,10 @@ axios.get(`https://api.tomtom.com/search/2/geocode/${encodedCity}.json`, {
         </div>
     </div>
 `;
-    row.insertAdjacentHTML('beforeend', card);
-});
+                        row.insertAdjacentHTML('beforeend', card);
+                    });
 
-cardsContainer.appendChild(row);
+                    cardsContainer.appendChild(row);
                 })
         }
 
@@ -197,14 +205,44 @@ cardsContainer.appendChild(row);
             /* PRENDO LA SEZIONE DEL FILTRO */
             const distanceFilterSection = document.querySelector('.distance-filter-section');
 
-            /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
+            /* OPACITA' DELLE SEZIONI PER I FILTRI (I TIMER SERVONO PER FAR FUNZIONARE LA TRANSIZIONE DELLA SFUMATURA) */
             if (!event.target.matches(
-                '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
-                distanceFilterSection.style.opacity = '0';
+                    '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
+                
+                setTimeout(function() {
+                    distanceFilterSection.style.opacity = '0';
+                }, 10);
+
+                
+                setTimeout(function() {
+                    distanceFilterSection.style.display = 'none';
+                }, 310); 
             } else {
-                distanceFilterSection.style.opacity = '100';
+                
+                distanceFilterSection.style.display = 'flex';
+                setTimeout(function() {
+                    distanceFilterSection.style.opacity = '100';
+                }, 10); 
+            }
+
+        });
+
+
+
+        /* CAMBIO OPACITA' DELLA SEZIONE DEL RANGE */
+        document.addEventListener('click', function(event) {
+
+            /* PRENDO LA SEZIONE DEL FILTRO */
+            const filterSection = document.querySelector('.filter-section');
+
+            /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
+            if (!event.target.matches('#filter-input, #rooms-input, #label-rooms')) {
+                filterSection.style.opacity = '0';
+            } else {
+                filterSection.style.opacity = '100';
             }
         });
+
 
         /* VERIFICA SE ALL'INVIO L'INPUT CITTA' E' VUOTO */
         document.getElementById('city-input').addEventListener('keyup', function(event) {
@@ -258,7 +296,7 @@ cardsContainer.appendChild(row);
          data-description="${apartment.description}">
         <div class="personal-content">
             <div class="image-card-container">
-                ${apartment.image == 0 ?
+                ${apartment.image == 0 ? 
                     `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
                     `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
                 }
@@ -272,10 +310,10 @@ cardsContainer.appendChild(row);
         </div>
     </div>
 `;
-    row.insertAdjacentHTML('beforeend', card);
-});
+                        row.insertAdjacentHTML('beforeend', card);
+                    });
 
-cardsContainer.appendChild(row);
+                    cardsContainer.appendChild(row);
                 })
         }
     </script>
