@@ -38,17 +38,21 @@
 
     </div>
 
-    <div class="cards-container">
-        <div class="row justify-content-start align-items-start">
+    <div class="row justify-content-start align-items-start">
+        
+
+    <div class="container">
+        <div class="row justify-content-start align-items-start flex-wrap">
+
             @foreach ($apartments as $apartment)
                 <div class="col-12 col-lg-6 col-xxl-3">
                     <div class="personal-content">
                         <div class="image-card-container">
-                            @if ($apartment->image === 0)
-                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
-                                @else
+                            @if ($apartment->image == 0)
                                 <img src="{{ asset('/storage/placeholder.png') }}" alt="">
-                                @endif
+                            @else
+                                <img src="{{ asset('/storage/' . $apartment->image) }}" alt="{{ $apartment->name }}">
+                            @endif
                         </div>
                         <div class="apartment-details">
                             <h2 class="fw-bolder">{{ $apartment->location }}</h2>
@@ -58,7 +62,7 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        
     </div>
 
     <a href="{{ route("apartments.index") }}">
@@ -72,7 +76,7 @@
                 <image id="image0_237_374" width="96" height="96" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC10lEQVR4nO3du2sUYRTG4S8ogpcELFRUtLCyEUErbdLZWdraaWNhaSuKN6wsLPRPsA0WFhZWgkaLNDbeCwsLQQhIyJKfDBkQF8JmdvbMOWfmfdrJfpfzBmb3MB9TioiIiIiISHDAYeAZsAQc917PYABzwFXgN/+sAjeAHd7r6zXgFPCarb0Dznqvs3eA3cBNYI3J1oFHwF7vdfcCsAh8oLlPwAXv9acF7AeeABu0U92oD3jvJxXgEvCT2flV37jnvPcWGnACeIGdV8BJ732GA+wErtdfJ639qW/ou7z3HQJwBlimeyvAuTJU1ddE4D4wws9GfaNfKEMCXAS+E8cP4HIZUP8mqqVe9pW26N9EtdqrvtI2+jdR5e4rNezfRJWzr9SifxNVjr7SDPs3UcXtKxn0b6KK1VfqoH8TlW9fqeP+TVQ+fSXH/k1U3fSVgvRvorLtKwXs30Rl01fy3lU2CsCZAnCmAJwpAGcKwJkCcKYA+haAiIjIVqxvUiQf31z2AmE8vrnsBcJ4fHPZC4Tx+OayFwjj8c1lLxDG45vLXiCMxzeXvUAYj2/OuUBrwHPgCnAeOFKGximAdeAxcLAMnUMAX4DTNrtJqOMA3ui/3i+Ar8Chpp/vvY4CGFXPpdrsILmOAnhqs/oe6CCAEXDUZvU90EEAL7fxNwvAw/oh4sjHpKq1fQMeAPNTF31s841MMf61Cdf3Ae/JZ3kmpzCbzjrF+IsTrt8lr9util8XoJEpxj824fpn8vrYqvh1ARppPeGY5Kd2RqWtpjO2nnAMyZW2Op9wDMmVtjqfcAzJlbY6n1D+pwCcKQBnCkBERMSIwW+Pmf5uIDkF4EwBOFMAzhSAMwXgTAE4UwDOFIAzBeBMAThTAM5KdiRXsiO5kh3JlewY+qOJ3th8z8twH871Btwhr1slOzbfbVC9+yubt8Ce0gfAfH3spzrKGv2IUrXGe9XJnmrxfwHQQgSDLzGBTQAAAABJRU5ErkJggg=="/>
                 </defs>
             </svg>
-                
+
             <div class="ms-3">
                 Diventa venditore
             </div>
@@ -154,18 +158,25 @@
                     /* PER OGNI APPARTAMENTO VIENE CREATA UNA CARD CON I VALORI DELLA CHIAMATA */
                     apartments.forEach(apartment => {
                         const card = `
-        <div class="col-12 col-lg-6 col-xxl-3">
-            <div class="personal-content">
-                <div class="image-card-container">
-                    <img src="/storage/${apartment.image}" alt="${apartment.name}">
-                </div>
-                <div class="apartment-details">
-                    <h2 class="fw-bolder">${apartment.location}</h2>
-                    <p>${apartment.description}</p>
-                </div>
+    <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
+         data-name="${apartment.name}" data-location="${apartment.location}"
+         data-description="${apartment.description}">
+        <div class="personal-content">
+            <div class="image-card-container">
+                ${apartment.image == 0 ?
+                    `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
+                    `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
+                }
+            </div>
+            <div class="apartment-details">
+                <h2 class="fw-bolder">${apartment.location}</h2>
+                <p id="description" class="gradient-text">
+                    ${apartment.description.slice(0, 25) + '...'}
+                </p>
             </div>
         </div>
-    `;
+    </div>
+`;
                         row.insertAdjacentHTML('beforeend', card);
                     });
 
@@ -206,7 +217,7 @@
                 event.preventDefault();
 
                 /* SE E' VERO RISTAMPA TUTTI GLI APPARTAMENTI */
-                const city = this.value.trim(); 
+                const city = this.value.trim();
                 if (city !== '') {
                     searchApartmentsCoordinates();
                 } else {
@@ -246,18 +257,25 @@
 
                     apartments.forEach(apartment => {
                         const card = `
-                    <div class="col-12 col-lg-6 col-xxl-3">
-                        <div class="personal-content">
-                            <div class="image-card-container">
-                                <img src="/storage/${apartment.image}" alt="${apartment.name}">
-                            </div>
-                            <div class="apartment-details">
-                                <h2 class="fw-bolder">${apartment.location}</h2>
-                                <p>${apartment.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
+    <div class="col-12 col-lg-6 col-xxl-3" data-image="${apartment.image}"
+         data-name="${apartment.name}" data-location="${apartment.location}"
+         data-description="${apartment.description}">
+        <div class="personal-content">
+            <div class="image-card-container">
+                ${apartment.image == 0 ?
+                    `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
+                    `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
+                }
+            </div>
+            <div class="apartment-details">
+                <h2 class="fw-bolder">${apartment.location}</h2>
+                <p id="description" class="gradient-text">
+                    ${apartment.description.slice(0, 25) + '...'}
+                </p>
+            </div>
+        </div>
+    </div>
+`;
                         row.insertAdjacentHTML('beforeend', card);
                     });
 

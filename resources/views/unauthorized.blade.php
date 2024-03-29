@@ -7,7 +7,6 @@
         <div class="col-12 ">
             <img src="img/gestire-errore-404.png" alt="" class="my-4">
             <h1>
-
                 ERRORE 404: PAGINA NON TROVATA
             </h1>
         </div>

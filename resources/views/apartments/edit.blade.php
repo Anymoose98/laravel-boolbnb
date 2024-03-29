@@ -31,9 +31,9 @@
             {{-- Immagini appartamento --}}
             <div class="form-group">
                 <label class="mt-3" for="image">Immagine di copertina dell'appartamento <span class="text-danger">*</span></label>
-                <div>
+                <div class="my-3">
 
-                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" >
+                    <img src="{{ asset("/storage/" . $apartments->image) }}" alt="{{ $apartments->name}}" class="img-show" >
                 </div>
                 
                 
@@ -80,22 +80,14 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            {{-- Zona --}}
+            {{-- Indirizzo --}}
             <div class="form-group">
-                <label class="mt-3" for="location">Città <span class="text-danger">*</span></label>
-                <input type="text" name="location" id="location" class="form-control" placeholder="Inserisci la città " value="{{ old("location") ?? $apartments->location }}"> 
-                @error("location")
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label class="mt-3" for="address">Indirizzo</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="Inserisci la via" value="{{ old("address")  }}">
+                <label class="mt-3" for="indirizzo">Indirizzo<span class="text-danger">*</span></label>
+                <div id="indirizzoSearchBox"></div>
                 @error('address')
-                    <div class ="text-danger">{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
-            
+
             {{-- Visibilità --}}
             <div class="form-group">
                 <label class="mt-3" for="visibility">Visibilità <span class="text-danger" >*</span></label>
@@ -114,5 +106,31 @@
         </div>
     </div>
 </div>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
+<script src="/tomtom-input.js"></script>
+<script>
+const decodeAddress = (address) => {
+    const encodedAddress = '{{ $address }}';
+    const replacedAddress = encodedAddress.replace(/\+/g, ' ');
+    const decodedAddress = decodeURIComponent(replacedAddress);
+
+    return decodedAddress;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    let inputAddress = document.querySelectorAll('.tt-search-box-input');
+
+    let string = '{{ $address }}';
+
+    console.log(decodeAddress(string));
+
+    inputAddress.forEach((element) => {
+        element.value = decodeAddress(string);
+    });
+
+    console.log(inputAddress);
+});
+
+</script>
 </body>
 @endsection

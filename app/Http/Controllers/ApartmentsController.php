@@ -21,7 +21,7 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-/*     public function __construct()
+    /*     public function __construct()
     {
         $this->middleware(function ($request, $next) {
             // Condividi la variabile $apartment con tutte le views
@@ -32,14 +32,14 @@ class ApartmentsController extends Controller
 
     public function index()
     {
-            // Ottieni l'utente autenticato
-    $user = auth()->user();
+        // Ottieni l'utente autenticato
+        $user = auth()->user();
 
-    // Accedi alla relazione apartments() dell'utente per ottenere tutti gli appartamenti associati
-    $apartment = $user->apartments;
+        // Accedi alla relazione apartments() dell'utente per ottenere tutti gli appartamenti associati
+        $apartment = $user->apartments;
 
-    // Passa gli appartamenti alla vista
-    return view("apartments.index", compact('apartment'));
+        // Passa gli appartamenti alla vista
+        return view("apartments.index", compact('apartment'));
     }
 
     public function search(Request $request)
@@ -79,65 +79,62 @@ class ApartmentsController extends Controller
         $apartment->user_id = auth()->user()->id;
 
         $form_data = $request->all();
-        $address = urlencode($form_data['address']); // Access address from form data
+
+        // Decodifica l'indirizzo per rimuovere eventuali codifiche URL
+        $decodedAddress = urldecode($form_data['address']);
+
+        // Se necessario, sostituisci i '+' rimasti con spazi
+        $cleanAddress = str_replace('+', ' ', $decodedAddress);
+
+        // Ri-codifica l'indirizzo pulito per la richiesta all'API
+        $addressForApi = urlencode($cleanAddress);
         $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
-        $url = "https://api.tomtom.com/search/2/geocode/$address.json?key=$api_key";
-    
+        $url = "https://api.tomtom.com/search/2/geocode/{$addressForApi}.json?key={$api_key}";
+
         $response = file_get_contents($url);
         $data = json_decode($response, true);
-    
-        
+
         if ($data && isset($data['results']) && count($data['results']) > 0) {
             $latitude = $data['results'][0]['position']['lat'];
             $longitude = $data['results'][0]['position']['lon'];
-            // Assign latitude and longitude directly to the apartment object
+
+            // Utilizza l'indirizzo pulito per il campo 'location'
             $apartment->latitude = $latitude;
             $apartment->longitude = $longitude;
+            $apartment->location = $cleanAddress; // Usa l'indirizzo decodificato e pulito
         } else {
-            // Handle the case where coordinates are not found
-            // You might want to return an error message or handle it in some way
-            // For now, let's set latitude and longitude to null
             $apartment->latitude = null;
             $apartment->longitude = null;
+            $apartment->location = null;
         }
-        
-        
-        if($request->hasFile("image")){
+
+        if ($request->hasFile("image")) {
             $path = Storage::disk("public")->put("apartment_image", $form_data["image"]);
             $form_data["image"] = $path;
         }
-        // Fill the apartment object with other form data
-       
-        $apartment->fill($form_data);
-    
-        // Save the apartment to the database
-        $apartment->save();
-        
-        /* Dopo aver salvato il posto controllo se sono presenti immagini di galleria */
-        if($request->has("image_gallery")){
-            /* Recupero immagini in una variabile */
-            $images = $form_data["image_gallery"];
-            /* Ciclo le immagini */
-            foreach($images as $image){
-                /* Upload immagini */
-                $path = Storage::disk("public")->put("image_gallery", $image);
-                
-                /* Inserimento con fillable */
-                $data_image["apartments_id"] = $apartment->id;
-                $data_image["image_gallery"] = $path;
 
-                /* Creazione nuovo record nella tabella */
-                $imageGallery = new ImageGallery;
-                $imageGallery->fill($data_image);
-                /* salvataggio nuovo record */
+        // Compila l'oggetto apartment con altri dati del form
+        $apartment->fill($form_data);
+
+        // Salva l'appartamento nel database
+        $apartment->save();
+
+        if ($request->has("image_gallery")) {
+            foreach ($form_data["image_gallery"] as $image) {
+                $path = Storage::disk("public")->put("image_gallery", $image);
+
+                $imageGallery = new ImageGallery([
+                    "apartments_id" => $apartment->id,
+                    "image_gallery" => $path
+                ]);
+
                 $imageGallery->save();
-                
             }
         }
+
         return redirect()->route("apartments.index");
     }
-    
-    
+
 
     /**
      * Display the specified resource.
@@ -147,7 +144,7 @@ class ApartmentsController extends Controller
      */
     public function show(Apartments $apartments, $id)
     {
-       
+
         $apartments = Apartments::find($id);
         return view("apartments.show", compact("apartments"));
     }
@@ -165,16 +162,19 @@ class ApartmentsController extends Controller
 
         // Get the ID of the currently authenticated user
         $userId = Auth::id();
-    
+
         // Compare the user ID of the currently authenticated user with the user ID associated with the apartment
         if ($userId !== $apartment->user_id) {
             // User is not authorized to edit this apartment
             return view('unauthorized');
         }
-    
-        $apartments = Apartments::find($id);
 
-        return view("apartments.edit", compact("apartments"));
+        $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+
+        $apartments = Apartments::find($id);
+        $address = $apartments->location;
+
+        return view("apartments.edit", compact("apartments", "address"));
     }
 
     /**
@@ -184,24 +184,53 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApartmentsRequest $request, Apartments $apartments, $id)
-    {
-        $form_data = $request->all();
-        $apartments = Apartments::find($id);
-        if ($request->hasFile("image")) {
-            if ($apartments->image != null) {
-                Storage::disk("public")->delete($apartments->image);
-            }
-            $path = Storage::disk("public")->put("apartment_image", $request->file("image"));
-            $form_data["image"] = $path;
-        } else {
-            // Keep the existing image path
-            $form_data['image'] = $apartments->image;
-        }
-        
-        $apartments->update($form_data);
-        return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
+    public function update(UpdateApartmentsRequest $request, $id)
+{
+    $apartment = Apartments::findOrFail($id);
+
+    if (auth()->id() !== $apartment->user_id) {
+        return view('unauthorized');
     }
+
+    $form_data = $request->validated();
+
+    if ($request->hasFile("image")) {
+        if ($apartment->image != null) {
+            Storage::disk("public")->delete($apartment->image);
+        }
+        $path = Storage::disk("public")->put("apartment_image", $request->file("image"));
+        $form_data["image"] = $path;
+    }
+
+    if ($request->has('address') && $request->input('address') !== $apartment->address) {
+        // Decodifica e pulisci l'indirizzo
+        $decodedAddress = urldecode($request->input('address'));
+        $cleanAddress = str_replace('+', ' ', $decodedAddress); // Opzionale se urldecode gestisce già '+'
+
+        // Ri-codifica l'indirizzo pulito per la richiesta all'API
+        $addressForApi = urlencode($cleanAddress);
+        $api_key = "ARRIZGGoUek6AqDTwVcXta7pCZ07Q490";
+        $url = "https://api.tomtom.com/search/2/geocode/{$addressForApi}.json?key={$api_key}";
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        if ($data && isset($data['results']) && count($data['results']) > 0) {
+            $latitude = $data['results'][0]['position']['lat'];
+            $longitude = $data['results'][0]['position']['lon'];
+
+            // Utilizza l'indirizzo pulito per il campo 'location'
+            $form_data['location'] = $cleanAddress; // Usa l'indirizzo decodificato e pulito
+            $form_data['latitude'] = $latitude;
+            $form_data['longitude'] = $longitude;
+        }
+    }
+
+    // Aggiorna l'appartamento con i dati del form puliti e validati
+    $apartment->update($form_data);
+
+    return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -213,10 +242,10 @@ class ApartmentsController extends Controller
     {
         $apartments = Apartments::find($id);
 
-        if($apartments->image != null){
+        if ($apartments->image != null) {
             Storage::disk("public")->delete($apartments->image);
         }
-     
+
         $apartments->image_gallery()->delete();
         $apartments->delete();
         return redirect()->route("apartments.index", ["apartment" => $apartments]);

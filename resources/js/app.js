@@ -23,26 +23,43 @@ deleteButtons.forEach((button) => {
 });
 
 
-
 const myButton = document.getElementById('myButton');
-const key = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
+const API_KEY = 'GQoylkWTb8A3X4kupHH9BTdJj1GJaVKo';
 const indirizzoInput = document.getElementById('indirizzo');
 
+ document.addEventListener("DOMContentLoaded", function() {
+     const form = document.getElementById("registrationForm");
+     form.addEventListener("submit", function(event) {
+         let password = document.getElementById("password").value;
+         let confirmPassword = document.getElementById("password-confirm").value;
+
+         if (password !== confirmPassword) {
+            document.getElementById('error-password').style.display = 'block';
+            event.preventDefault();
+         }
+     });
+ });
 
 
-// Controllo JS della password di conferma
-// document.addEventListener("DOMContentLoaded", function() {
-//     const form = document.getElementById("registrationForm");
-//     form.addEventListener("submit", function(event) {
-//         let password = document.getElementById("password").value;
-//         let confirmPassword = document.getElementById("password-confirm").value;
+var options = {
+    searchOptions: {
+        key: API_KEY,
+        language: "it-IT",
+        limit: 5,
+    },
+    autocompleteOptions: {
+        key: API_KEY,
+        language: "it-IT",
+    },
+}
+var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+document.getElementById("indirizzoSearchBox").appendChild(searchBoxHTML);
 
-//         if (password !== confirmPassword) {
-//             alert("LE PASSWORD NON COINCIDONO");
-//             event.preventDefault();
-//         }
-//     });
-// });
+let input = document.querySelectorAll('.tt-search-box-input')
 
-
-
+input.forEach((element) => {
+    element.setAttribute("name", "address")
+    element.setAttribute("autocomplete", "off")
+    element.setAttribute("required", "required");
+})

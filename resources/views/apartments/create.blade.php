@@ -9,11 +9,11 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
-        @endif
+            @endif
             <h2 class="text-center mt-3">Aggiungi dati appartamento</h2>
         </div>
         <div class="col-12">
@@ -83,39 +83,41 @@
                     <div class ="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            {{-- Indirizzo --}}
-            <div class="form-group">
-                <label class="mt-3" for="address">Indirizzo</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="Inserisci la via" value="{{ old("address")  }}">
-            
-                   
+        
 
-                @error('address')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            {{-- Visibilità --}}
-            <div class="form-group">
-                <label class="mt-3" for="visibility">Visibilità <span class="text-danger">*</span></label>
-                <input type="radio" name="visibility" value="Si">
-                <label for=""  > Si</label>
-                <input type="radio" name="visibility"   value="No">
-                <label for="" > No</label>
-                @error('visibility')
-                    <div class ="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                {{-- Indirizzo --}}
+                <div class="form-group">
+                    <label class="mt-3" for="indirizzo">Indirizzo <span class="text-danger">*</span></label>
+                    <div id="indirizzoSearchBox"></div>
+                    @error('address')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
+                {{-- Visibilità --}}
+                <div class="form-group">
+                    <label class="mt-3" for="visibility">Visibilità <span class="text-danger">*</span></label>
+                    <input type="radio" name="visibility" value="Si">
+                    <label for=""> Si</label>
+                    <input type="radio" name="visibility" value="No">
+                    <label for=""> No</label>
+                    @error('visibility')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <a  href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
+                <div class="form-footer mt-2">
+                    <p class="text-muted"><span class="text-danger">*</span> I campi contrassegnati sono obbligatori.</p>
+                </div>
 
+                <a href="{{ route("apartments.index")}}"><button type="submit" class="btn btn-primary mt-3" id="myButton">Salva</button></a>
 
             </form>
+            
         </div>
     </div>
 </div>
 
-
-</body>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
+<script src="/tomtom-input.js"></script>
 @endsection
