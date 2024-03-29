@@ -25,10 +25,14 @@
                 <i name="filter-input" id="filter-input" class="fa-solid fa-sliders"></i>
 
                 <div class="filter-section" id="filterSection">
-                    <span>Numero minimo di stanze</span>
-
-
-                    <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+                    <div class="number-room d-flex">
+                        <span id="label-rooms">Numero stanze</span>
+                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+                    </div>
+                    <div class="number-room d-flex">
+                        <span id="label-rooms">Numero stanze</span>
+                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+                    </div>
                 </div>
             </div>
 
@@ -232,7 +236,7 @@
             const filterSection = document.querySelector('.filter-section');
 
             /* SE L'ELEMENTO CLICCATO NON E' UNO DI QUELLI ELENCATI ALLORA OPACITA' 0 */
-            if (!event.target.matches('#filter-input, #rooms-number')) {
+            if (!event.target.matches('#filter-input, #rooms-input, #label-rooms')) {
                 filterSection.style.opacity = '0';
             } else {
                 filterSection.style.opacity = '100';
