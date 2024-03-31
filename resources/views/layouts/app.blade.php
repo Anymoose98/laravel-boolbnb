@@ -30,7 +30,7 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-light bg-white">
                 <div class="container">
-                    <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                    <a class="navbar-brand d-flex align-items-center" href="http://localhost:5174">
                         <div class="logo">
                             <svg width="50" height="55" viewBox="0 0 70 55" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
