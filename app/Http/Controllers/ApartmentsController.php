@@ -64,7 +64,7 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-       
+
         $services = Service::all();
 
         return view("apartments.create", compact("services"));
@@ -139,7 +139,7 @@ class ApartmentsController extends Controller
         if($request->has("services")){
             $apartment->services()->attach($form_data["services"]);
         }
-        
+
         return redirect()->route("apartments.index");
     }
 
@@ -153,7 +153,10 @@ class ApartmentsController extends Controller
     public function show(Apartments $apartments, $id)
     {
 
-        $apartments = Apartments::find($id);
+        $apartment = Apartments::find($id);
+    if (!$apartment) {
+        abort(404);
+    }
         return view("apartments.show", compact("apartments"));
     }
 
@@ -237,12 +240,12 @@ class ApartmentsController extends Controller
 
     // Aggiorna l'appartamento con i dati del form puliti e validati
     $apartment->update($form_data);
-    
+
     if ($request->has("services")) {
         $apartment->services()->sync($request->input("services"));
     }
-    
-    
+
+
     return redirect()->route('apartments.index')->with('success', 'Appartamento aggiornato con successo.');
 }
 

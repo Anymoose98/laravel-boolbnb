@@ -46,8 +46,10 @@ Route::get('/search', [ApartmentsController::class, 'search']);
 Route::get('/autocomplete', [AutocompleteController::class, 'autocomplete']);
 
 Route::get('/unauthorized', function () {
-    return view('unauthorized'); 
+    return view('unauthorized');
 })->name('unauthorized');
+
+Route::get('/apartment/{id}', 'AppartmentController@show')->name('apartment.show');
 
 
 require __DIR__.'/auth.php';

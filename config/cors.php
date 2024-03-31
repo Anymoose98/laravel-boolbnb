@@ -14,15 +14,15 @@ return [
     | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
     |
     */
+    'paths' => ['api/*'],
+    'allowed_methods' => ['*'],
+    'allowed_origins' => [env('APP_FRONTEND_URL','http://localhost:5174')],
+    'allowed_origins_patterns' => ['*'],
+    'allowed_headers' => ['*'],
+    'exposed_headers' => [],
+    'max_age' => 0,
+    'supports_credentials' => false,
 
-'paths' => ['*'], // Oppure specifica percorsi per limitare CORS a determinate rotte
-'allowed_methods' => ['*'], // Metodi HTTP consentiti
-'allowed_origins' => ['http://127.0.0.1:8000'], // Origini consentite. Usa ['*'] per consentire tutte le origini
-'allowed_origins_patterns' => [],
-'allowed_headers' => ['Content-Type', 'X-Requested-With'], // Aggiungi qui gli header consentiti
-'exposed_headers' => [],
-'max_age' => 0,
-'supports_credentials' => false, // Imposta su true se le richieste devono essere effettuate con credenziali
 
 
 ];
