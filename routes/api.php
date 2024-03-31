@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Apartments;
 use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\API\ApartmentsController;
+use App\Http\Controllers\API\ApartmentsController as ApartmentsController;
 
 /*
 |--------------------------------------------------------------------------
