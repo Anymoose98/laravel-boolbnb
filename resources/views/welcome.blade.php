@@ -27,12 +27,23 @@
                 <div class="filter-section" id="filterSection">
                     <div class="number-room d-flex">
                         <span id="label-rooms">Numero stanze</span>
-                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+                        <input type="number" name="rooms-number" default="0" min="0" id="rooms-input" class="rooms-number-input">
                     </div>
-                    <div class="number-room d-flex">
-                        <span id="label-rooms">Numero stanze</span>
-                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+
+                    
+                    <div class="aria d-flex">
+                        <div class="checkbox-wrapper-13">
+                            <input id="c1-13" type="checkbox">
+                            <label for="c1-13">Aria condizionata</label>
+                          </div>
                     </div>
+                    
+
+
+                    
+
+  
+  
                 </div>
             </div>
 
@@ -45,7 +56,6 @@
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
             </div>
-
 
 
             <div class="distance-filter-section" id="rangeSection">
