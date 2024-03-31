@@ -61,7 +61,7 @@
             @foreach ($apartments as $apartment)
                 <div class="col-12 col-lg-6 col-xxl-3" data-image="{{ $apartment->image }}"
                     data-name="{{ $apartment->name }}" data-location="{{ $apartment->location }}"
-                    data-description="{{ $apartment->description }}">
+                    data-description="{{ $apartment->description }}" data-id="{{ $apartment->id }}">
                     <div class="personal-content">
                         <div class="image-card-container">
                             @if ($apartment->image == 0)
@@ -165,7 +165,7 @@
          data-description="${apartment.description}">
         <div class="personal-content">
             <div class="image-card-container">
-                ${apartment.image == 0 ? 
+                ${apartment.image == 0 ?
                     `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
                     `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
                 }
@@ -208,21 +208,21 @@
             /* OPACITA' DELLE SEZIONI PER I FILTRI (I TIMER SERVONO PER FAR FUNZIONARE LA TRANSIZIONE DELLA SFUMATURA) */
             if (!event.target.matches(
                     '#city-input, #radius-input, #rangeSection, #title-distance, #slider-value')) {
-                
+
                 setTimeout(function() {
                     distanceFilterSection.style.opacity = '0';
                 }, 10);
 
-                
+
                 setTimeout(function() {
                     distanceFilterSection.style.display = 'none';
-                }, 310); 
+                }, 310);
             } else {
-                
+
                 distanceFilterSection.style.display = 'flex';
                 setTimeout(function() {
                     distanceFilterSection.style.opacity = '100';
-                }, 10); 
+                }, 10);
             }
 
         });
@@ -296,7 +296,7 @@
          data-description="${apartment.description}">
         <div class="personal-content">
             <div class="image-card-container">
-                ${apartment.image == 0 ? 
+                ${apartment.image == 0 ?
                     `<img src="{{ asset('/storage/placeholder.png') }}" alt="">` :
                     `<img src="<?php echo asset('/storage/${apartment.image}'); ?>" alt="${apartment.name}">`
                 }

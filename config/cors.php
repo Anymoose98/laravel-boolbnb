@@ -14,7 +14,7 @@ return [
     | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
     |
     */
-    'paths' => ['api/'],
+    'paths' => ['api/*'],
     'allowed_methods' => ['*'],
     'allowed_origins' => [env('APP_FRONTEND_URL','http://localhost:5174')],
     'allowed_origins_patterns' => ['*'],
@@ -22,7 +22,7 @@ return [
     'exposed_headers' => [],
     'max_age' => 0,
     'supports_credentials' => false,
-    
+
 
 
 ];
