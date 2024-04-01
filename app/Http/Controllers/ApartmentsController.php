@@ -154,10 +154,11 @@ class ApartmentsController extends Controller
     {
 
         $apartment = Apartments::find($id);
-    if (!$apartment) {
-        abort(404);
-    }
-        return view("apartments.show", compact("apartments"));
+        $service = Service::all();
+        if (!$apartment) {
+            abort(404);
+        }
+        return view("apartments.show", compact("apartments", "service"));
     }
 
     /**

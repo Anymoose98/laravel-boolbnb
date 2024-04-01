@@ -14,7 +14,7 @@
                 </ul>
             </div>
             @endif
-            <h2 class="text-center mt-3">Aggiungi dati appartamento <i class="fa-solid fa-snowflake"></i></h2>
+            <h2 class="text-center mt-3">Aggiungi dati appartamento </h2>
         </div>
         <div class="col-12">
             <form action="{{ route("apartments.store") }}" method="POST" enctype="multipart/form-data">
