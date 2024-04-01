@@ -15,6 +15,7 @@
                 <hr>
                 <h4>Bagni utilizzabili:</h4>{{ $apartments->bathrooms}}
                 <hr>
+                <h4>Servizi:    </h4>
                     @forelse($apartments->services as $service)
                     <i class="{{ $service->icon}}"> </i> {{ $service->name }} <br>
                     

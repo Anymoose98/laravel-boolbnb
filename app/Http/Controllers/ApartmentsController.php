@@ -153,9 +153,9 @@ class ApartmentsController extends Controller
     public function show(Apartments $apartments, $id)
     {
 
-        $apartment = Apartments::find($id);
+        $apartments = Apartments::find($id);
         $service = Service::all();
-        if (!$apartment) {
+        if (!$apartments) {
             abort(404);
         }
         return view("apartments.show", compact("apartments", "service"));
