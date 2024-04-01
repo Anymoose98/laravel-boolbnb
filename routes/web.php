@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutocompleteController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +49,7 @@ Route::get('/autocomplete', [AutocompleteController::class, 'autocomplete']);
 Route::get('/unauthorized', function () {
     return view('unauthorized');
 })->name('unauthorized');
+
 
 
 

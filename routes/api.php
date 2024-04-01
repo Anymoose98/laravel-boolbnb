@@ -3,8 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Apartments;
+use App\Models\Message;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\API\ApartmentsController as ApartmentsController;
+use App\Http\Controllers\MessageController as MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,8 @@ use App\Http\Controllers\API\ApartmentsController as ApartmentsController;
 
 Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get("/apartments/{id}", [ApartmentsController::class, "show"]);
+Route::post('/messages', [MessageController::class, 'store']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

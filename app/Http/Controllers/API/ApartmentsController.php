@@ -8,18 +8,31 @@ use App\Models\Apartments;
 
 class ApartmentsController extends Controller
 {
-    public function index()
-    {
-        $apartments = Apartments::all();
 
-        return response()->json([
-            'success' => true,
-            'results' => $apartments
-        ]);
+    public function index(Request $request)
+{
+    $minBeds = $request->query('minBeds');
+    
+    $apartmentsQuery = Apartments::query();
+    $apartmentsQuery->with('services'); // Eager load services
+    
+    if ($minBeds) {
+        $apartmentsQuery->where('beds', '>=', $minBeds);
     }
+    
+    $apartments = $apartmentsQuery->get();
+    
+    return response()->json([
+        'success' => true,
+        'results' => $apartments
+    ]);
+}
 
+    
+    
+    
     public function show($id) {
-        $apartment = Apartments::find($id);
+        $apartment = Apartments::with('services')->find($id);
     
         if (!$apartment) {
             return response()->json([
@@ -33,6 +46,7 @@ class ApartmentsController extends Controller
             'result' => $apartment
         ]);
     }
+    
     
     }
 
