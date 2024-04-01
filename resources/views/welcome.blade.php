@@ -33,17 +33,10 @@
                     
                     <div class="aria d-flex">
                         <div class="checkbox-wrapper-13">
-                            <input id="c1-13" type="checkbox">
-                            <label for="c1-13">Aria condizionata</label>
+                            <input id="ariaCondizionata" type="checkbox">
+                            <label for="ariaCondizionata">Aria condizionata</label>
                           </div>
                     </div>
-                    
-
-
-                    
-
-  
-  
                 </div>
             </div>
 
@@ -115,6 +108,7 @@
             let city = document.getElementById('city-input').value;
             let beds = document.getElementById('beds-input').value;
             let rooms = document.getElementById('rooms-input').value;
+            let ariaCondizionata = document.getElementById('ariaCondizionata').checked;
 
             /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
             if (beds == "") {
