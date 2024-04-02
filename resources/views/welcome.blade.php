@@ -27,12 +27,17 @@
                 <div class="filter-section" id="filterSection">
                     <div class="number-room d-flex">
                         <span id="label-rooms">Numero stanze</span>
-                        <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+       <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
                     </div>
                     <div class="number-room d-flex">
                         <span id="label-rooms">Numero stanze</span>
                         <input type="number" name="rooms-number" min="0" id="rooms-input" class="rooms-number-input">
+
+                        <input type="number" name="rooms-number" default="0" min="0" id="rooms-input" class="rooms-number-input">
                     </div>
+
+                    
+                    
                 </div>
             </div>
 
@@ -105,6 +110,9 @@
             let city = document.getElementById('city-input').value;
             let beds = document.getElementById('beds-input').value;
             let rooms = document.getElementById('rooms-input').value;
+
+            let ariaCondizionata = document.getElementById('ariaCondizionata').checked;
+
 
             /* SE NON SI UTILIZZA IL FILTRO DEI LETTI ALLORA IL MINIMO SARA' 0 */
             if (beds == "") {
@@ -213,7 +221,6 @@
                     distanceFilterSection.style.opacity = '0';
                 }, 10);
 
-
                 setTimeout(function() {
                     distanceFilterSection.style.display = 'none';
                 }, 310);
@@ -223,6 +230,17 @@
                 setTimeout(function() {
                     distanceFilterSection.style.opacity = '100';
                 }, 10);
+
+                
+                setTimeout(function() {
+                    distanceFilterSection.style.display = 'none';
+                }, 310); 
+            } else {
+                
+                distanceFilterSection.style.display = 'flex';
+                setTimeout(function() {
+                    distanceFilterSection.style.opacity = '100';
+                }, 10); 
             }
 
         });
