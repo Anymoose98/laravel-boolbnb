@@ -84,6 +84,8 @@ class ApartmentsController extends Controller
 
         $form_data = $request->all();
 
+        $form_data['adv_level'] = intval($form_data['adv_level']);
+        
         // Decodifica l'indirizzo per rimuovere eventuali codifiche URL
         $decodedAddress = urldecode($form_data['address']);
 
