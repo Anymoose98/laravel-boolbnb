@@ -19,7 +19,8 @@ class Apartments extends Model
         'visibility',
         'longitudine',
         'latitudine',
-        'user_id'
+        'user_id',
+        'adv_level'
     ];
 
     public function image_gallery(){
