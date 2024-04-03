@@ -197,9 +197,50 @@
             </div>
 
 
-            <h2 class="text-center mt-5 title-section-create">CI ANDRA' LA SPONSORIZZAZIONE</h2>
-            <p class="text-center paragraph-padded text-danger">Mettete un livello qualsiasi giusto per far funzionare il submit, dopo aver finito la ricerca continuiamo con la sponsor</p>
-            <div class="form-group">
+            <h2 class="text-center mt-5 title-section-create">SPONSORIZZAZIONE</h2>
+            <p class="text-center paragraph-padded">Metti in primo piano i tuoi appartamento scegliendo il piano giusto per te.</p>
+            <div class="form-group mt-5">
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="adv-card">
+                            <span class="title-adv">Base</span>
+
+                            <div class="price">
+                                <h2>2,99€</h2>
+                                <span>/24 ore</span>
+                            </div>
+                            
+                            <button>Acquista</button>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="adv-card">
+                            <span class="title-adv">Standard</span>
+
+                            <div class="price">
+                                <h2>5,99€</h2>
+                                <span>/72 ore</span>
+                            </div>
+                            
+                            <button>Acquista</button>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="adv-card">
+                            <span class="title-adv">Avanzato</span>
+
+                            <div class="price">
+                                <h2>9,99€</h2>
+                                <span>/144 ore</span>
+                            </div>
+                            
+                            <button>Acquista</button>
+                        </div>
+                    </div>
+                </div>
+                
+
                     <label class="container">Livello 1
                         <input type="radio" checked="checked" name="adv_level" value="1">
                         <span class="checkmark"></span>
