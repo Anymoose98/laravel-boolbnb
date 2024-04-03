@@ -3,7 +3,7 @@
 
 body {
     font-family: "Inter";
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(255, 255, 255);
 }
 
 a {
@@ -446,6 +446,85 @@ a {
     }
 }
 
+.title-section-create{
+    padding-top: 50px;
+    font-weight: 900;
+}
+
+
+
+.checkbox-btn input[type="checkbox"] {
+    display: none; 
+}
+
+.checkbox-btn label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #f0f0f0; 
+    margin-right: 10px;
+    margin-top: 20px;
+    transition-duration: 0.2s;
+}
+
+.checkbox-btn input[type="checkbox"]:checked + label {
+    background-color: #000000; 
+    color: #fff; 
+}
+
+.checkbox-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.switch-field {
+	display: flex;
+	margin-bottom: 36px;
+	overflow: hidden;
+    justify-content: center;
+}
+
+.switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	background-color: #e4e4e4;
+    color: black;
+	font-size: 20px;
+	line-height: 1;
+	text-align: center;
+	padding: 8px 16px;
+	margin-right: -1px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+	background-color: #000000;
+	box-shadow: none;
+    color: white;
+}
+
+.switch-field label:first-of-type {
+	border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+	border-radius: 0 4px 4px 0;
+}
 
 
 

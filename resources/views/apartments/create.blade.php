@@ -1,7 +1,6 @@
 @extends('layouts.authenticated')
 
 @section('content')
-
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -14,7 +13,7 @@
                         </ul>
                     </div>
                 @endif
-                <h2 class="text-center mt-5 fw-bolder">INFORMAZIONI GENERALI</h2>
+                <h2 class="text-center mt-5 title-section-create">INFORMAZIONI GENERALI</h2>
                 <p class="text-center paragraph-padded">In questa sezione descrivi al meglio il tuo appartamento ed aggiungi
                     le informazioni fondamentali.</p>
             </div>
@@ -31,54 +30,33 @@
                         @enderror
                     </div>
 
-
-
-
-
-
-
-
-                    {{-- <div class="form-group">
-                <label class="mt-3" for="service_id">Servizi:</label><br>
-                <div class="container">
-                    <div class="row">
-                        @foreach ($services as $service)
-                            <div class="col-4 my-1">
-                                <input type="checkbox" name="services[]" id="service-{{$service->id}}" value="{{$service->id}}" 
-                                    {{ is_array(old('services')) && in_array($service->id, old('services')) ? 'checked' : '' }}>
-                                <i class="{{ $service->icon }}"></i> <span>{{$service->name}}  </span><br>
-                            </div>
-                        @endforeach 
-                        @error('services') <!-- Note the error key is 'services', not 'bathrooms' -->
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                    <div class="col">
+                        {{-- Indirizzo --}}
+                        <div class="form-group">
+                            <label class="mt-3 fw-bolder" for="indirizzo">Indirizzo <span
+                                    class="text-danger">*</span></label>
+                            <div id="indirizzoSearchBox" value="{{ old('address') }}"></div>
+                            @error('address')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
+
+                    <div class="col">
+                        {{-- Zona --}}
+                        <div class="form-group">
+                            <label class="mt-3 fw-bolder" for="location">Città <span class="text-danger">*</span></label>
+                            <input type="text" name="location" id="location" class="form-control"
+                                placeholder="Inserisci la città " value="{{ old('location') }}">
+                            @error('location')
+                                <div class ="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    
                 </div>
-            </div> --}}
-
-
-
-
-
-
-
-
-
-
-                    {{-- <div class="form-group">
-                    <label class="container">Livello 1
-                        <input type="radio" checked="checked" name="adv_level" value="1">
-                        <span class="checkmark"></span>
-                      </label>
-                      <label class="container">Livello 2
-                        <input type="radio" name="adv_level" value="2">
-                        <span class="checkmark"></span>
-                      </label>
-                      <label class="container">Livello 3
-                        <input type="radio" name="adv_level" value="3">
-                        <span class="checkmark"></span>
-                      </label>
-                </div> --}}
             </div>
 
             <div class="row">
@@ -132,32 +110,8 @@
             </div>
 
             <div class="row">
-                <div class="col">
-                    {{-- Zona --}}
-                    <div class="form-group">
-                        <label class="mt-3 fw-bolder" for="location">Città <span class="text-danger">*</span></label>
-                        <input type="text" name="location" id="location" class="form-control"
-                            placeholder="Inserisci la città " value="{{ old('location') }}">
-                        @error('location')
-                            <div class ="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col">
-                    {{-- Indirizzo --}}
-                    <div class="form-group">
-                        <label class="mt-3 fw-bolder" for="indirizzo">Indirizzo <span class="text-danger">*</span></label>
-                        <div id="indirizzoSearchBox" value="{{ old('address') }}"></div>
-                        @error('address')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-12 mt-5">
-                    <h2 class="text-center mt-5 fw-bolder">IMMAGINI DEL TUO APPARTAMENTO</h2>
+                    <h2 class="text-center mt-5 title-section-create">IMMAGINI DEL TUO APPARTAMENTO</h2>
                     <p class="text-center paragraph-padded">Aggiungi le immagini che meglio rappresentano il tuo
                         appartamento. É preferibile aggiungere file di alta qualità.</p>
                 </div>
@@ -199,22 +153,69 @@
                             @enderror
                         </div>
                     </div>
-                    <h3>Carica foto</h3>
+                    <h3 class="fw-bolder">Carica foto</h3>
                     <p class="text-center mt-2 px-2">Carica ulteriori foto del tuo appartamento</p>
                 </div>
             </div>
 
-            {{-- Visibilità --}}
+            <h2 class="text-center mt-5 title-section-create">SERVIZI</h2>
+            <p class="text-center paragraph-padded">Seleziona i servizi che il tuo appartamento può offrire.</p>
+
             <div class="form-group">
-                <label class="mt-3" for="visibility">Visibilità <span class="text-danger">*</span></label>
-                <input type="radio" name="visibility" value="Si">
-                <label for=""> Si</label>
-                <input type="radio" name="visibility" value="No">
-                <label for=""> No</label>
+                <div class="container">
+                    <div class="row checkbox-btn">
+                        <div class="checkbox-container">
+                        @foreach ($services as $service)
+                            
+                                <input type="checkbox" name="services[]" id="service-{{$service->id}}" value="{{$service->id}}" 
+                                    {{ is_array(old('services')) && in_array($service->id, old('services')) ? 'checked' : '' }}>
+                                <label for="service-{{$service->id}}">
+                                    <i class="{{ $service->icon }}"></i> {{$service->name}}
+                                </label>
+                            
+                        @endforeach 
+                    </div>
+                        @error('services') 
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            {{-- Visibilità --}}
+            <h2 class="text-center mt-5 title-section-create">VISIBILITÀ</h2>
+            <p class="text-center paragraph-padded">Desideri che il tuo appartamento sia visibile nella home?
+                (potrai modificare sempre questa opzione)</p>
+            <div class="form-group switch-field mt-5">
+                <input type="radio" name="visibility" id="radio-one" value="Si" checked>
+                <label for="radio-one" class="fw-bolder">Visibile</label>
+                <input type="radio" name="visibility" id="radio-two" value="No">
+                <label for="radio-two" class="fw-bolder">Non visibile</label>
                 @error('visibility')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+
+            <h2 class="text-center mt-5 title-section-create">CI ANDRA' LA SPONSORIZZAZIONE</h2>
+            <p class="text-center paragraph-padded text-danger">Mettete un livello qualsiasi giusto per far funzionare il submit, dopo aver finito la ricerca continuiamo con la sponsor</p>
+            <div class="form-group">
+                    <label class="container">Livello 1
+                        <input type="radio" checked="checked" name="adv_level" value="1">
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container">Livello 2
+                        <input type="radio" name="adv_level" value="2">
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container">Livello 3
+                        <input type="radio" name="adv_level" value="3">
+                        <span class="checkmark"></span>
+                    </label>
+            </div>
+
+
+
 
             <div class="form-footer mt-2">
                 <p class="text-muted"><span class="text-danger">*</span> I campi contrassegnati sono obbligatori.</p>
