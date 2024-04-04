@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\Apartments;
+use App\Models\Show;
+use App\Models\Message;
 use App\Models\ImageGallery;
 use App\Http\Requests\StoreApartmentsRequest;
 use App\Http\Requests\UpdateApartmentsRequest;
@@ -152,17 +154,27 @@ class ApartmentsController extends Controller
      * @param  \App\Models\Apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartments $apartments, $id)
-    {
 
-        $apartments = Apartments::find($id);
-        $service = Service::all();
-        if (!$apartments) {
-            abort(404);
-        }
-        return view("apartments.show", compact("apartments", "service"));
-    }
+     public function show(Apartments $apartments, $id)
+     {
+         $user = Auth::user();
+         $apartments = Apartments::findOrFail($id);
 
+        // Ensure the authenticated user owns the apartment
+         if ($apartments->user_id !== $user->id) {
+             // Handle unauthorized access (e.g., redirect back)
+             return redirect()->back()->with('error', 'Unauthorized access.');
+         } 
+     
+         // Retrieve messages associated with the apartment
+         $message = Message::where('apartment_id', $apartments->id)->get();
+     
+         // Rest of your code to retrieve apartment details and display them
+         $service = Service::all();
+         return view("apartments.show", compact("apartments", "service", "message"));
+     }
+     
+     
     /**
      * Show the form for editing the specified resource.
      *

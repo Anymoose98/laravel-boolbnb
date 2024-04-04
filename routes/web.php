@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentsController;
-use App\Http\Controllers\UnauthorizedController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutocompleteController;
 
@@ -18,12 +17,13 @@ use App\Http\Controllers\AutocompleteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-
+/* 
+Route::get('/', function () {
+    return view('welcome');
+}); */
 Route::get('/guest', 'App\Http\Controllers\GuestController@index');
 
-
+route::get("/message", [MessageController::class, "show"])->name("message");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

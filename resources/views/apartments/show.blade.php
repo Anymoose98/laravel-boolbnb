@@ -18,17 +18,42 @@
                 <h4>Servizi:    </h4>
                     @forelse($apartments->services as $service)
                     <i class="{{ $service->icon}}"> </i> {{ $service->name }} <br>
-                    
-
                     @empty
                         L'appartamento non ha servizi aggiuntivi
                     @endforelse
-                    </p>
-
             </div>
             <h4>Metri quadrati: </h4>{{ $apartments->square_meters}}mq
-            <h4>Zona</h4>{{ $apartments->location }}
+            <h4>Zona</h4>{{ $apartments->location }} <br>
+            @if($apartments->services->isEmpty())
+            <h4 class="mt-2">Servizi:    </h4>
+            @else
+            Non ci sono servizi extra
+            @endif
 
+            @if (!$message->isEmpty())
+            <table class="table mt-3 table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Soggetto</th>
+                        <th>Messaggio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($message as $message)
+                    <tr>
+                        <td>{{ $message->name}}</td>
+                        <td>{{ $message->email}}</td>
+                        <td>{{ $message->subject}}</td>
+                        <td>{{ $message->message}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            @else
+                <p>Nessun messaggio disponibile.</p>
+            @endif
         </div>
     </div>
 </div>
