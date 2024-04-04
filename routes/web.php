@@ -23,7 +23,7 @@ Route::get('/', function () {
 }); */
 Route::get('/guest', 'App\Http\Controllers\GuestController@index');
 
-route::get("/message", [MessageController::class, "show"])->name("message");
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

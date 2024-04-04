@@ -6,7 +6,7 @@ use App\Models\Message;
 use App\Models\Apartments;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 
 class MessageController extends Controller
@@ -18,23 +18,22 @@ class MessageController extends Controller
      */
    
 
-        public function index($apartmentId)
-        {
-            $user = Auth::user();
-        
-            // Check if the user owns the apartment or has access to view its messages
-            $apartment = Apartments::where('id', $apartmentId)->where('user_id', $user->id)->first();
-        
-            // If the apartment exists and belongs to the user, retrieve its messages
-            if ($apartment) {
-                $messages = Message::where('apartment_id', $apartmentId)->get();
-                return view('apartmens.messages', compact('messages'));
-            }
-        
-            // Apartment not found or user does not have access, handle accordingly (e.g., redirect or show error)
-            return redirect()->back()->with('error', 'Apartment not found or you do not have access to view its messages.');
-        }
- 
+     public function index($apartmentId)
+     {
+         $user = Auth::user();
+     
+         // Check if the user owns the apartment or has access to view its messages
+         $apartment = Apartments::where('id', $apartmentId)->where('user_id', $user->id)->first();
+     
+         // If the apartment exists and belongs to the user, retrieve its messages
+         if ($apartment) {
+             $messages = Message::where('apartment_id', $apartmentId)->get();
+             return view('apartmens.messages', compact('messages'));
+         }
+     
+         // Apartment not found or user does not have access, handle accordingly (e.g., redirect or show error)
+         return redirect()->back()->with('error', 'Apartment not found or you do not have access to view its messages.');
+     }
     /**
      * Show the form for creating a new resource.
      *
