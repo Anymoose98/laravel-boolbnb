@@ -19,11 +19,10 @@ use App\Http\Controllers\AutocompleteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/', 'App\Http\Controllers\GuestController@index');
+
+Route::get('/guest', 'App\Http\Controllers\GuestController@index');
+
 
 
 Route::get('/dashboard', function () {

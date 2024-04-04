@@ -20,7 +20,11 @@ use App\Http\Controllers\MessageController as MessageController;
 
 Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get("/apartments/{id}", [ApartmentsController::class, "show"]);
-Route::post('/messages', [MessageController::class, 'store']);
+
+
+Route::post('/send-message', [MessageController::class, 'sendMessage']);
+
+
 
 
 
