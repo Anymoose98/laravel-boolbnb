@@ -20,6 +20,7 @@ class Apartments extends Model
         'longitudine',
         'latitudine',
         'user_id',
+        "address",
         'adv_level'
     ];
 

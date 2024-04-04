@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label class="mt-3 fw-bolder" for="indirizzo">Indirizzo <span
                                     class="text-danger">*</span></label>
-                            <div id="indirizzoSearchBox" value="{{ old('address') }}"></div>
+                            <div id="indirizzoSearchBox"  name="address" value="{{ old('address') }}"></div>
                             @error('address')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
