@@ -46,7 +46,7 @@ class ApartmentsSeeder extends Seeder
             $Apartments -> bathrooms = $faker->numberBetween(1, 3);
             $Apartments -> square_meters = $faker->numberBetween(50, 200);
             $Apartments -> location = $faker->randomElement(['Roma', 'Milano', 'Torino', 'Napoli', 'Brescia', 'Latina', 'Palermo']);
-
+            $Apartments -> address = $faker->randomElement(['Via Roma, 2', 'Via Milano', 'Via Dottor Ribezzi', 'Via Cavalieri', 'Via Modena', 'Via Risorgimento', 'Via Rossi']);
 
             switch ( $Apartments -> location){
                 case 'Roma':

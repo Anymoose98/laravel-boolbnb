@@ -193,7 +193,7 @@
         </div>
 
 
-        {{-- <h2 class="text-center mt-5 title-section-create">SPONSORIZZAZIONE</h2>
+        <h2 class="text-center mt-5 title-section-create">SPONSORIZZAZIONE</h2>
         <p class="text-center paragraph-padded">Metti in primo piano i tuoi appartamento scegliendo il piano giusto per te.
         </p>
         <div class="form-group mt-5">
@@ -250,7 +250,7 @@
                 <input type="radio" name="adv_level" value="3">
                 <span class="checkmark"></span>
             </label>
-        </div> --}}
+        </div>
 
 
 
