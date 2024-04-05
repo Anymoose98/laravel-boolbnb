@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Apartments;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\Admin\CarController as CarController;
