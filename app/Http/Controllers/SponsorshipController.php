@@ -15,16 +15,17 @@ class SponsorshipController extends Controller
     }
 
     public function store(Request $request, $apartment_id)
-    {
-        $validatedData = $request->validate([
-            'type' => 'required|in:base,standard,avanzato',
-        ]);
-    
-        $sponsorship = new Sponsor();
-        $sponsorship->type = $validatedData['type'];
-        $sponsorship->apartment_id = $apartment_id;
-        $sponsorship->save();
+{
+    $validatedData = $request->validate([
+        'type' => 'required',
+    ]);
 
-    return redirect()->route('sponsorship.create')->with('success', 'Sponsorship created successfully!');
-    }
+    $apartment = Apartments::findOrFail($apartment_id);
+
+    $sponsorship = Sponsor::where('name', $validatedData['type'])->firstOrFail();
+
+    $apartment->sponsors()->attach($sponsorship->id);
+
+    return redirect()->route('sponsorship.create', ['apartment_id' => $apartment_id]);
+}
 }
