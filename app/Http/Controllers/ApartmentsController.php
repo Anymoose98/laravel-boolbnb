@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\View;
 use App\Models\User;
 use App\Models\Service;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+
 
 use Illuminate\Support\Facades\Auth;
 
 class ApartmentsController extends Controller
 {
+    use HasTimestamps;
     /**
      * Display a listing of the resource.
      *
@@ -143,6 +147,9 @@ class ApartmentsController extends Controller
         if($request->has("services")){
             $apartment->services()->attach($form_data["services"]);
         }
+
+        $sponsorship_id = $request->input('sponsorship_id');
+        $apartment->sponsors()->attach($sponsorship_id, ['created_at' => now(), 'updated_at' => now()]);
 
         return redirect()->route("apartments.index");
     }
