@@ -40,4 +40,9 @@ public function messages()
     return $this->hasMany(Message::class);
 }
 
+public function sponsors()
+{
+    return $this->belongsToMany(Sponsor::class, 'sponsor_apartment');
+}
+
 }

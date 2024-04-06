@@ -5,6 +5,7 @@ use App\Http\Controllers\ApartmentsController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutocompleteController;
+use App\Http\Controllers\SponsorshipController;
 
 
 /*
@@ -41,7 +42,13 @@ Route::middleware(["auth", "verified"])->group(function(){
     Route::resource('/apartments', ApartmentsController::class);
 });
 
+Route::get('/sponsorship/{apartment_id}/create', [SponsorshipController::class, 'create'])->name('sponsorship.create');
+Route::post('/sponsorship/{apartment_id}/store', [SponsorshipController::class, 'store'])->name('sponsorship.store');
+
 Route::get('/search', [ApartmentsController::class, 'search']);
+
+Route::get('/payment', 'PaymentController@showPaymentPage')->name('payment.page');
+
 
 Route::get('/autocomplete', [AutocompleteController::class, 'autocomplete']);
 

@@ -39,7 +39,7 @@
                                 data-id= "{{ $apartments->id }}" data-name="{{ $apartments->description }}"
                                 data-type="apartments"><i class="fa-solid fa-trash"></i>
                             </button>
-                        </div>
+                            <a href="{{ route('sponsorship.create', ['apartment_id' => $apartments->id]) }}">Sponsorizza</a>                        </div>
                     </div>
                 </div>
                 @include('apartments.modal_delete')
