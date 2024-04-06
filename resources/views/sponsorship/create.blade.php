@@ -15,8 +15,11 @@
                                     <h2>2,99€</h2>
                                     <span>/24 ore</span>
                                 </div>
-                                <input type="hidden" name="type" value="base">
-                                <button type="submit">Acquista</button>
+                                <form method="POST" action="{{ route('sponsorship.store', ['apartment_id' => $apartment->id]) }}">
+                                    @csrf
+                                    <input type="hidden" name="type" value="base">
+                                    <button type="submit" name="base">Acquista</button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-4">
@@ -26,8 +29,11 @@
                                     <h2>5,99€</h2>
                                     <span>/72 ore</span>
                                 </div>
-                                <input type="hidden" name="type" value="standard">
-                                <button type="submit">Acquista</button>
+                                <form method="POST" action="{{ route('sponsorship.store', ['apartment_id' => $apartment->id]) }}">
+                                    @csrf
+                                    <input type="hidden" name="type" value="standard">
+                                    <button type="submit" name="standard">Acquista</button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-4">
@@ -37,10 +43,14 @@
                                     <h2>9,99€</h2>
                                     <span>/144 ore</span>
                                 </div>
-                                <input type="hidden" name="type" value="avanzato">
-                                <button type="submit">Acquista</button>
+                                <form method="POST" action="{{ route('sponsorship.store', ['apartment_id' => $apartment->id]) }}">
+                                    @csrf
+                                    <input type="hidden" name="type" value="avanzato">
+                                    <button type="submit" name="avanzato">Acquista</button>
+                                </form>
                             </div>
                         </div>
+                        
                     </div>
                 </form>
             </div>
