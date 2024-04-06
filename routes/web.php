@@ -47,9 +47,6 @@ Route::post('/sponsorship/{apartment_id}/store', [SponsorshipController::class, 
 
 Route::get('/search', [ApartmentsController::class, 'search']);
 
-Route::get('/payment', 'PaymentController@showPaymentPage')->name('payment.page');
-
-
 Route::get('/autocomplete', [AutocompleteController::class, 'autocomplete']);
 
 Route::get('/unauthorized', function () {
