@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ApartmentsController as ApartmentsController;
 use App\Http\Controllers\API\MessageController as MessageController;
 use App\Http\Controllers\API\ServiceController as ServiceController;
-use App\Http\Controllers\Api\PivotApartmentsController as PivotApartmentsController;
+use App\Http\Controllers\API\PivotApartmentsController;
+use App\Http\Controllers\API\PivotTableController;
 
 
 /*
@@ -23,10 +24,13 @@ use App\Http\Controllers\Api\PivotApartmentsController as PivotApartmentsControl
 Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get("/apartments/{id}", [ApartmentsController::class, "show"]);
 Route::get("/service", [ServiceController::class, "index"] );
-Route::get('pivot-apartments', [PivotApartmentsController::class, 'index']);
-
-
+Route::post('/apartments/{apartments}/clicks', [ApartmentsController::class, 'registerClick']);
 Route::resource('/message', MessageController::class);
+Route::get('pivot-apartments', [PivotApartmentsController::class, 'index']);
+Route::get('pivot-table', [PivotTableController::class, 'index']);
+
+
+
 
 
 

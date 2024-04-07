@@ -51,8 +51,8 @@
                                     class="card-img-top img-index">
                             </div>
                             <div class="apartments-info">
-                                <h2>{{ $apartments->address }}</h2>
-                                <p> {{ $apartments->description }} </p>
+                                <h2 class="text-truncate">{{ $apartments->address }}</h2>
+                                <p class="text-truncate"> {{ $apartments->description }} </p>
                             </div>
                         </a>
                     </div>

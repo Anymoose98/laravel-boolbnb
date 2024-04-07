@@ -8,6 +8,12 @@ use App\Models\Apartments;
 
 class ApartmentsController extends Controller
 {
+    public function registerClick($apartmentId)
+{
+    $apartment = Apartments::findOrFail($apartmentId);
+    $apartment->increment('clicks'); 
+}
+
 
     public function index(Request $request)
 {

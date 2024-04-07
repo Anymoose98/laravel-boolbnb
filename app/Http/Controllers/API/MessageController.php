@@ -23,12 +23,14 @@ class MessageController extends Controller
             'email.required' => 'The email field is required!',
             'email.max' => 'The email field cannot exceed 255 characters!',
             'description.required' => 'The description field is required!',
-            'description.max' => 'The description field cannot exceed 300 characters!'
+            'description.max' => 'The description field cannot exceed 300 characters!',
+            'message.required' => 'The message field is required!',
+            'message.max' => 'The message field cannot exceed 300 characters!' 
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'succes' => false,
+                'success' => false,
                 'errors' => $validator->errors()
             ]);
         }
@@ -38,7 +40,7 @@ class MessageController extends Controller
         $new_message->save();
 
         return response()->json([
-            'succes' => true
+            'success' => true
         ]);
     }
 }

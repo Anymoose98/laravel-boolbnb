@@ -97,16 +97,16 @@
                                         <a class="dropdown-item"
                                             href="{{ route('apartments.index') }}">{{ __('Lista Appartamenti') }}</a>
                                         <a class="dropdown-item" href="{{ url('profile') }}">Profilo</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        <a class="dropdown-item" href="{{ url('logout') }}"
                                             onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
+                                        <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
+
                                     </div>
                                 </li>
                             @endguest

@@ -24,6 +24,7 @@
             </div>
             <h4>Metri quadrati: </h4>{{ $apartments->square_meters}}mq
             <h4>Zona</h4>{{ $apartments->location }} <br>
+            <p>Numero click: {{ $apartments->clicks }}</p> 
             @if($apartments->services->isEmpty())
             <h4 class="mt-2">Servizi:    </h4>
             @else
