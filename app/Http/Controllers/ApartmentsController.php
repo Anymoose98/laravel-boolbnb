@@ -82,6 +82,7 @@ class ApartmentsController extends Controller
      * @param  \App\Http\Requests\StoreApartmentsRequest  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(StoreApartmentsRequest $request)
     {
         $apartment = new Apartments();
