@@ -42,20 +42,6 @@
                         </div>
                     </div>
 
-                    <div class="col">
-                        {{-- Zona --}}
-                        <div class="form-group">
-                            <label class="mt-3 fw-bolder" for="location">Città <span class="text-danger">*</span></label>
-                            <input type="text" name="location" id="location" class="form-control"
-                                placeholder="Inserisci la città " value="{{ old('location') }}" required value="{{ old('description') }}>
-                            @error('location')
-                                <div class ="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-
-
             </div>
         </div>
 
@@ -191,69 +177,6 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-
-
-        <h2 class="text-center mt-5 title-section-create">SPONSORIZZAZIONE</h2>
-        <p class="text-center paragraph-padded">Metti in primo piano i tuoi appartamento scegliendo il piano giusto per te.
-        </p>
-        <div class="form-group mt-5">
-
-            <div class="row">
-                <div class="col-4">
-                    <div class="adv-card">
-                        <span class="title-adv">Base</span>
-
-                        <div class="price">
-                            <h2>2,99€</h2>
-                            <span>/24 ore</span>
-                        </div>
-
-                        <button>Acquista</button>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="adv-card">
-                        <span class="title-adv">Standard</span>
-
-                        <div class="price">
-                            <h2>5,99€</h2>
-                            <span>/72 ore</span>
-                        </div>
-
-                        <button>Acquista</button>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="adv-card">
-                        <span class="title-adv">Avanzato</span>
-
-                        <div class="price">
-                            <h2>9,99€</h2>
-                            <span>/144 ore</span>
-                        </div>
-
-                        <button>Acquista</button>
-                    </div>
-                </div>
-            </div>
-
-
-            <label class="container">Livello 1
-                <input type="radio" checked="checked" name="adv_level" value="1">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">Livello 2
-                <input type="radio" name="adv_level" value="2">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">Livello 3
-                <input type="radio" name="adv_level" value="3">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-
-
-
 
         <div class="form-footer mt-2">
             <p class="text-muted"><span class="text-danger">*</span> I campi contrassegnati sono obbligatori.</p>

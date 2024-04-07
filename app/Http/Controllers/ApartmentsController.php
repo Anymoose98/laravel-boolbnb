@@ -89,8 +89,6 @@ class ApartmentsController extends Controller
         $apartment->user_id = auth()->user()->id;
 
         $form_data = $request->all();
-
-        $form_data['adv_level'] = intval($form_data['adv_level']);
         
         // Decodifica l'indirizzo per rimuovere eventuali codifiche URL
         $decodedAddress = urldecode($form_data['address']);
@@ -113,11 +111,9 @@ class ApartmentsController extends Controller
             // Utilizza l'indirizzo pulito per il campo 'location'
             $apartment->latitude = $latitude;
             $apartment->longitude = $longitude;
-            $apartment->location = $cleanAddress; // Usa l'indirizzo decodificato e pulito
         } else {
             $apartment->latitude = null;
             $apartment->longitude = null;
-            $apartment->location = null;
         }
 
         if ($request->hasFile("image")) {
