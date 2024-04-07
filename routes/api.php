@@ -24,10 +24,11 @@ Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get("/apartments/{id}", [ApartmentsController::class, "show"]);
 Route::get("/service", [ServiceController::class, "index"] );
 Route::post('/apartments/{apartments}/clicks', [ApartmentsController::class, 'registerClick']);
+Route::resource('/message', MessageController::class);
 Route::get('pivot-apartments', [PivotApartmentsController::class, 'index']);
 
 
-Route::resource('/message', MessageController::class);
+
 
 
 
