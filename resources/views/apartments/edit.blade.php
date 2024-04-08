@@ -3,7 +3,7 @@
 @section("content")
 
 <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-12">
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -14,7 +14,7 @@
                 </ul>
             </div>
         @endif
-            <h2 class="text-center">Modifica dati appartamento</h2>
+            <h2 class="text-center margine-superiore">Modifica dati appartamento</h2>
         </div>
         <div class="col-12">
             <form action="{{ route("apartments.update", $apartments->id) }}" method="POST" enctype="multipart/form-data">
