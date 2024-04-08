@@ -81,7 +81,7 @@
 <div class="container">
     <div class="form-group mt-5">
         <div class="row">
-            <form id="paymentForm" method="POST" action="{{ route('sponsorship.store', ['apartment_id' => $apartment->id]) }}">
+            <form id="paymentForm" method="POST" action="{{ route('sponsorship.store', ['apartment_id' => $apartment->id]) }}" class="margine-superiore" >
                 @csrf
 
                 {{-- INPUT SCELTA SPONSOR COLLEGATA ALLA MODALE --}}
@@ -127,7 +127,8 @@
                             </div>
 
                             {{-- BOTTONE PER IL PAGAMENTO --}}
-                            <button type="button" name="avanzato" onclick="showPayment('avanzato')">Acquista</button>
+                            
+                                <button type="button" name="avanzato" onclick="showPayment('avanzato')">Acquista</button>
                         </div>
                     </div>
                     
@@ -178,8 +179,8 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="container">
-
             {{-- DIV DEL PAGAMENTO DI BRAINTREE PAYPAL --}}
+
             <div id="dropin-container"></div>
         </div>
     </div>

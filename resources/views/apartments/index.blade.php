@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-start">
-            <div class="col-12">
+            <div class="col-12 margine-superiore">
                 <div class="window-title">
                     <h2>I tuoi appartamenti</h2>
                     <p>In questa pagina puoi modificare i tuoi appartamenti, sponsorizzarli o aggiungerli</p>
