@@ -56,30 +56,37 @@
                     <div class="messages-section p-4">
                         <h4 class="title-info-show"><i class="fa-solid fa-inbox me-2"></i>Inbox</h4>
                         <hr>
-                        @foreach ($message as $index => $msg)
-                            <div class="single-message-show">
-                                <div class="accordion accordion-flush" id="accordionFlushExample{{ $index }}">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#flush-collapseOne{{ $index }}"
-                                                aria-expanded="false" aria-controls="flush-collapseOne{{ $index }}">
-                                                {{ $msg->email }}
-                                            </button>
-                                        </h2>
-                                        <div id="flush-collapseOne{{ $index }}" class="accordion-collapse collapse"
-                                            data-bs-parent="#accordionFlushExample{{ $index }}">
-                                            <div class="accordion-body">
-                                                <h5 class="fw-bold">{{ $msg->subject }} <span class="fw-light fs-6">•
-                                                        {{ $msg->name }}</span></h5>
-                                                {{ $msg->message }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        @if ($message->isEmpty())
+    <div class="single-message-show">
+        Non sono presenti messaggi.
+    </div>
+@else
+    @foreach ($message as $index => $msg)
+        <div class="single-message-show">
+            <div class="accordion accordion-flush" id="accordionFlushExample{{ $index }}">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne{{ $index }}"
+                            aria-expanded="false" aria-controls="flush-collapseOne{{ $index }}">
+                            {{ $msg->email }}
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne{{ $index }}" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample{{ $index }}">
+                        <div class="accordion-body">
+                            <h5 class="fw-bold">{{ $msg->subject }} <span class="fw-light fs-6">•
+                                    {{ $msg->name }}</span></h5>
+                            {{ $msg->message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endif
+
                     </div>
                 </div>
             </div>
