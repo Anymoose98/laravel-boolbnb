@@ -12,7 +12,7 @@
         <div class="info-window-show">
             <div class="info-container-show">
                 <div class="info-section-show">
-                    <span class="click-num">• {{ $apartments->clicks }} Click</span>
+                    <span class="click-num">• {{ $apartments->clicks }} Click(s)</span>
                     <h1 class="address-show">{{ $apartments->address }}</h1>
                     <p class="description-show">{{ $apartments->description }}</p>
                 </div>

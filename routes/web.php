@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApartmentsController;
-use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutocompleteController;
 use App\Http\Controllers\SponsorshipController;
+use App\Http\Controllers\MessageController;
 
 
 /*
@@ -44,6 +44,7 @@ Route::middleware(["auth", "verified"])->group(function(){
 
 Route::get('/sponsorship/{apartment_id}/create', [SponsorshipController::class, 'create'])->name('sponsorship.create');
 Route::post('/sponsorship/{apartment_id}/store', [SponsorshipController::class, 'store'])->name('sponsorship.store');
+
 
 Route::get('/search', [ApartmentsController::class, 'search']);
 

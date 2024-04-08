@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\Apartments;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class MessageController extends Controller
 {
