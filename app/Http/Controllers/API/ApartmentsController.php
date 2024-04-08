@@ -5,13 +5,21 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartments;
+use Illuminate\Support\Facades\Log;
 
 class ApartmentsController extends Controller
 {
     public function registerClick($apartmentId)
 {
-    $apartment = Apartments::findOrFail($apartmentId);
-    $apartment->increment('clicks'); 
+    try {
+        $apartment = Apartments::findOrFail($apartmentId);
+        $apartment->increment('clicks');
+        Log::info("Click registered for apartment with ID: $apartmentId");
+        return response()->json(['message' => 'Click registered successfully'], 200);
+    } catch (\Exception $e) {
+        Log::error("Error registering click for apartment with ID: $apartmentId - Error: " . $e->getMessage());
+        return response()->json(['error' => 'Failed to register click'], 500);
+    }
 }
 
 
