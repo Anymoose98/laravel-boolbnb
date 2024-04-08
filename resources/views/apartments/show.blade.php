@@ -22,7 +22,7 @@
                     <ul class="list-unstyled mt-3">
                         <li>
                             <i class="fa-solid fa-maximize main-color"></i><span class="ms-2 fw-bold main-color">Dimensioni:
-                                <span class="fw-light text-dark">{{ $apartments->square_meters }}</span></span>
+                                <span class="fw-light text-dark">{{ $apartments->square_meters }} mq</span></span>
                         </li>
                         <li>
                             <i class="fa-solid fa-door-open main-color"></i><span class="ms-2 fw-bold main-color">Numero
