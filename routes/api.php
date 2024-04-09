@@ -7,6 +7,7 @@ use App\Http\Controllers\API\MessageController as MessageController;
 use App\Http\Controllers\API\ServiceController as ServiceController;
 use App\Http\Controllers\API\PivotApartmentsController;
 use App\Http\Controllers\API\PivotTableController;
+use App\Http\Controllers\API\ClickController;
 
 
 /*
@@ -24,10 +25,10 @@ use App\Http\Controllers\API\PivotTableController;
 Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get("/apartments/{id}", [ApartmentsController::class, "show"]);
 Route::get("/service", [ServiceController::class, "index"] );
-Route::post('/apartments/{apartments}/clicks', [ApartmentsController::class, 'registerClick']);
+Route::post('/apartments/{apartment}/clicks', [ClickController::class, 'store']);
 Route::resource('/message', MessageController::class);
 Route::get('pivot-apartments', [PivotApartmentsController::class, 'index']);
-Route::get('pivot-table', [PivotTableController::class, 'index']);
+
 
 
 
