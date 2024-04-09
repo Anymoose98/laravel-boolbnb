@@ -9,7 +9,7 @@
             </div>
 
             <div class="modal-body">
-                <h4>Sei sicuro di volere eliminare {{ $apartments->description }}?</h4>
+                <h4>Sei sicuro di volere eliminare {{ $apartments->address }}?</h4>
             </div>
 
             <div class="modal-footer">

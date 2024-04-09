@@ -125,7 +125,7 @@
         </div>
 
         <div class="row" id="imageRow">
-            <div class="col-3 square add-image-gallery padding-create">
+            <div class="col-12 col-lg-3 square add-image-gallery padding-create">
                 <div class="content-square">
                     <div class="form-group">
                         <label class="mt-3 label-gallery" for="image_gallery"><i class="fa-solid fa-plus"></i></label>

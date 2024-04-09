@@ -90,7 +90,7 @@
                 <div class="row">
 
                     {{-- PACCHETTO BASE --}}
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4 mb-3">
                         <div class="adv-card">
                             <span class="title-adv">Base</span>
                             <div class="price">
@@ -104,7 +104,7 @@
                     </div>
 
                     {{-- PACCHETTO STANDARD --}}
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4 mb-3">
                         <div class="adv-card">
                             <span class="title-adv">Standard</span>
                             <div class="price">
@@ -118,7 +118,7 @@
                     </div>
 
                     {{-- PACCHETTO AVANZATO --}}
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4">
                         <div class="adv-card">
                             <span class="title-adv">Avanzato</span>
                             <div class="price">
