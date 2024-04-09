@@ -129,6 +129,7 @@
 </body>
 
 <style>
+
     header{
         width: calc(100% - 60vw);
         right: 0;
