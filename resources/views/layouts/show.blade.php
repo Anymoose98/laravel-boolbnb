@@ -134,6 +134,7 @@
     @media screen and (max-width: 992px) {
         header{
             width: 100% !important;
+            padding: 0;
         }
     }
 </style>
