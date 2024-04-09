@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-3">
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-3 d-flex justify-content-center">
                 <div class="add-apartments-button">
                     <a class="add-btn" href="{{ route('apartments.create') }}">
                         <div class="plus-icon">
@@ -22,7 +22,7 @@
             </div>
 
             @foreach ($apartment as $apartments)
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-3">
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-3 d-flex justify-content-center">
                     <div class="add-apartments-button">
                         <div class="card-option">
                             <div class="single-option">

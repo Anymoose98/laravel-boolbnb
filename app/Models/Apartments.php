@@ -44,4 +44,10 @@ public function sponsors()
     return $this->belongsToMany(Sponsor::class, 'sponsor_apartment');
 }
 
+public function clicks()
+{
+    return $this->hasMany(Clicks::class);
+}
+
+
 }
