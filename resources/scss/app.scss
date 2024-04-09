@@ -888,9 +888,32 @@ header{
             }
         }
     }
-
-    
 }
+
+@media screen and (max-width: 992px) {
+    .photo-container-show{
+        display: none !important;
+    }
+
+    .space-left{
+        display: none;
+    }
+
+    .info-window-show{
+        width: 100% !important;
+        padding: 100px 50px !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .info-container-show{
+        width: 100% !important;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+  }
+
 
 .margine-superiore{
     margin-top: 80px;
