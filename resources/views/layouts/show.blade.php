@@ -32,7 +32,7 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-light bg-white">
                 <div class="container">
-                    <a class="navbar-brand d-flex align-items-center" href="http://localhost:5174">
+                    <a class="navbar-brand d-flex align-items-center" href="http://127.0.0.1:8000/apartments">
                         <div class="logo">
                             <svg class="Colore-viola" width="50" height="55" viewBox="0 0 70 55" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +60,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse margine-destro" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
