@@ -115,7 +115,7 @@
 
 @endsection
 <style scoped>
-@media screen and (max-width: 576px){
+@media screen and (max-width: 992px){
     .main-section-login{
         width: 100% !important; 
     }
@@ -123,4 +123,8 @@
         display: none
     }
   }
+  .main-section-login .form-section-login {
+    width: 100% !important;
+  }
+
   </style>

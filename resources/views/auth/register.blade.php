@@ -142,3 +142,17 @@
     </div>
 
 @endsection
+<style scoped>
+    @media screen and (max-width: 992px){
+        .main-section-login{
+            width: 100% !important; 
+        }
+        .photo-section-login{
+            display: none
+        }
+      }
+      .main-section-login .form-section-login {
+        width: 100% !important;
+      }
+    
+      </style>
