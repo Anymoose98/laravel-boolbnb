@@ -114,3 +114,13 @@
 
 
 @endsection
+<style scoped>
+@media screen and (max-width: 576px){
+    .main-section-login{
+        width: 100% !important; 
+    }
+    .photo-section-login{
+        display: none
+    }
+  }
+  </style>
