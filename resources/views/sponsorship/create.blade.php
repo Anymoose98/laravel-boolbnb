@@ -138,7 +138,7 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
     .modal {
         display: none;
         position: fixed;
@@ -157,6 +157,15 @@
         padding: 20px;
         border: 1px solid #888;
         width: 25%;
+
+        button{
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            padding: 10px 0;
+        }
     }
 
     .close {
