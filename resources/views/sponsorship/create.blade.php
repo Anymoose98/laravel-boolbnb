@@ -186,6 +186,63 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+            /* 
+*******************************
+Phone 576px
+******************************* 
+*/
+@media screen and (max-width: 576px){
+    .modal-content {
+        background-color: #fefefe;
+        margin: 100% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%;
+
+        button{
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            padding: 10px 0;
+        }
+    }
+}
+/* 
+*******************************
+Tablet 768px
+******************************* 
+*/
+@media screen and (min-width:577px ) and (max-width:991px){
+    .modal-content {
+        background-color: #fefefe;
+        margin: 100% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%;
+
+        button{
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            padding: 10px 0;
+        }
+    }
+}
+
+/* 
+*******************************
+PC 992px
+******************************* 
+*/
+@media screen and (min-width:992px){
+
+
+}
 </style>
 
 {{-- MODALE PAGAMENTO --}}
