@@ -1,5 +1,6 @@
 import './bootstrap';
 import axios from 'axios';
+import * as LottiePlayer from "@lottiefiles/lottie-player";
 import '~resources/scss/app.scss';
 import * as bootstrap from 'bootstrap';
 import { result } from 'lodash';

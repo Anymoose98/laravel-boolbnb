@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutocompleteController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PaymentConfirmController;
 
 
 /*
@@ -45,6 +46,7 @@ Route::middleware(["auth", "verified"])->group(function(){
 Route::get('/sponsorship/{apartment_id}/create', [SponsorshipController::class, 'create'])->name('sponsorship.create');
 Route::post('/sponsorship/{apartment_id}/store', [SponsorshipController::class, 'store'])->name('sponsorship.store');
 
+Route::get('/payment-confirm', [PaymentConfirmController::class, 'index'])->name('payment-confirm');
 
 Route::get('/search', [ApartmentsController::class, 'search']);
 

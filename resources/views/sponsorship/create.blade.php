@@ -51,7 +51,7 @@
                     })
                     .then(function (response) {
                         setTimeout(function() {
-                            window.location.href = "http://127.0.0.1:8000/apartments";
+                            window.location.href = "http://127.0.0.1:8000/payment-confirm";
                         }, 1000);
 
                         return response.json();
