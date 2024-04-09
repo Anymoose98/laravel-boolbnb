@@ -50,10 +50,15 @@
                         body: JSON.stringify(payload)
                     })
                     .then(function (response) {
+                        setTimeout(function() {
+                            window.location.href = "http://127.0.0.1:8000/apartments";
+                        }, 1000);
+
                         return response.json();
                     })
                     .then(function (data) {
                         console.log(data);
+                        
                     })
                     .catch(function (error) {
                         console.error('Error:', error);
