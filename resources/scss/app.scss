@@ -885,8 +885,7 @@ header{
 
                     max-height: 500px;
                     overflow: scroll;
-                    scrollbar-color: rgb(130, 130, 130) white;
-                    scrollbar-width: thin;
+                    overflow-x: hidden;
                 }
             }
         }
