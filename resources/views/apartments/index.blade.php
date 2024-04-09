@@ -192,5 +192,36 @@
             }
 
         }
+
+        /* 
+*******************************
+Phone 576px
+******************************* 
+*/
+@media screen and (max-width: 576px){
+    .add-apartments-button .card-option {
+            opacity: 1;
+        }
+}
+/* 
+*******************************
+Tablet 768px
+******************************* 
+*/
+@media screen and (min-width:577px ) and (max-width:991px){
+    .add-apartments-button .card-option {
+            opacity: 1;
+        }
+}
+
+/* 
+*******************************
+PC 992px
+******************************* 
+*/
+@media screen and (min-width:992px){
+
+
+}
     </style>
 @endsection
