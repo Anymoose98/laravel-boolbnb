@@ -2,15 +2,20 @@
 
 @section('content')
     <div class="main-content-show">
-        <div class="photo-container-show">
+        <div class="photo-container-show d-lg-block d-none">
             <div class="photo-fixed">
                 <img src="{{ asset('/storage/' . $apartments->image) }}" alt="{{ $apartments->name }}">
             </div>
         </div>
 
+
         <div class="info-window-show">
             <div class="info-container-show">
                 <div class="info-section-show">
+                        <div class="mobile-photo-container d-block d-lg-none">
+                            <img class="mobile-photo" src="{{ asset('/storage/' . $apartments->image) }}" alt="{{ $apartments->name }}">
+                        </div>
+
                     <span class="click-num">• {{ $totalClicks }} Click(s)</span>
                     <h1 class="address-show">{{ $apartments->address }}</h1>
                     <p class="description-show">{{ $apartments->description }}</p>
@@ -130,7 +135,5 @@
         config
     );
 </script>
-
-    </script>
     
 @endsection
